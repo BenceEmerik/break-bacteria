@@ -1,0 +1,68 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "Bricket",
+"language": "GDScript",
+"path": "res://Scripts/Bricket.gd"
+}, {
+"base": "Node2D",
+"class": "BricketGrid",
+"language": "GDScript",
+"path": "res://Scripts/BricketGrid.gd"
+} ]
+_global_script_class_icons={
+"Bricket": "",
+"BricketGrid": ""
+}
+
+[application]
+
+config/name="Bricket"
+run/main_scene="res://Scenes/Game.tscn"
+config/icon="res://icon.png"
+
+[debug]
+
+settings/stdout/print_fps=true
+
+[display]
+
+window/size/width=1080
+window/size/height=1920
+window/size/resizable=false
+window/size/always_on_top=true
+window/size/test_width=360
+window/size/test_height=640
+window/handheld/orientation="portrait"
+window/stretch/mode="2d"
+window/stretch/aspect="keep_height"
+
+[input]
+
+left_click={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[rendering]
+
+quality/driver/driver_name="GLES2"
+quality/2d/use_pixel_snap=true
+vram_compression/import_etc=true
+vram_compression/import_etc2=false
+quality/depth/hdr=false
+environment/default_environment="res://default_env.tres"

@@ -1,0 +1,43 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Bricket.gd" type="Script" id=2]
+[ext_resource path="res://Asset/OpenSans-Regular.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+size = 36
+outline_size = 1
+outline_color = Color( 0.176471, 0.176471, 0.176471, 1 )
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 3 )
+
+[node name="Bricket" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+[node name="Collision" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 0, 0 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -21.0
+margin_top = -25.0
+margin_right = 21.0
+margin_bottom = 25.0
+custom_fonts/font = SubResource( 1 )
+text = "30"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
