@@ -4,6 +4,7 @@ extends KinematicBody2D
 var speed:int = 2000
 var velocity:Vector2 = Vector2.ZERO
 
+onready var tween:Tween = $Tween
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
@@ -23,8 +24,14 @@ func _process(delta:float) -> void:
 	if collision:
 		velocity = velocity.bounce(collision.normal)
 		
-		
 		if collision.collider.has_method("is_bricket"):
-			print()
 			collision.collider.emit_signal("health_state")
 			
+		if collision.collider.get_name() == "Ground":
+			get_node("/root/Game").emit_signal("ground_collision", global_position)
+			set_process(false)
+			tween.interpolate_property(self, "position", position, get_node("/root/Game").new_spawn.position, 0.3,
+									   Tween.TRANS_SINE, Tween.EASE_IN)
+			tween.start()
+			yield(tween, "tween_all_completed")
+			queue_free()

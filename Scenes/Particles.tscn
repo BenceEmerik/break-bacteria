@@ -1,0 +1,15 @@
+[gd_scene format=2]
+
+[node name="Particles" type="CPUParticles2D"]
+emitting = false
+amount = 16
+lifetime = 4.0
+one_shot = true
+speed_scale = 5.0
+explosiveness = 0.75
+emission_shape = 1
+emission_sphere_radius = 90.0
+angular_velocity = 25.0
+angular_velocity_random = 0.25
+radial_accel = 30.0
+scale_amount = 30.0
