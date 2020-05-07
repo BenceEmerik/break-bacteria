@@ -1,9 +1,9 @@
-extends Control
+extends Node
 
 
-# Declare member variables here. Examples:
-# var a: int = 2
-# var b: String = "text"
+var sound:bool = true
+var music:bool = true
+
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,5 +16,8 @@ func _ready() -> void:
 #	pass
 
 
-func _on_XButton_pressed() -> void:
-	queue_free()
+func load() -> Dictionary:
+	return Dictionary()
+
+func save() -> void:
+	pass

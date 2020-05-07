@@ -126,8 +126,7 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Sprite" type="Sprite" parent="NewSpawn"]
-scale = Vector2( 0.8, 0.8 )
+[node name="Ball" type="Sprite" parent="NewSpawn"]
 texture = ExtResource( 6 )
 
 [node name="Spawn" type="Position2D" parent="."]
@@ -174,7 +173,6 @@ __meta__ = {
 }
 
 [node name="Ball" type="Sprite" parent="Spawn"]
-scale = Vector2( 0.8, 0.8 )
 texture = ExtResource( 6 )
 
 [node name="BricketGrid" type="Node2D" parent="."]

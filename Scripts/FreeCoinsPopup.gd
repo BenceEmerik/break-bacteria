@@ -21,4 +21,4 @@ func _on_WatchButton_pressed() -> void:
 
 
 func _on_XButton_pressed() -> void:
-	pass # Replace with function body.
+	queue_free()

@@ -1,4 +1,5 @@
 .import/
 android/build/build/
+android/build/.gradle/
 android/build/libs/
 addons/

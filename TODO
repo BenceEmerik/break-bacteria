@@ -6,3 +6,10 @@ o yana bu yana top
 ilk düşen top yeni spawn merkezi olacak ve diğe inen toplar indiği yerden yeni merkeze yol alcak
 top fırlatma bittikten sonra önceki merkezdeki diğer toplar düştükten sonra yeni merkeze kayacak.
 düşen top rotate i normale dönecek
+
+
+Jiko:
+butonlarda text olacağına simge olsun?
+Butonlar da text olmasın. normal ve pressed! image olsun
+arka plan değişsin ya arka plan ile rect simgeler uyumlu olsun ki görebilelim.
+Geri butonu lazım

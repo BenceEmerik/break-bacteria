@@ -27,9 +27,14 @@ _global_script_class_icons={
 [application]
 
 config/name="Break Bacteria"
-run/main_scene="res://Scenes/Game.tscn"
+run/main_scene="res://Scenes/Main.tscn"
 config/icon="res://icon.png"
 run/name="Bricket"
+
+[autoload]
+
+Globals="*res://Scripts/Globals.gd"
+LocalSettings="*res://Scripts/LocalSettings.gd"
 
 [debug]
 
