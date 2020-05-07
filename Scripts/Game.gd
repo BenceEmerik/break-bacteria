@@ -13,10 +13,12 @@ onready var tween:Tween = $Tween
 
 var is_angle_valid:bool
 var angle
-var fgfg = 0
-var gfgf = 0
+var thrown_balls = 0
+var falling_balls = 0
 var turn_complete:bool = true
 var first_ball:bool = false
+
+var total_balls:int = 30 #burası kayıtlı top sayısını alacak
 
 signal level_started()
 signal level_completed()
@@ -29,23 +31,25 @@ func _ready() -> void:
 	first_line.points[0] = first_line.position
 	timer.connect("timeout", self, "_on_Ball_Shooting")
 	self.connect("ground_collision", self, "_on_Ground_Collision")
-
+	self.connect("level_started", self, "_on_Level_Started")
+	self.connect("level_completed", self, "_on_Level_Completed")
+	self.connect("level_failed", self, "_on_Level_Failed")
+	self.connect("turn_completed", self, "_on_Turn_Completed")
+#	emit_signal("level_started")
 
 func _process(delta:float) -> void:
 	pass
 
-
-func _input(event: InputEvent) -> void:
+func _input(event:InputEvent) -> void:
 	if turn_complete:
 		if event is InputEventScreenDrag or event is InputEventScreenTouch:
 			var direction = event.position - $Spawn.position
 			first_ray.cast_to = direction.normalized() * 2000
 			first_ray.force_raycast_update()
 			end_ray.clear_exceptions()
-			
+
 			is_angle_valid = direction.angle() < -0.1 and direction.angle() > -3.04
-	#		print(direction.angle())
-			
+
 			if first_ray.is_colliding() and is_angle_valid:
 				first_line.visible = true
 				var collider = first_ray.get_collider()
@@ -60,16 +64,15 @@ func _input(event: InputEvent) -> void:
 					
 					end_line.points[0] = first_line.points[1]
 					end_line.points[1] = end_ray.get_collision_point() - first_line.global_position
-	#				print(end_ray.get_collision_point(), first_line.global_position, first_line.points[1])
-				
+
 				else:
 					first_line.points[1] = first_ray.get_collision_point() - first_line.global_position
 					end_line.visible = false
-			
+
 			else:
 				first_line.visible = false
 				end_line.visible = false
-		
+
 		if event is InputEventScreenTouch and not event.pressed and is_angle_valid:
 			first_line.visible = false
 			end_line.visible = false
@@ -78,34 +81,60 @@ func _input(event: InputEvent) -> void:
 			turn_complete = false
 
 func _on_Ball_Shooting() -> void:
-	fgfg += 1
+	thrown_balls += 1
 	var ball = Ball.instance()
 	add_child(ball)
 	ball.position = $Spawn.position
 	ball.start(angle)
-	$Spawn/BallCount.text = "x%d"%(30-fgfg)
-	if fgfg >= 30:
+	$Spawn/BallCount.text = "x%d"%(total_balls-thrown_balls)
+	
+	if thrown_balls >= total_balls:
 		$Spawn/BallCount.visible = false
 		timer.stop()
 
 func _on_Ground_Collision(pos) -> void:
-	gfgf += 1
+	falling_balls += 1
 	if !first_ball:
 		print(pos)
 		new_spawn.position = pos
 		new_spawn.visible = true
 		first_ball = true
 	
-	if gfgf >= 30:
+	if falling_balls >= total_balls:
 		tween.interpolate_property(spawn, "position", spawn.position, new_spawn.position, 0.3,
 		Tween.TRANS_SINE, Tween.EASE_IN)
 		tween.start()
 		yield(tween, "tween_all_completed")
-		new_spawn.visible = false
-		turn_complete = true
-		fgfg = 0
-		gfgf = 0
-		first_ball = false
-		$Spawn/BallCount.text = "x%d"%(30-fgfg)
-		$Spawn/BallCount.visible = true
+		emit_signal("turn_completed")
 		
+func _on_Level_Started() -> void:
+	print_debug("level start")
+
+func _on_Level_Completed() -> void:
+	print("level complete")
+
+func _on_Level_Failed() -> void:
+	print("level failed")
+
+func _on_Turn_Completed() -> void:
+	new_spawn.visible = false
+	thrown_balls = 0
+	falling_balls = 0
+	first_ball = false
+	$Spawn/BallCount.text = "x%d"%(total_balls-thrown_balls)
+	$Spawn/BallCount.visible = true
+	turn_complete = true
+
+
+
+
+
+
+
+
+
+
+
+
+
+

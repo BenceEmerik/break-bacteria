@@ -27,11 +27,11 @@ func _ready() -> void:
 	connect("death", self, "_on_Death")
 	
 	if bricket_type == "Square":
-		sprite.texture = load("res://Sprites/square.png")
+		sprite.texture = load("res://UI/Game/kare.png")
 		collision.polygon = square_shape
 		
 	else:
-		sprite.texture = load("res://Sprites/triangle.png")
+		sprite.texture = load("res://UI/Game/ucgen-bottom-left.png")
 		collision.polygon = triangle_shape
 	
 	sprite.modulate = bricket_color
