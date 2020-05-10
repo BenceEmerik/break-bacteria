@@ -44,6 +44,7 @@ dependencies {
         releaseİmplementation fileTree(dir: 'libs/release', include: ['*.jar', '*.aar'])
     }
 //CHUNK_DEPENDENCIES_BEGIN
+api ('com.google.android.gms:play-services-ads:16.0.0') { exclude group: 'com.android.support' }
 //CHUNK_DEPENDENCIES_END
 }
 
@@ -82,6 +83,7 @@ android {
             java.srcDirs = [
                     'src'
 //DIR_SRC_BEGIN
+,'C:/Users/Metehan/GodotProjects/Bricket/android/admob-plugin/src'
 //DIR_SRC_END
             ]
             res.srcDirs = [

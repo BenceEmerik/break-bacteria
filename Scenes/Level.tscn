@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=2]
 
-[ext_resource path="res://UI/Main/options.png" type="Texture" id=1]
+[ext_resource path="res://UI/backbtn.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Level.gd" type="Script" id=2]
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scenes/BG.tscn" type="PackedScene" id=8]
@@ -475,8 +475,8 @@ __meta__ = {
 [node name="BackButton" type="TextureButton" parent="HUD/Back/MarginContainer"]
 margin_left = 48.0
 margin_top = 48.0
-margin_right = 156.0
-margin_bottom = 155.0
+margin_right = 140.0
+margin_bottom = 140.0
 texture_normal = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -534,45 +534,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Star" type="Control" parent="HUD"]
+[node name="Coins" type="Control" parent="HUD"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="MarginContainer" type="MarginContainer" parent="HUD/Star"]
+[node name="MarginContainer" type="MarginContainer" parent="HUD/Coins"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -239.0
-margin_bottom = 155.0
+margin_left = -230.0
+margin_bottom = 128.0
 custom_constants/margin_right = 48
-custom_constants/margin_top = 48
+custom_constants/margin_top = 64
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Star/MarginContainer"]
-margin_top = 48.0
-margin_right = 191.0
-margin_bottom = 155.0
+[node name="HBoxContainer" type="HBoxContainer" parent="HUD/Coins/MarginContainer"]
+margin_top = 64.0
+margin_right = 182.0
+margin_bottom = 128.0
 custom_constants/separation = 16
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Coins" type="Label" parent="HUD/Star/MarginContainer/HBoxContainer"]
-margin_top = 31.0
-margin_right = 67.0
-margin_bottom = 76.0
+[node name="Coins" type="Label" parent="HUD/Coins/MarginContainer/HBoxContainer"]
+margin_right = 83.0
+margin_bottom = 64.0
+size_flags_horizontal = 11
+size_flags_vertical = 5
 custom_fonts/font = SubResource( 3 )
-text = "345"
-align = 2
-valign = 2
+text = "0"
+align = 1
+valign = 1
 
-[node name="Coin" type="TextureRect" parent="HUD/Star/MarginContainer/HBoxContainer"]
-margin_left = 83.0
-margin_right = 180.0
-margin_bottom = 107.0
+[node name="Coin" type="TextureRect" parent="HUD/Coins/MarginContainer/HBoxContainer"]
+margin_left = 99.0
+margin_right = 182.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
 texture = ExtResource( 9 )
 stretch_mode = 3
 

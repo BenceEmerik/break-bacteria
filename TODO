@@ -7,6 +7,7 @@ ilk düşen top yeni spawn merkezi olacak ve diğe inen toplar indiği yerden ye
 top fırlatma bittikten sonra önceki merkezdeki diğer toplar düştükten sonra yeni merkeze kayacak.
 düşen top rotate i normale dönecek
 
+adb logcat -s godot
 
 Jiko:
 butonlarda text olacağına simge olsun?

@@ -9,6 +9,11 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "Admob",
+"language": "GDScript",
+"path": "res://admob-lib/admob.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Bricket",
 "language": "GDScript",
@@ -20,21 +25,28 @@ _global_script_classes=[ {
 "path": "res://Scripts/BricketGrid.gd"
 } ]
 _global_script_class_icons={
+"Admob": "res://admob-lib/icon.png",
 "Bricket": "",
 "BricketGrid": ""
 }
+
+[android]
+
+modules="org/godotengine/godot/GodotAdMob"
 
 [application]
 
 config/name="Break Bacteria"
 run/main_scene="res://Scenes/Main.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="Break Bacteria"
 config/icon="res://icon.png"
 run/name="Bricket"
 
 [autoload]
 
-Globals="*res://Scripts/Globals.gd"
 LocalSettings="*res://Scripts/LocalSettings.gd"
+Globals="*res://Scripts/Globals.gd"
 
 [debug]
 

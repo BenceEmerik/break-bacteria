@@ -17,7 +17,7 @@ func _ready() -> void:
 
 
 func _on_WatchButton_pressed() -> void:
-	pass # Replace with function body.
+	get_parent().get_node("Admob").show_rewarded_video()
 
 
 func _on_XButton_pressed() -> void:

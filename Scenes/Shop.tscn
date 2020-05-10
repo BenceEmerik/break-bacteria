@@ -1,14 +1,23 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=20 format=2]
 
-[ext_resource path="res://UI/Main/options.png" type="Texture" id=1]
+[ext_resource path="res://UI/backbtn.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Shop.gd" type="Script" id=2]
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scenes/BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/ShopItem.tscn" type="PackedScene" id=5]
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=6]
 [ext_resource path="res://UI/LevelItem/coin.png" type="Texture" id=7]
+[ext_resource path="res://Sprites/Balls/magnezyum.png" type="Texture" id=8]
+[ext_resource path="res://Sprites/Balls/iyot.png" type="Texture" id=9]
+[ext_resource path="res://Sprites/Balls/kukurt.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Balls/lityum.png" type="Texture" id=11]
+[ext_resource path="res://Sprites/Balls/platin.png" type="Texture" id=12]
+[ext_resource path="res://Sprites/Balls/rubidyum.png" type="Texture" id=13]
+[ext_resource path="res://Sprites/Balls/stronsiyum.png" type="Texture" id=14]
+[ext_resource path="res://Sprites/Balls/antikor.png" type="Texture" id=15]
 
 [sub_resource type="DynamicFont" id=1]
-size = 48
+size = 64
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 3 )
@@ -446,6 +455,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Admob" type="Node" parent="."]
+script = ExtResource( 6 )
+rewarded_id = "ca-app-pub-6806793675683811/8734628421"
+
 [node name="BG" parent="." instance=ExtResource( 4 )]
 
 [node name="HUD" type="CanvasLayer" parent="."]
@@ -469,8 +482,8 @@ __meta__ = {
 [node name="BackButton" type="TextureButton" parent="HUD/Back/MarginContainer"]
 margin_left = 48.0
 margin_top = 48.0
-margin_right = 156.0
-margin_bottom = 155.0
+margin_right = 140.0
+margin_bottom = 140.0
 texture_normal = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -489,15 +502,18 @@ __meta__ = {
 [node name="MarginContainer" type="MarginContainer" parent="HUD/Title"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -73.0
-margin_right = 73.0
-margin_bottom = 60.0
+margin_left = -97.0
+margin_right = 97.0
+margin_bottom = 143.0
 custom_constants/margin_top = 64
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Title" type="Label" parent="HUD/Title/MarginContainer"]
 margin_top = 64.0
-margin_right = 146.0
-margin_bottom = 124.0
+margin_right = 194.0
+margin_bottom = 143.0
 custom_fonts/font = SubResource( 1 )
 text = "shop"
 align = 1
@@ -512,42 +528,48 @@ anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -40.0
 margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MarginContainer" type="MarginContainer" parent="HUD/Coins"]
 anchor_left = 1.0
 anchor_right = 1.0
-margin_left = -312.0
-margin_bottom = 171.0
+margin_left = -230.0
+margin_bottom = 128.0
 custom_constants/margin_right = 48
-custom_constants/margin_top = 48
+custom_constants/margin_top = 64
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Coins/MarginContainer"]
-margin_top = 48.0
-margin_right = 264.0
-margin_bottom = 171.0
+margin_top = 64.0
+margin_right = 182.0
+margin_bottom = 128.0
 custom_constants/separation = 16
+alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Coins" type="Label" parent="HUD/Coins/MarginContainer/HBoxContainer"]
-margin_top = 39.0
-margin_right = 124.0
-margin_bottom = 84.0
+margin_right = 83.0
+margin_bottom = 64.0
+size_flags_horizontal = 11
+size_flags_vertical = 5
 custom_fonts/font = SubResource( 2 )
-text = "+12345"
-align = 2
-valign = 2
+text = "0"
+align = 1
+valign = 1
 
 [node name="Coin" type="TextureRect" parent="HUD/Coins/MarginContainer/HBoxContainer"]
-margin_left = 140.0
-margin_right = 204.0
-margin_bottom = 123.0
+margin_left = 99.0
+margin_right = 182.0
+margin_bottom = 64.0
+size_flags_horizontal = 3
 texture = ExtResource( 7 )
-stretch_mode = 4
+stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchor_right = 1.0
@@ -583,37 +605,71 @@ columns = 3
 [node name="ShopItem" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_right = 192.0
 margin_bottom = 192.0
-selected = true
+ball_texture = ExtResource( 15 )
+ball_name = "antikor"
 
 [node name="ShopItem2" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_left = 276.0
 margin_right = 468.0
 margin_bottom = 192.0
+ball_texture = ExtResource( 9 )
+ball_name = "iyot"
+rewarded = true
 
 [node name="ShopItem3" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_left = 552.0
 margin_right = 744.0
 margin_bottom = 192.0
+ball_texture = ExtResource( 10 )
+ball_name = "kükürt"
+coins = 100
 
 [node name="ShopItem4" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_top = 328.0
 margin_right = 192.0
 margin_bottom = 520.0
+ball_texture = ExtResource( 11 )
+ball_name = "lityum"
+rewarded = true
 
 [node name="ShopItem5" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_left = 276.0
 margin_top = 328.0
 margin_right = 468.0
 margin_bottom = 520.0
+ball_texture = ExtResource( 8 )
+ball_name = "magnezyum"
+rewarded = true
+coins = 100
 
 [node name="ShopItem6" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_left = 552.0
 margin_top = 328.0
 margin_right = 744.0
 margin_bottom = 520.0
+ball_texture = ExtResource( 12 )
+ball_name = "platin"
+rewarded = true
+coins = 100
 
 [node name="ShopItem7" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_top = 656.0
 margin_right = 192.0
 margin_bottom = 848.0
+ball_texture = ExtResource( 13 )
+ball_name = "rubidyum"
+coins = 250
+
+[node name="ShopItem8" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 276.0
+margin_top = 656.0
+margin_right = 468.0
+margin_bottom = 848.0
+ball_texture = ExtResource( 14 )
+ball_name = "stronsiyum"
+coins = 500
+[connection signal="rewarded" from="Admob" to="." method="_on_Admob_rewarded"]
+[connection signal="rewarded_video_closed" from="Admob" to="." method="_on_Admob_rewarded_video_closed"]
+[connection signal="rewarded_video_failed_to_load" from="Admob" to="." method="_on_Admob_rewarded_video_failed_to_load"]
+[connection signal="rewarded_video_loaded" from="Admob" to="." method="_on_Admob_rewarded_video_loaded"]
 [connection signal="pressed" from="HUD/Back/MarginContainer/BackButton" to="." method="_on_BackButton_pressed"]

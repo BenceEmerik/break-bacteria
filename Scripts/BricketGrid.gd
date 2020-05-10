@@ -4,7 +4,7 @@ class_name BricketGrid
 
 
 export(int) var column:int = 9
-export(int) var row:int = 12
+export(int) var row:int = 11
 export(int) var extra_row:int = 0
 export(int) var cell_length:int = 120
 export(int) var bricket_health:int = 30
