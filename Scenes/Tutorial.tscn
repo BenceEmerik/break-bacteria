@@ -1,0 +1,70 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://UI/Game/swipe.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "tutorial"
+length = 3.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 765, 840 ), Vector2( 315, 840 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Line2D:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 25.0, -25.0 ]
+}
+
+[sub_resource type="DynamicFont" id=2]
+size = 48
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 1 )
+
+[node name="Tutorial" type="Node2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "tutorial"
+anims/tutorial = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 315, 840 )
+texture = ExtResource( 2 )
+offset = Vector2( 5, 25 )
+
+[node name="Line2D" type="Line2D" parent="."]
+position = Vector2( 540, 1320 )
+rotation = -0.436332
+points = PoolVector2Array( -0.0102539, -6.18799, -0.0102539, -715.812 )
+width = 3.0
+default_color = Color( 1, 1, 1, 1 )
+antialiased = true
+
+[node name="Label" type="Label" parent="."]
+margin_left = 598.565
+margin_top = 910.736
+margin_right = 1167.57
+margin_bottom = 999.736
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "Swipe to Shoot"
+__meta__ = {
+"_edit_use_anchors_": false
+}

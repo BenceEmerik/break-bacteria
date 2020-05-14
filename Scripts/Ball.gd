@@ -28,9 +28,9 @@ func _process(delta:float) -> void:
 			collision.collider.emit_signal("health_state")
 			
 		if collision.collider.get_name() == "Ground":
-			get_node("/root/Game").emit_signal("ground_collision", global_position)
+			get_node("/root/ChallengeGame").emit_signal("ground_collision", global_position)
 			set_process(false)
-			tween.interpolate_property(self, "position", position, get_node("/root/Game").new_spawn.position, 0.3,
+			tween.interpolate_property(self, "position", position, get_node("/root/ChallengeGame").new_spawn.position, 0.3,
 									   Tween.TRANS_SINE, Tween.EASE_IN)
 			tween.start()
 			yield(tween, "tween_all_completed")

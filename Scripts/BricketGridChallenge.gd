@@ -7,23 +7,13 @@ export(int) var row:int = 11
 export(int) var turn:int = 0
 export(int) var cell_length:int = 120
 export(int) var offset:int = 60
-export(int) var bricket_health:int = 30
-export(int) var ball_plus:int = 0
-
-export(bool) var h_bonus:bool = false
-export(bool) var hv_bonus:bool = false
-export(bool) var random_bonus:bool = false
-#export(Array, Array, PackedScene) var hebele:Array = []
-#export(String, FILE) var level
-
-#signal cell_clicked(column, row)
 
 var grid = []
 
 func _ready() -> void:
 #	print(grid_to_world(5, 5))
 #	print(world_to_grid(Vector2(250, 360)))
-	var size:Vector2 = Vector2(120*column, 120*row)
+	var size:Vector2 = Vector2(cell_length*column, cell_length*row)
 	
 	for r in range(row):
 		var col = []
@@ -40,7 +30,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_released("left_click"):
 		erase_row()
 		row_down()
-		add_row()
+#		add_row()
 		print(grid)
 		#turn complete -> deleted_item_clear()
 #	print(world_to_grid(get_local_mouse_position()))
@@ -55,14 +45,20 @@ func _input(event:InputEvent):
 	
 	
 
-func add_bricket(bricket:Node2D) -> void:
+func add_bricket() -> void:
 	pass
 
 
-func add_row() -> void:
+func add_row(level:int) -> void:
+	# null, ball+, bricket[tri][rot] level < 5 square > random %20
+	var row:Array = []
+	for cell in column:
+		row.append(null)
+	
 	var bricket = preload("res://Scenes/Bricket.tscn").instance()
-	add_child(bricket)
+	bricket.health = level
 	bricket.position = Vector2(4*cell_length-offset, 2*cell_length-offset)
+	add_child(bricket)
 	grid.insert(1, [null, null, null, bricket, null, null, null, null, null, ])
 
 func row_down() -> void:
@@ -75,6 +71,13 @@ func deleted_item_clear() -> void:
 		for j in i:
 			if is_instance_valid(j):
 				grid[i][j] = null
+
+func is_grid_empty() -> bool:
+	for i in grid:
+		for j in i:
+			if j != null:
+				return true
+	return false
 
 func erase_row() -> void:
 	var last_row = grid.pop_back()

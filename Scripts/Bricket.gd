@@ -4,7 +4,14 @@ class_name Bricket
 
 export(int) var health = 30
 export(String, "Triangle", "Square") var bricket_type = "Square"
-export(Color) var bricket_color = Color(1, 1, 1)
+export(Color, RGB) var bricket_color = Color.darkslategray
+export(int, "Red", "Blue", "Orange", "Yellow", "YellorGreen", "Aqua") var color
+var colors =  [
+	Color.red, Color.blue, Color.orange, Color.yellow, Color.yellowgreen, Color.aqua, Color.green,
+	Color.purple, Color.brown, Color.darkslategray, Color.coral, Color.fuchsia, Color.dodgerblue,
+	Color.firebrick, Color.chocolate, Color.lawngreen, Color.olive, Color.limegreen, Color.snow,
+	
+]
 
 onready var sprite:Sprite = $Sprite
 onready var collision:CollisionPolygon2D = $Collision
@@ -17,7 +24,7 @@ onready var particles:CPUParticles2D = preload("res://Scenes/Particles.tscn").in
 signal health_state
 signal death
 
-var square_shape:PoolVector2Array = PoolVector2Array([Vector2(-60, -60), Vector2(60, -60), Vector2(60, 60), Vector2(-60, 60)])
+var square_shape:PoolVector2Array = PoolVector2Array([Vector2(-58, -58), Vector2(58, -58), Vector2(58, 58), Vector2(-58, 58)])
 var triangle_shape:PoolVector2Array = PoolVector2Array([Vector2(-60, -60), Vector2(60, 60), Vector2(-60, 60)])
 
 
@@ -34,7 +41,8 @@ func _ready() -> void:
 		sprite.texture = load("res://UI/Game/ucgen-bottom-left.png")
 		collision.polygon = triangle_shape
 	
-	sprite.modulate = bricket_color
+#	sprite.modulate = bricket_color
+	sprite.modulate = colors[color]
 	label.text = str(health)
 	
 
@@ -57,7 +65,7 @@ func _on_Health_Status() -> void:
 	tween.start()
 
 func _on_Death() -> void:
-	get_node("/root/Game").add_child(particles)
+	get_node("/root/ChallengeGame").add_child(particles)
 	particles.position = position
 	particles.color = bricket_color
 	particles.emitting = true

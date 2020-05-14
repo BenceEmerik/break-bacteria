@@ -1,7 +1,28 @@
 extends Node2D
 
+enum State {
+	ACTION,
+	DELETED_ITEM_CLEAR,
+	ERASE
+	ROW_DOWN,
+	ADD_ROW,
+	IDLE
+}
+
+
+
+signal screen_clear()
+signal turn_completed()
+signal challenge_failed()
+
+signal ground_collision(position)
 
 const Ball = preload("res://Scenes/Ball.tscn")
+
+onready var score_label = $HUD/Top/MarginContainer2/ScoreLabel
+onready var coins_label = $HUD/Top/MarginContainer3/HBoxContainer/CoinsLabel
+onready var bricketgrid = $BricketGrid
+
 onready var spawn:Position2D = $Spawn
 onready var new_spawn:Position2D = $NewSpawn
 onready var first_line:Line2D = $Spawn/FirstLine
@@ -18,33 +39,46 @@ var falling_balls = 0
 var turn_complete:bool = true
 var first_ball:bool = false
 
-var total_balls:int = 30 #burası kayıtlı top sayısını alacak
+var total_balls:int
 
 var level
 
-signal level_started()
-signal level_completed()
-signal level_failed()
-signal turn_completed()
-signal ground_collision(position)
-
-# Called when the node enters the scene tree for the first time.
+#ekran tamamen temizlenince checkpoint oluşacak.
+#her turda level artacak
+#her turda bir tane kesin top artırıcı olacak
+#checkpoint harici çıkarsan checkpointten başlarsın.
+#arada leveldan yüksek değerde bricket çıkabilir
+#özel itemler çıkabilir
+# yanlara ışın, 4 yana ışın, kalkan, top küçültücü, üç yöne dağıtıcı, top+
 func _ready() -> void:
+	LocalSettings.load()
+	level = LocalSettings.get_setting("challenge_checkpoints", 1)
+	total_balls = level
+	score_label.text = str(level)
+	coins_label.text = str(LocalSettings.get_setting("coins", 0))
+	
+	connect("challenge_failed", self, "_on_challenge_failed")
+	connect("screen_clear", self, "_on_screen_clear")
+	connect("turn_completed", self, "_on_turn_completed")
+	
 	first_line.points[0] = first_line.position
 	timer.connect("timeout", self, "_on_Ball_Shooting")
 	self.connect("ground_collision", self, "_on_Ground_Collision")
-	self.connect("level_started", self, "_on_Level_Started")
-	self.connect("level_completed", self, "_on_Level_Completed")
-	self.connect("level_failed", self, "_on_Level_Failed")
 	self.connect("turn_completed", self, "_on_Turn_Completed")
-	var path = "res://Levels/Level" + str(Globals.level) + ".tscn"
-	level = load(path).instance()
-	$Level.add_child(level)
-#	emit_signal("level_started")
+	
+	bricketgrid.add_row(1)
+	
+	
 
-func _process(delta:float) -> void:
-	pass
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+#	pass
+
+func _on_turn_completed() -> void:
+	level += 1
+	score_label.text = str(level)
+	
 func _input(event: InputEvent) -> void:
 	if turn_complete:
 		if event is InputEventScreenDrag or event is InputEventScreenTouch:
@@ -129,17 +163,3 @@ func _on_Turn_Completed() -> void:
 	$Spawn/BallCount.text = "x%d"%(total_balls-thrown_balls)
 	$Spawn/BallCount.visible = true
 	turn_complete = true
-
-
-
-
-
-
-
-
-
-
-
-
-
-

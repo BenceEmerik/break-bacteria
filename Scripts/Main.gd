@@ -92,7 +92,7 @@ func _on_count_down() -> void:
 
 
 func _on_ChallengeButton_pressed() -> void:
-	get_tree().change_scene("res://Scenes/Game.tscn")
+	get_tree().change_scene("res://Scenes/ChallengeGame.tscn")
 
 
 func _on_Admob_rewarded(currency, ammount) -> void:

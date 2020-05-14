@@ -15,11 +15,22 @@ func _ready() -> void:
 		settings_file.open(file_path, File.WRITE)
 		var d = {"coins": 0,
 				"current_level": 1,
-				"challenge": 1,
+				"challenge_checkpoints": 1,
+				"best_challenge_level": 0,
 				"buyed_balls": ["antikor"],
 				"selected_ball": "antikor",
+				"total_balls": 30,
 				"prev_time": 0,
-				}
+				"last_completed_level": 0,
+				"completed_levels": {
+#					1: {
+#						"score": 0}
+#						}
+				},
+#				"challenge": {
+#					"checkpoint": 1
+#				}
+		}
 		settings_file.store_string(JSON.print(d))
 		settings_file.close()
 
