@@ -18,6 +18,7 @@ color = 5
 [node name="Bricket3" parent="." instance=ExtResource( 2 )]
 position = Vector2( 420, 300 )
 health = 33
+bricket_type = "Triangle"
 color = 4
 
 [node name="Tutorial" parent="." instance=ExtResource( 3 )]

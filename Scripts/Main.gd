@@ -46,11 +46,11 @@ func _ready() -> void:
 
 
 func _on_PlayButton_pressed() -> void:
-	get_tree().change_scene("res://Scenes/Level.tscn")
+	get_tree().change_scene("res://Scenes/UI/Level.tscn")
 
 
 func _on_ShopButton_pressed() -> void:
-	get_tree().change_scene("res://Scenes/Shop.tscn")
+	get_tree().change_scene("res://Scenes/UI/Shop.tscn")
 
 
 #func _on_OptionButton_pressed() -> void:
@@ -60,7 +60,7 @@ func _on_ShopButton_pressed() -> void:
 
 func _on_FreeButton_pressed() -> void:
 	if $Admob.is_rewarded_video_loaded():
-		freecoins_popup = preload("res://Scenes/FreeCoinsPopup.tscn").instance()
+		freecoins_popup = preload("res://Scenes/UI/FreeCoinsPopup.tscn").instance()
 		add_child(freecoins_popup)
 
 func _on_free_coins_watched() -> void:

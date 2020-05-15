@@ -5,7 +5,8 @@
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://Scenes/BG.tscn" type="PackedScene" id=8]
 [ext_resource path="res://UI/LevelItem/coin.png" type="Texture" id=9]
-[ext_resource path="res://Scenes/LevelItem.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Scenes/UI/LevelItem.tscn" type="PackedScene" id=10]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 48

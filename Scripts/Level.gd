@@ -25,7 +25,7 @@ func _ready() -> void:
 
 
 func _on_BackButton_pressed() -> void:
-	get_tree().change_scene("res://Scenes/Main.tscn")
+	get_tree().change_scene("res://Scenes/UI/Main.tscn")
 
 
 func _notification(what: int) -> void:

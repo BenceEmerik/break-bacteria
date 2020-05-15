@@ -64,14 +64,14 @@ func _on_ShopItem_pressed() -> void:
 		if !get_node("/root/Shop/Admob").is_rewarded_video_loaded():
 			print("reklam yüklü değil")
 			return
-		var watchbuy = preload("res://Scenes/ItemWatchAndBuy.tscn").instance()
+		var watchbuy = preload("res://Scenes/UI/ItemWatchAndBuy.tscn").instance()
 		watchbuy.ball = $Sprite.texture
 		watchbuy.title = ball_name
 		get_node("/root/Shop").add_child(watchbuy)
 		return
 
 	if total_coins >= coins and !buyed:
-		var coinsbuy = preload("res://Scenes/ItemBuy.tscn").instance()
+		var coinsbuy = preload("res://Scenes/UI/ItemBuy.tscn").instance()
 		coinsbuy.ball = $Sprite.texture
 		coinsbuy.title = ball_name
 		coinsbuy.coins = coins

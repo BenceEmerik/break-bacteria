@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ucgen-bottom-left.png-89d335207a5dff3b35403f202be89028.stex"
+path="res://.import/triple.png-e50b2488dd1ca0eb533b85a529593a47.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Game/ucgen-bottom-left.png"
-dest_files=[ "res://.import/ucgen-bottom-left.png-89d335207a5dff3b35403f202be89028.stex" ]
+source_file="res://Sprites/triple.png"
+dest_files=[ "res://.import/triple.png-e50b2488dd1ca0eb533b85a529593a47.stex" ]
 
 [params]
 

@@ -2,6 +2,8 @@ tool
 extends Node2D
 
 
+#signal two_direct
+
 export(int) var column:int = 9
 export(int) var row:int = 11
 export(int) var turn:int = 0
@@ -28,20 +30,14 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_released("left_click"):
-		erase_row()
-		row_down()
-#		add_row()
-		print(grid)
+		pass
 		#turn complete -> deleted_item_clear()
 #	print(world_to_grid(get_local_mouse_position()))
 #	if Engine.editor_hint:
 #		update()
 
 func _input(event:InputEvent):
-	if event is InputEventScreenTouch or event is InputEventScreenDrag:
-		
-		if has_node("Tutorial"):
-			$Tutorial.queue_free()
+	pass
 	
 	
 
@@ -59,7 +55,22 @@ func add_row(level:int) -> void:
 	bricket.health = level
 	bricket.position = Vector2(4*cell_length-offset, 2*cell_length-offset)
 	add_child(bricket)
-	grid.insert(1, [null, null, null, bricket, null, null, null, null, null, ])
+	var ballplus = preload("res://Scenes/Booster/BallPlus.tscn").instance()
+	ballplus.position = Vector2(5*cell_length-offset, 2*cell_length-offset)
+	add_child(ballplus)
+	var twodirect = preload("res://Scenes/Booster/TwoDirections.tscn").instance()
+	twodirect.position = Vector2(6*cell_length-offset, 2*cell_length-offset)
+	add_child(twodirect)
+	var coin = preload("res://Scenes/Booster/Coin.tscn").instance()
+	coin.position = Vector2(1*cell_length-offset, 2*cell_length-offset)
+	add_child(coin)
+	var fourdirect = preload("res://Scenes/Booster/FourDirections.tscn").instance()
+	fourdirect.position = Vector2(8*cell_length-offset, 2*cell_length-offset)
+	add_child(fourdirect)
+	var shield = preload("res://Scenes/Booster/Shield.tscn").instance()
+	shield.position = Vector2(2*cell_length-offset, 2*cell_length-offset)
+	add_child(shield)
+	grid.insert(1, [coin, shield, null, bricket, ballplus, twodirect, null, fourdirect, null])
 
 func row_down() -> void:
 	for bricket in self.get_children():
@@ -67,27 +78,49 @@ func row_down() -> void:
 	#pirketler hücre boyu kadar aşağı kayar
 	
 func deleted_item_clear() -> void:
-	for i in grid:
-		for j in i:
-			if is_instance_valid(j):
+	for i in range(grid.size()):
+		for j in range(grid[i].size()):
+			if !is_instance_valid(grid[i][j]):
 				grid[i][j] = null
+				
+			if grid[i][j] is Area2D and grid[i][j].get("is_coll") and grid[i][j].is_coll:
+				grid[i][j].queue_free()
+				grid[i][j] = null
+
+func bricket_control() -> void:
+	for grid_index in range(-3, 0):
+		print(grid_index, grid[grid_index])
+		for i in grid[grid_index]:
+			if i is Bricket:
+				i.emit_signal("danger")
 
 func is_grid_empty() -> bool:
 	for i in grid:
 		for j in i:
-			if j != null:
-				return true
-	return false
+			if j is Bricket:
+				return false
+	return true
 
 func erase_row() -> void:
 	var last_row = grid.pop_back()
 	for i in last_row:
 		if i is KinematicBody2D:
 			print("oyun biter!")
-			get_parent().emit_signal("challenge_failed")
-	print(last_row)
+			get_tree().current_scene.emit_signal("challenge_failed")
+		
+		if i is Area2D:
+			i.queue_free()
 
 
+func draw_update(lvl:int):
+	deleted_item_clear()
+	if is_grid_empty():
+		get_parent().emit_signal("screen_clear")
+	erase_row()
+	row_down()
+	add_row(lvl)
+	bricket_control()
+	
 
 func grid_to_world(column:int, row:int) -> Vector2:
 	# dönen pozisyon hücrenin merkez noktasını verir.

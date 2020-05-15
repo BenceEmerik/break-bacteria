@@ -14,14 +14,16 @@ enum State {
 signal screen_clear()
 signal turn_completed()
 signal challenge_failed()
+signal ball_plus()
+signal coins_updated()
 
 signal ground_collision(position)
 
 const Ball = preload("res://Scenes/Ball.tscn")
 
-onready var score_label = $HUD/Top/MarginContainer2/ScoreLabel
-onready var coins_label = $HUD/Top/MarginContainer3/HBoxContainer/CoinsLabel
-onready var bricketgrid = $BricketGrid
+onready var score_label:Label = $HUD/Top/MarginContainer2/ScoreLabel
+onready var coins_label:Label = $HUD/Top/MarginContainer3/HBoxContainer/CoinsLabel
+onready var bricketgrid := $BricketGrid
 
 onready var spawn:Position2D = $Spawn
 onready var new_spawn:Position2D = $NewSpawn
@@ -33,20 +35,18 @@ onready var timer:Timer = $Timer
 onready var tween:Tween = $Tween
 
 var is_angle_valid:bool
-var angle
-var thrown_balls = 0
-var falling_balls = 0
+var angle:float
+var thrown_balls:int
+var falling_balls:int
 var turn_complete:bool = true
 var first_ball:bool = false
 
 var total_balls:int
+var ball_enhancer:int
 
-var level
+var level:int
 
-#ekran tamamen temizlenince checkpoint oluşacak.
-#her turda level artacak
 #her turda bir tane kesin top artırıcı olacak
-#checkpoint harici çıkarsan checkpointten başlarsın.
 #arada leveldan yüksek değerde bricket çıkabilir
 #özel itemler çıkabilir
 # yanlara ışın, 4 yana ışın, kalkan, top küçültücü, üç yöne dağıtıcı, top+
@@ -56,17 +56,19 @@ func _ready() -> void:
 	total_balls = level
 	score_label.text = str(level)
 	coins_label.text = str(LocalSettings.get_setting("coins", 0))
+	$Spawn/BallCount.text = "x%d"%(total_balls)
 	
 	connect("challenge_failed", self, "_on_challenge_failed")
 	connect("screen_clear", self, "_on_screen_clear")
-	connect("turn_completed", self, "_on_turn_completed")
+	connect("ball_plus", self, "_on_ball_plus")
+	connect("coins_updated", self, "_on_coins_updated")
 	
 	first_line.points[0] = first_line.position
 	timer.connect("timeout", self, "_on_Ball_Shooting")
 	self.connect("ground_collision", self, "_on_Ground_Collision")
 	self.connect("turn_completed", self, "_on_Turn_Completed")
 	
-	bricketgrid.add_row(1)
+	bricketgrid.draw_update(level)
 	
 	
 
@@ -75,13 +77,11 @@ func _ready() -> void:
 #func _process(delta: float) -> void:
 #	pass
 
-func _on_turn_completed() -> void:
-	level += 1
-	score_label.text = str(level)
-	
 func _input(event: InputEvent) -> void:
 	if turn_complete:
 		if event is InputEventScreenDrag or event is InputEventScreenTouch:
+			if has_node("Tutorial"):
+				$Tutorial.queue_free()
 			var direction = event.position - $Spawn.position
 			first_ray.cast_to = direction.normalized() * 2000
 			first_ray.force_raycast_update()
@@ -134,7 +134,6 @@ func _on_Ball_Shooting() -> void:
 func _on_Ground_Collision(pos) -> void:
 	falling_balls += 1
 	if !first_ball:
-		print(pos)
 		new_spawn.position.x = pos.x
 		new_spawn.visible = true
 		first_ball = true
@@ -146,20 +145,56 @@ func _on_Ground_Collision(pos) -> void:
 		yield(tween, "tween_all_completed")
 		emit_signal("turn_completed")
 		
-func _on_Level_Started() -> void:
-	print_debug("level start")
-
-func _on_Level_Completed() -> void:
-	print("level complete")
-
-func _on_Level_Failed() -> void:
-	print("level failed")
-
 func _on_Turn_Completed() -> void:
 	new_spawn.visible = false
 	thrown_balls = 0
 	falling_balls = 0
 	first_ball = false
-	$Spawn/BallCount.text = "x%d"%(total_balls-thrown_balls)
+	
+	level += 1
+	score_label.text = str(level)
+	total_balls += ball_enhancer
+	ball_enhancer = 0
+	$Spawn/BallCount.text = "x%d"%(total_balls)
 	$Spawn/BallCount.visible = true
 	turn_complete = true
+	bricketgrid.draw_update(level)
+	
+func _on_ball_plus() -> void:
+	ball_enhancer += 1
+
+func _on_screen_clear() -> void:
+	print("Checkpoint")
+	LocalSettings.load()
+	LocalSettings.set_setting("challenge_checkpoints", level)
+	var best_score = LocalSettings.get_setting("best_challenge_level", 0)
+	if level > best_score:
+		LocalSettings.set_setting("best_challenge_level", level)
+	
+	LocalSettings.save()
+
+func _on_challenge_failed() -> void:
+	print("oyun bittiiii!!!")
+	get_tree().paused = true
+
+func _on_coins_updated() -> void:
+	LocalSettings.load()
+	var up_coins = LocalSettings.get_setting("coins", 0) + 1
+	coins_label.text = str(up_coins)
+	LocalSettings.set_setting("coins", up_coins)
+	LocalSettings.save()
+
+func _on_ChallengeGame_tree_exited() -> void:
+	LocalSettings.load()
+	var checkpoint = LocalSettings.get_setting("challenge_checkpoints", 1)
+	if level != checkpoint:
+		LocalSettings.set_setting("challenge_checkpoints", 1)
+	
+	LocalSettings.save()
+
+
+
+
+
+
+

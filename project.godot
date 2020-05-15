@@ -15,13 +15,43 @@ _global_script_classes=[ {
 "path": "res://admob-lib/admob.gd"
 }, {
 "base": "KinematicBody2D",
+"class": "Ball",
+"language": "GDScript",
+"path": "res://Scripts/Ball.gd"
+}, {
+"base": "KinematicBody2D",
 "class": "Bricket",
 "language": "GDScript",
 "path": "res://Scripts/Bricket.gd"
+}, {
+"base": "Area2D",
+"class": "Coin",
+"language": "GDScript",
+"path": "res://Scripts/Booster/Coin.gd"
+}, {
+"base": "Area2D",
+"class": "FourDirections",
+"language": "GDScript",
+"path": "res://Scripts/Booster/FourDirections.gd"
+}, {
+"base": "Area2D",
+"class": "Shield",
+"language": "GDScript",
+"path": "res://Scripts/Booster/Shield.gd"
+}, {
+"base": "Area2D",
+"class": "TwoDirections",
+"language": "GDScript",
+"path": "res://Scripts/Booster/TwoDirections.gd"
 } ]
 _global_script_class_icons={
 "Admob": "res://admob-lib/icon.png",
-"Bricket": ""
+"Ball": "",
+"Bricket": "",
+"Coin": "",
+"FourDirections": "",
+"Shield": "",
+"TwoDirections": ""
 }
 
 [android]
@@ -31,7 +61,7 @@ modules="org/godotengine/godot/GodotAdMob"
 [application]
 
 config/name="Break Bacteria"
-run/main_scene="res://Scenes/Main.tscn"
+run/main_scene="res://Scenes/UI/Main.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Break Bacteria"
 config/icon="res://icon.png"

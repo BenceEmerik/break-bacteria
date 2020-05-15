@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/shopbutton.png-64159b87db5e76e24d39e270c10258af.stex"
+path="res://.import/ic_launcher.png-75879bc6b229b9df0181708b97498a94.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Main/shopbutton.png"
-dest_files=[ "res://.import/shopbutton.png-64159b87db5e76e24d39e270c10258af.stex" ]
+source_file="res://androidicons/mipmap-xhdpi/ic_launcher.png"
+dest_files=[ "res://.import/ic_launcher.png-75879bc6b229b9df0181708b97498a94.stex" ]
 
 [params]
 

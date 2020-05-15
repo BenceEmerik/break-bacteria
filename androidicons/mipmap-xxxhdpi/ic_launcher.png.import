@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/kare.png-35c1f0121d9e5f5c58b60d382c68a40f.stex"
+path="res://.import/ic_launcher.png-ce4a6022d5535a4e2190a0cf5259beeb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Game/kare.png"
-dest_files=[ "res://.import/kare.png-35c1f0121d9e5f5c58b60d382c68a40f.stex" ]
+source_file="res://androidicons/mipmap-xxxhdpi/ic_launcher.png"
+dest_files=[ "res://.import/ic_launcher.png-ce4a6022d5535a4e2190a0cf5259beeb.stex" ]
 
 [params]
 
