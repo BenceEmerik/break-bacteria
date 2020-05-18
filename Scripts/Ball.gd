@@ -1,7 +1,7 @@
 extends KinematicBody2D
 class_name Ball
 
-var speed:int = 3000
+var speed:int = 2500
 var velocity:Vector2 = Vector2.ZERO
 
 onready var tween:Tween = $Tween
@@ -9,6 +9,7 @@ onready var tween:Tween = $Tween
 
 var is_shielded:bool
 var is_shield_used:bool
+var is_mirrored:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
@@ -32,13 +33,20 @@ func _process(delta:float) -> void:
 			collision.collider.emit_signal("health_state")
 			
 		if collision.collider.get_name() == "Ground" and not is_shielded:
-			get_node("/root/ChallengeGame").emit_signal("ground_collision", global_position)
+			var pos = global_position
 			set_process(false)
-			tween.interpolate_property(self, "position", position, get_node("/root/ChallengeGame").new_spawn.position, 0.3,
-									   Tween.TRANS_SINE, Tween.EASE_IN)
+			get_tree().current_scene.emit_signal("ground_collision", pos)
+			tween.interpolate_property(self, "position", position, get_tree().current_scene.new_spawn.position,
+									0.4, Tween.TRANS_SINE, Tween.EASE_IN)
+			tween.interpolate_property(self, "rotation_degrees", rotation_degrees, 0, 0.4, Tween.TRANS_SINE,
+									Tween.EASE_IN)
 			tween.start()
 			yield(tween, "tween_all_completed")
+#			get_tree().current_scene.emit_signal("ground_collision", pos)
 			queue_free()
 		
 		elif collision.collider.get_name() == "Ground":
 			is_shielded = false
+
+func go_home() -> void:
+	self.start(deg2rad(90))

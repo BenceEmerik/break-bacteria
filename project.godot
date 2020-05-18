@@ -35,9 +35,19 @@ _global_script_classes=[ {
 "path": "res://Scripts/Booster/FourDirections.gd"
 }, {
 "base": "Area2D",
+"class": "Mirror",
+"language": "GDScript",
+"path": "res://Scripts/Booster/Mirror.gd"
+}, {
+"base": "Area2D",
 "class": "Shield",
 "language": "GDScript",
 "path": "res://Scripts/Booster/Shield.gd"
+}, {
+"base": "Area2D",
+"class": "Triple",
+"language": "GDScript",
+"path": "res://Scripts/Booster/Triple.gd"
 }, {
 "base": "Area2D",
 "class": "TwoDirections",
@@ -50,7 +60,9 @@ _global_script_class_icons={
 "Bricket": "",
 "Coin": "",
 "FourDirections": "",
+"Mirror": "",
 "Shield": "",
+"Triple": "",
 "TwoDirections": ""
 }
 

@@ -18,6 +18,9 @@ func _ready() -> void:
 
 func _on_Coin_body_entered(body: Node) -> void:
 	if body is Ball:
+		LocalSettings.load()
+		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + 1)
+		LocalSettings.save()
 		get_tree().current_scene.emit_signal("coins_updated")
 		queue_free()
 #		var coins = LocalSettings.get_setting("coins", 0) + 1

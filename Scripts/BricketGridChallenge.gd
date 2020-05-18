@@ -47,30 +47,93 @@ func add_bricket() -> void:
 
 func add_row(level:int) -> void:
 	# null, ball+, bricket[tri][rot] level < 5 square > random %20
-	var row:Array = []
-	for cell in column:
-		row.append(null)
+	var brickets:int = 1
+	var booster_count:int
+	var coin:bool
+	var double:bool
 	
-	var bricket = preload("res://Scenes/Bricket.tscn").instance()
-	bricket.health = level
-	bricket.position = Vector2(4*cell_length-offset, 2*cell_length-offset)
-	add_child(bricket)
+	
+	if level > 3:
+		brickets = 2
+	
+	if level > 7:
+		coin = true
+		booster_count = 1
+	
+	if level > 15:
+		brickets = 3
+		booster_count = 2
+	
+	if level > 29:
+		brickets = 4
+		booster_count = 3
+	
+	if level > 50:
+		double = true
+		booster_count = 4
+	
+	if level > 75:
+		brickets = 5
+		booster_count = 5
+	
+	if level > 90:
+		pass
+	
+	
+	var row_list:Array = []
+	for index in range(brickets):
+		var bricket = preload("res://Scenes/Bricket.tscn").instance()
+		bricket.health = level
+		if !index and double and randi()%100 < 33:
+			bricket.health = level * 2
+		row_list.append(bricket)
+	
 	var ballplus = preload("res://Scenes/Booster/BallPlus.tscn").instance()
-	ballplus.position = Vector2(5*cell_length-offset, 2*cell_length-offset)
-	add_child(ballplus)
-	var twodirect = preload("res://Scenes/Booster/TwoDirections.tscn").instance()
-	twodirect.position = Vector2(6*cell_length-offset, 2*cell_length-offset)
-	add_child(twodirect)
-	var coin = preload("res://Scenes/Booster/Coin.tscn").instance()
-	coin.position = Vector2(1*cell_length-offset, 2*cell_length-offset)
-	add_child(coin)
-	var fourdirect = preload("res://Scenes/Booster/FourDirections.tscn").instance()
-	fourdirect.position = Vector2(8*cell_length-offset, 2*cell_length-offset)
-	add_child(fourdirect)
-	var shield = preload("res://Scenes/Booster/Shield.tscn").instance()
-	shield.position = Vector2(2*cell_length-offset, 2*cell_length-offset)
-	add_child(shield)
-	grid.insert(1, [coin, shield, null, bricket, ballplus, twodirect, null, fourdirect, null])
+	row_list.append(ballplus)
+	
+	if coin and randi()%100 < 33: #%25 ihtimal ile diye düşünüyorum.
+		var coins = preload("res://Scenes/Booster/Coin.tscn").instance()
+		add_child(coins)
+		row_list.append(coins)
+	
+	var booster_list = []
+	match booster_count:
+		1: 
+			var mirror = preload("res://Scenes/Booster/Mirror.tscn").instance()
+			booster_list.append(mirror)
+		2: 
+			var two_directions = preload("res://Scenes/Booster/TwoDirections.tscn").instance()
+			booster_list.append(two_directions)
+		3: 
+			var four_directions = preload("res://Scenes/Booster/FourDirections.tscn").instance()
+			booster_list.append(four_directions)
+		4: 
+			var triple = preload("res://Scenes/Booster/Triple.tscn").instance()
+			booster_list.append(triple)
+		5: 
+			var shield = preload("res://Scenes/Booster/Coin.tscn").instance()
+			booster_list.append(shield)
+	
+	if booster_count and randi()%100 < 33:
+		booster_list.shuffle()
+		var booster = booster_list.pop_front()
+		add_child(booster)
+		row_list.append(booster)
+	
+	var random_index = range(column)
+	random_index.shuffle()
+	var insert_row:Array = []
+	insert_row.resize(9)
+	
+	for index in random_index:
+		
+		if !row_list.empty():
+			var item = row_list.pop_front()
+			add_child(item)
+			item.position = Vector2((index+1)*cell_length-offset, 2*cell_length-offset)
+			insert_row[index] = item
+
+	grid.insert(1, insert_row)
 
 func row_down() -> void:
 	for bricket in self.get_children():
