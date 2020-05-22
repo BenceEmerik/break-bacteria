@@ -7,7 +7,6 @@
 [ext_resource path="res://UI/LevelItem/coin.png" type="Texture" id=9]
 [ext_resource path="res://Scenes/UI/LevelItem.tscn" type="PackedScene" id=10]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 48
 use_mipmaps = true
@@ -522,7 +521,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Title2" type="Label" parent="HUD/Title/MarginContainer/VBoxContainer"]
+[node name="SubTitle" type="Label" parent="HUD/Title/MarginContainer/VBoxContainer"]
 margin_top = 68.0
 margin_right = 158.0
 margin_bottom = 108.0
@@ -589,7 +588,7 @@ anchor_bottom = 1.0
 custom_constants/margin_right = 96
 custom_constants/margin_top = 320
 custom_constants/margin_left = 96
-custom_constants/margin_bottom = 320
+custom_constants/margin_bottom = 280
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -598,7 +597,7 @@ __meta__ = {
 margin_left = 96.0
 margin_top = 320.0
 margin_right = 984.0
-margin_bottom = 1600.0
+margin_bottom = 1640.0
 theme = SubResource( 5 )
 follow_focus = true
 scroll_horizontal_enabled = false
@@ -618,34 +617,29 @@ columns = 4
 [node name="LevelItem" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_right = 192.0
 margin_bottom = 192.0
-disabled = true
 
 [node name="LevelItem2" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_left = 224.0
 margin_right = 416.0
 margin_bottom = 192.0
-disabled = true
 level = 2
 
 [node name="LevelItem3" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_left = 448.0
 margin_right = 640.0
 margin_bottom = 192.0
-disabled = true
 level = 3
 
 [node name="LevelItem4" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_left = 672.0
 margin_right = 864.0
 margin_bottom = 192.0
-disabled = true
 level = 4
 
 [node name="LevelItem5" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 224.0
 margin_right = 192.0
 margin_bottom = 416.0
-disabled = true
 level = 5
 
 [node name="LevelItem6" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -653,7 +647,6 @@ margin_left = 224.0
 margin_top = 224.0
 margin_right = 416.0
 margin_bottom = 416.0
-disabled = true
 level = 6
 
 [node name="LevelItem7" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -661,7 +654,6 @@ margin_left = 448.0
 margin_top = 224.0
 margin_right = 640.0
 margin_bottom = 416.0
-disabled = true
 level = 7
 
 [node name="LevelItem8" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -669,14 +661,12 @@ margin_left = 672.0
 margin_top = 224.0
 margin_right = 864.0
 margin_bottom = 416.0
-disabled = true
 level = 8
 
 [node name="LevelItem9" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 448.0
 margin_right = 192.0
 margin_bottom = 640.0
-disabled = true
 level = 9
 
 [node name="LevelItem10" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -684,7 +674,6 @@ margin_left = 224.0
 margin_top = 448.0
 margin_right = 416.0
 margin_bottom = 640.0
-disabled = true
 level = 10
 
 [node name="LevelItem11" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -692,7 +681,6 @@ margin_left = 448.0
 margin_top = 448.0
 margin_right = 640.0
 margin_bottom = 640.0
-disabled = true
 level = 11
 
 [node name="LevelItem12" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -700,14 +688,12 @@ margin_left = 672.0
 margin_top = 448.0
 margin_right = 864.0
 margin_bottom = 640.0
-disabled = true
 level = 12
 
 [node name="LevelItem13" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 672.0
 margin_right = 192.0
 margin_bottom = 864.0
-disabled = true
 level = 13
 
 [node name="LevelItem14" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -715,7 +701,6 @@ margin_left = 224.0
 margin_top = 672.0
 margin_right = 416.0
 margin_bottom = 864.0
-disabled = true
 level = 14
 
 [node name="LevelItem15" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -723,7 +708,6 @@ margin_left = 448.0
 margin_top = 672.0
 margin_right = 640.0
 margin_bottom = 864.0
-disabled = true
 level = 15
 
 [node name="LevelItem16" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -731,14 +715,12 @@ margin_left = 672.0
 margin_top = 672.0
 margin_right = 864.0
 margin_bottom = 864.0
-disabled = true
 level = 16
 
 [node name="LevelItem17" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 896.0
 margin_right = 192.0
 margin_bottom = 1088.0
-disabled = true
 level = 17
 
 [node name="LevelItem18" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -746,7 +728,6 @@ margin_left = 224.0
 margin_top = 896.0
 margin_right = 416.0
 margin_bottom = 1088.0
-disabled = true
 level = 18
 
 [node name="LevelItem19" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -754,7 +735,6 @@ margin_left = 448.0
 margin_top = 896.0
 margin_right = 640.0
 margin_bottom = 1088.0
-disabled = true
 level = 19
 
 [node name="LevelItem20" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -762,14 +742,12 @@ margin_left = 672.0
 margin_top = 896.0
 margin_right = 864.0
 margin_bottom = 1088.0
-disabled = true
 level = 20
 
 [node name="LevelItem21" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 1120.0
 margin_right = 192.0
 margin_bottom = 1312.0
-disabled = true
 level = 21
 
 [node name="LevelItem22" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -777,7 +755,6 @@ margin_left = 224.0
 margin_top = 1120.0
 margin_right = 416.0
 margin_bottom = 1312.0
-disabled = true
 level = 22
 
 [node name="LevelItem23" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -785,7 +762,6 @@ margin_left = 448.0
 margin_top = 1120.0
 margin_right = 640.0
 margin_bottom = 1312.0
-disabled = true
 level = 23
 
 [node name="LevelItem24" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -793,14 +769,12 @@ margin_left = 672.0
 margin_top = 1120.0
 margin_right = 864.0
 margin_bottom = 1312.0
-disabled = true
 level = 24
 
 [node name="LevelItem25" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 1344.0
 margin_right = 192.0
 margin_bottom = 1536.0
-disabled = true
 level = 25
 
 [node name="LevelItem26" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -808,7 +782,6 @@ margin_left = 224.0
 margin_top = 1344.0
 margin_right = 416.0
 margin_bottom = 1536.0
-disabled = true
 level = 26
 
 [node name="LevelItem27" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -816,7 +789,6 @@ margin_left = 448.0
 margin_top = 1344.0
 margin_right = 640.0
 margin_bottom = 1536.0
-disabled = true
 level = 27
 
 [node name="LevelItem28" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -824,14 +796,12 @@ margin_left = 672.0
 margin_top = 1344.0
 margin_right = 864.0
 margin_bottom = 1536.0
-disabled = true
 level = 28
 
 [node name="LevelItem29" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 1568.0
 margin_right = 192.0
 margin_bottom = 1760.0
-disabled = true
 level = 29
 
 [node name="LevelItem30" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -839,7 +809,6 @@ margin_left = 224.0
 margin_top = 1568.0
 margin_right = 416.0
 margin_bottom = 1760.0
-disabled = true
 level = 30
 
 [node name="LevelItem31" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -847,7 +816,6 @@ margin_left = 448.0
 margin_top = 1568.0
 margin_right = 640.0
 margin_bottom = 1760.0
-disabled = true
 level = 31
 
 [node name="LevelItem32" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -855,14 +823,12 @@ margin_left = 672.0
 margin_top = 1568.0
 margin_right = 864.0
 margin_bottom = 1760.0
-disabled = true
 level = 32
 
 [node name="LevelItem33" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 1792.0
 margin_right = 192.0
 margin_bottom = 1984.0
-disabled = true
 level = 33
 
 [node name="LevelItem34" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -870,7 +836,6 @@ margin_left = 224.0
 margin_top = 1792.0
 margin_right = 416.0
 margin_bottom = 1984.0
-disabled = true
 level = 34
 
 [node name="LevelItem35" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -878,7 +843,6 @@ margin_left = 448.0
 margin_top = 1792.0
 margin_right = 640.0
 margin_bottom = 1984.0
-disabled = true
 level = 35
 
 [node name="LevelItem36" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -886,14 +850,12 @@ margin_left = 672.0
 margin_top = 1792.0
 margin_right = 864.0
 margin_bottom = 1984.0
-disabled = true
 level = 36
 
 [node name="LevelItem37" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 2016.0
 margin_right = 192.0
 margin_bottom = 2208.0
-disabled = true
 level = 37
 
 [node name="LevelItem38" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -901,7 +863,6 @@ margin_left = 224.0
 margin_top = 2016.0
 margin_right = 416.0
 margin_bottom = 2208.0
-disabled = true
 level = 38
 
 [node name="LevelItem39" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -909,7 +870,6 @@ margin_left = 448.0
 margin_top = 2016.0
 margin_right = 640.0
 margin_bottom = 2208.0
-disabled = true
 level = 39
 
 [node name="LevelItem40" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -917,14 +877,12 @@ margin_left = 672.0
 margin_top = 2016.0
 margin_right = 864.0
 margin_bottom = 2208.0
-disabled = true
 level = 40
 
 [node name="LevelItem41" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 2240.0
 margin_right = 192.0
 margin_bottom = 2432.0
-disabled = true
 level = 41
 
 [node name="LevelItem42" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -932,7 +890,6 @@ margin_left = 224.0
 margin_top = 2240.0
 margin_right = 416.0
 margin_bottom = 2432.0
-disabled = true
 level = 42
 
 [node name="LevelItem43" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -940,7 +897,6 @@ margin_left = 448.0
 margin_top = 2240.0
 margin_right = 640.0
 margin_bottom = 2432.0
-disabled = true
 level = 43
 
 [node name="LevelItem44" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -948,14 +904,12 @@ margin_left = 672.0
 margin_top = 2240.0
 margin_right = 864.0
 margin_bottom = 2432.0
-disabled = true
 level = 44
 
 [node name="LevelItem45" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 2464.0
 margin_right = 192.0
 margin_bottom = 2656.0
-disabled = true
 level = 45
 
 [node name="LevelItem46" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -963,7 +917,6 @@ margin_left = 224.0
 margin_top = 2464.0
 margin_right = 416.0
 margin_bottom = 2656.0
-disabled = true
 level = 46
 
 [node name="LevelItem47" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -971,7 +924,6 @@ margin_left = 448.0
 margin_top = 2464.0
 margin_right = 640.0
 margin_bottom = 2656.0
-disabled = true
 level = 47
 
 [node name="LevelItem48" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -979,14 +931,12 @@ margin_left = 672.0
 margin_top = 2464.0
 margin_right = 864.0
 margin_bottom = 2656.0
-disabled = true
 level = 48
 
 [node name="LevelItem49" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_top = 2688.0
 margin_right = 192.0
 margin_bottom = 2880.0
-disabled = true
 level = 49
 
 [node name="LevelItem50" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
@@ -994,6 +944,5 @@ margin_left = 224.0
 margin_top = 2688.0
 margin_right = 416.0
 margin_bottom = 2880.0
-disabled = true
 level = 50
 [connection signal="pressed" from="HUD/Back/MarginContainer/BackButton" to="." method="_on_BackButton_pressed"]

@@ -1,14 +1,15 @@
 extends Control
 
 
-onready var grid_container = $MarginContainer/ScrollContainer/GridContainer
-onready var coins_label = $HUD/Coins/MarginContainer/HBoxContainer/Coins
+onready var grid_container:GridContainer = $MarginContainer/ScrollContainer/GridContainer
+onready var coins_label:Label = $HUD/Coins/MarginContainer/HBoxContainer/Coins
+onready var subtitle:Label = $HUD/Title/MarginContainer/VBoxContainer/SubTitle
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	LocalSettings.load()
 	coins_label.text = str(LocalSettings.get_setting("coins", 0))
 	var last_level = LocalSettings.get_setting("last_completed_level", 0)
+	subtitle.text = "%d/%d"%[last_level, grid_container.get_child_count()]
 	for i in range(last_level + 1):
 		var level = i+1
 		var item = grid_container.get_child(i)

@@ -1,8 +1,15 @@
 tool
 extends Node2D
+class_name BricketGridChallenge
 
+enum State {
+	IDLE,
+}
 
-#signal two_direct
+signal all_halved()
+signal break_bottom()
+signal extra_ball()
+signal gold_aiming()
 
 export(int) var column:int = 9
 export(int) var row:int = 11
@@ -10,36 +17,24 @@ export(int) var turn:int = 0
 export(int) var cell_length:int = 120
 export(int) var offset:int = 60
 
-var grid = []
+onready var bricket_area:Node2D = Node2D.new()
+
+var grid:Array = []
 
 func _ready() -> void:
-#	print(grid_to_world(5, 5))
-#	print(world_to_grid(Vector2(250, 360)))
+	add_child(bricket_area)
 	var size:Vector2 = Vector2(cell_length*column, cell_length*row)
 	
+	#boş 9x11 lik array oluşturuyoruz
 	for r in range(row):
-		var col = []
-		for c in range(column):
-			col.append(null)
+		var col:Array = []
+		col.resize(column)
 		grid.append(col)
-	
-	print(grid)
-	pass
-
 
 
 func _process(_delta: float) -> void:
-	if Input.is_action_just_released("left_click"):
-		pass
-		#turn complete -> deleted_item_clear()
-#	print(world_to_grid(get_local_mouse_position()))
-#	if Engine.editor_hint:
-#		update()
-
-func _input(event:InputEvent):
 	pass
-	
-	
+
 
 func add_bricket() -> void:
 	pass
@@ -81,10 +76,14 @@ func add_row(level:int) -> void:
 	
 	
 	var row_list:Array = []
+	var color:Array = Globals.colors
+	color.shuffle()
 	for index in range(brickets):
 		var bricket = preload("res://Scenes/Bricket.tscn").instance()
+		bricket.color = color.front()
 		bricket.health = level
 		if !index and double and randi()%100 < 33:
+			bricket.color = color.back()
 			bricket.health = level * 2
 		row_list.append(bricket)
 	
@@ -93,7 +92,7 @@ func add_row(level:int) -> void:
 	
 	if coin and randi()%100 < 33: #%25 ihtimal ile diye düşünüyorum.
 		var coins = preload("res://Scenes/Booster/Coin.tscn").instance()
-		add_child(coins)
+#		add_child(coins)
 		row_list.append(coins)
 	
 	var booster_list = []
@@ -117,7 +116,7 @@ func add_row(level:int) -> void:
 	if booster_count and randi()%100 < 33:
 		booster_list.shuffle()
 		var booster = booster_list.pop_front()
-		add_child(booster)
+#		add_child(booster)
 		row_list.append(booster)
 	
 	var random_index = range(column)
@@ -125,19 +124,33 @@ func add_row(level:int) -> void:
 	var insert_row:Array = []
 	insert_row.resize(9)
 	
+	var tw:Tween = Tween.new()
+	add_child(tw)
 	for index in random_index:
-		
 		if !row_list.empty():
 			var item = row_list.pop_front()
-			add_child(item)
+			item.scale = Vector2.ZERO 
+			bricket_area.add_child(item)
 			item.position = Vector2((index+1)*cell_length-offset, 2*cell_length-offset)
+			tw.interpolate_property(item, "scale", Vector2(0, 0), Vector2(1, 1), 0.5,
+						Tween.TRANS_CUBIC, Tween.EASE_IN)    
 			insert_row[index] = item
 
+	tw.start()
 	grid.insert(1, insert_row)
+	yield(tw, "tween_all_completed")
+	tw.queue_free()
 
 func row_down() -> void:
-	for bricket in self.get_children():
-		bricket.position.y += cell_length
+	var tw := Tween.new()
+	add_child(tw)
+	for bricket in bricket_area.get_children():
+#		bricket.position.y += cell_length
+		tw.interpolate_property(bricket, "position:y", bricket.position.y, bricket.position.y+cell_length,
+		0.2, Tween.TRANS_CIRC, Tween.EASE_IN)
+	tw.start()
+	yield(tw, "tween_all_completed")
+	tw.queue_free()
 	#pirketler hücre boyu kadar aşağı kayar
 	
 func deleted_item_clear() -> void:
@@ -152,7 +165,6 @@ func deleted_item_clear() -> void:
 
 func bricket_control() -> void:
 	for grid_index in range(-3, 0):
-		print(grid_index, grid[grid_index])
 		for i in grid[grid_index]:
 			if i is Bricket:
 				i.emit_signal("danger")
@@ -175,15 +187,34 @@ func erase_row() -> void:
 			i.queue_free()
 
 
-func draw_update(lvl:int):
+func draw_update(lvl:int) -> void:
 	deleted_item_clear()
 	if is_grid_empty():
 		get_parent().emit_signal("screen_clear")
 	erase_row()
-	row_down()
-	add_row(lvl)
+	yield(row_down(), "completed")
+	yield(add_row(lvl), "completed")
 	bricket_control()
-	
+
+func end_row_bricks_kills() -> void:
+	deleted_item_clear()
+	if is_grid_empty():
+		get_parent().emit_signal("screen_clear")
+	bricket_control()
+	for r in range(-1, -row, -1):
+		var ok := false
+		print(grid[r])
+		for i in grid[r]:
+			if i is Bricket:
+				i.emit_signal("death")
+				ok = true
+		if ok: break
+
+func all_bricks_halved() -> void:
+	for row in grid:
+		for col in row:
+			if col is Bricket:
+				col.emit_signal("halved")
 
 func grid_to_world(column:int, row:int) -> Vector2:
 	# dönen pozisyon hücrenin merkez noktasını verir.
@@ -192,9 +223,6 @@ func grid_to_world(column:int, row:int) -> Vector2:
 func world_to_grid(position:Vector2) -> Vector2:
 	return Vector2(int(position.x / cell_length + 1), int(position.y / cell_length + 1))
 
-
-
-
 func _notification(what: int) -> void:
 #	print("notify: %d"%what)
 	match what:
@@ -202,7 +230,7 @@ func _notification(what: int) -> void:
 			update()
 
 func _draw() -> void:
-	if "Engine.editor_hint":
+	if Engine.editor_hint:
 		draw_rect(Rect2(Vector2.ZERO, Vector2(column*cell_length, row*cell_length)),
 					  Color.purple, false, 1.0, true)
 			

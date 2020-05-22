@@ -7,15 +7,17 @@
 [node name="Level1" type="Node2D"]
 script = ExtResource( 1 )
 
-[node name="Bricket" parent="." instance=ExtResource( 2 )]
+[node name="Brickets" type="Node" parent="."]
+
+[node name="Bricket" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 300, 660 )
 health = 25
 
-[node name="Bricket2" parent="." instance=ExtResource( 2 )]
+[node name="Bricket2" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 900, 420 )
 color = 5
 
-[node name="Bricket3" parent="." instance=ExtResource( 2 )]
+[node name="Bricket3" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 420, 300 )
 health = 33
 bricket_type = "Triangle"

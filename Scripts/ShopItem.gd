@@ -14,7 +14,6 @@ onready var value = $Rect/HBoxContainer/Value
 onready var buyed_texture = $Buyed
 onready var selected_texture = $Selected
 
-onready var tween:Tween = $Tween
 onready var animation:AnimationPlayer = $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
@@ -40,6 +39,7 @@ func state_update() -> void:
 		buyed_texture.visible = true
 		$Rect/HBoxContainer.visible = false
 		animation.stop()
+		$Sprite.position = Vector2(96, 96)
 
 	else:
 		if rewarded:
@@ -50,7 +50,6 @@ func state_update() -> void:
 			value.text = str(coins)
 
 func _on_ShopItem_pressed() -> void:
-	LocalSettings.load()
 	var total_coins = LocalSettings.get_setting("coins", 0)
 	if !selected and buyed:
 		selected = true

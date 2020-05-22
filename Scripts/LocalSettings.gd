@@ -13,7 +13,7 @@ var settings
 func _ready() -> void:
 	if !settings_file.file_exists(file_path):
 		settings_file.open(file_path, File.WRITE)
-		var d = {"coins": 0,
+		var d = {"coins": 50000,
 				"current_level": 1,
 				"challenge_checkpoints": 1,
 				"best_challenge_level": 0,
@@ -44,15 +44,28 @@ func load() -> void:
 	settings =  parse_json(settings_file.get_as_text())
 	settings_file.close()
 
+func _load() -> void:
+	settings_file.open(file_path, File.READ)
+	settings =  parse_json(settings_file.get_as_text())
+	settings_file.close()
+
 func save() -> void:
 	settings_file.open(file_path, File.WRITE)
 	settings_file.store_string(JSON.print(settings))
 	settings_file.close()
 
-func set_setting(key:String, value) -> void:
-	settings[key] = value
+func _save() -> void:
+	settings_file.open(file_path, File.WRITE)
+	settings_file.store_string(JSON.print(settings))
+	settings_file.close()
 
+func set_setting(key:String, value) -> void:
+	_load()
+	settings[key] = value
+	_save()
+	
 func get_setting(key:String, default):
+	_load()
 #	print(settings[key])
 	if !settings.has(key):
 		return default

@@ -17,21 +17,22 @@ signal challenge_failed()
 signal ball_plus()
 signal coins_updated()
 signal balls_updated()
-
 signal ground_collision(position)
 
 const Ball = preload("res://Scenes/Ball.tscn")
 
 onready var score_label:Label = $HUD/Top/MarginContainer2/ScoreLabel
 onready var coins_label:Label = $HUD/Top/MarginContainer3/HBoxContainer/CoinsLabel
-onready var bricketgrid := $BricketGrid
+onready var bricketgrid := $BricketGridChallenge
 
 onready var spawn:Position2D = $Spawn
 onready var new_spawn:Position2D = $NewSpawn
 onready var first_line:Line2D = $Spawn/FirstLine
 onready var end_line:Line2D = $Spawn/EndLine
+onready var booster_line:Line2D = $Spawn/BoosterLine
 onready var first_ray:RayCast2D = $Spawn/FirstRay
 onready var end_ray:RayCast2D = $Spawn/EndRay
+onready var booster_ray:RayCast2D = $Spawn/BoosterRay
 onready var balls_count:Label = $Spawn/BallsCount
 onready var timer:Timer = $Timer
 onready var speed_timer:Timer = $SpeedTimer
@@ -44,18 +45,14 @@ var thrown_balls:int
 var falling_balls:int
 var turn_complete:bool = true
 var first_ball:bool = false
-
+var is_booster_line:bool
 var total_balls:int
 var ball_enhancer:int
 
 var level:int
-
 var is_extra50:bool
 
-#her turda bir tane kesin top artırıcı olacak
-#arada leveldan yüksek değerde bricket çıkabilir
-#özel itemler çıkabilir
-# yanlara ışın, 4 yana ışın, kalkan, top küçültücü, üç yöne dağıtıcı, top+
+
 func _ready() -> void:
 	LocalSettings.load()
 	level = LocalSettings.get_setting("challenge_checkpoints", 1)
@@ -64,22 +61,19 @@ func _ready() -> void:
 	coins_label.text = str(LocalSettings.get_setting("coins", 0))
 	balls_count.text = "x%d"%(total_balls)
 	
+	first_line.points[0] = first_line.position
+	animation.play("turn_completed")
+	bricketgrid.draw_update(level)
+	
+	timer.connect("timeout", self, "_on_Ball_Shooting")
+	speed_timer.connect("timeout", self, "_on_engine_speed")
 	connect("challenge_failed", self, "_on_challenge_failed")
 	connect("screen_clear", self, "_on_screen_clear")
 	connect("ball_plus", self, "_on_ball_plus")
 	connect("coins_updated", self, "_on_coins_updated")
 	connect("balls_updated", self, "_on_balls_updated")
-	
-	first_line.points[0] = first_line.position
-	timer.connect("timeout", self, "_on_Ball_Shooting")
-	speed_timer.wait_time = 8
-	speed_timer.connect("timeout", self, "_on_engine_speed")
-	self.connect("ground_collision", self, "_on_Ground_Collision")
-	self.connect("turn_completed", self, "_on_Turn_Completed")
-	
-	bricketgrid.draw_update(level)
-	
-	
+	connect("ground_collision", self, "_on_Ground_Collision")
+	connect("turn_completed", self, "_on_Turn_Completed")
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -87,7 +81,7 @@ func _ready() -> void:
 #	pass
 
 func _input(event: InputEvent) -> void:
-	if turn_complete and event.position.y > 180 and event.position.y < $Spawn.position.y: #burası top ui height boyutu olacak
+	if turn_complete and event.position.y > 180 and event.position.y < $Spawn.position.y:
 		if event is InputEventScreenDrag or event is InputEventScreenTouch:
 			if has_node("Tutorial"):
 				$Tutorial.queue_free()
@@ -100,17 +94,28 @@ func _input(event: InputEvent) -> void:
 
 			if first_ray.is_colliding() and is_angle_valid:
 				first_line.visible = true
+				end_line.visible = true
 				var collider = first_ray.get_collider()
-				end_line.visible = true # tavana değen ilk line da end_line visible false olacağı için bunu yazdık.
-				# line pointi yerel olduğundan global olarak nerede olacağının hesabını yapıyoruz
+				
 				first_line.points[1] = first_ray.get_collision_point() - first_line.global_position
 				end_ray.global_position = first_ray.get_collision_point()
 				end_ray.cast_to = first_ray.cast_to.bounce(first_ray.get_collision_normal())
 				end_ray.add_exception(first_ray.get_collider())
 				end_ray.force_raycast_update()
+				booster_ray.clear_exceptions()
 				
 				end_line.points[0] = first_line.points[1]
 				end_line.points[1] = end_ray.get_collision_point() - first_line.global_position
+				if is_booster_line:
+					booster_line.visible = true
+					end_line.points[1] = end_ray.get_collision_point() - end_line.global_position
+					booster_ray.global_position = end_ray.get_collision_point()
+					booster_ray.cast_to = end_ray.cast_to.bounce(end_ray.get_collision_normal())
+					booster_ray.add_exception(end_ray.get_collider())
+					booster_ray.force_raycast_update()
+					
+					booster_line.points[0] = end_line.points[1]
+					booster_line.points[1] = booster_ray.get_collision_point() - end_line.global_position
 
 			else:
 				first_line.visible = false
@@ -119,9 +124,11 @@ func _input(event: InputEvent) -> void:
 		if event is InputEventScreenTouch and not event.pressed and is_angle_valid:
 			first_line.visible = false
 			end_line.visible = false
+			booster_line.visible = false
 			angle = (get_global_mouse_position() - $Spawn.position).angle()
 			timer.start()
 			turn_complete = false
+			is_booster_line = false
 			animation.play("turn")
 			speed_timer.start()
 
@@ -139,21 +146,19 @@ func _on_Ball_Shooting() -> void:
 
 func _on_Ground_Collision(pos) -> void:
 	falling_balls += 1
+	print(falling_balls)
 	if !first_ball:
 		new_spawn.position.x = pos.x
 		new_spawn.visible = true
 		first_ball = true
 	
-	if falling_balls >= total_balls or is_extra50:
+	if falling_balls >= total_balls:
 		tween.interpolate_property(spawn, "position", spawn.position, new_spawn.position, 0.3,
-		Tween.TRANS_SINE, Tween.EASE_IN)
+					Tween.TRANS_SINE, Tween.EASE_IN)
 		tween.start()
 		yield(tween, "tween_all_completed")
 		emit_signal("turn_completed")
-		
-#	if $Balls.get_child_count() < 1:
-#		emit_signal("turn_completed")
-		
+
 func _on_Turn_Completed() -> void:
 	if is_extra50:
 		total_balls -= 50
@@ -161,6 +166,7 @@ func _on_Turn_Completed() -> void:
 	animation.play("turn_completed")
 	speed_timer.stop()
 	Engine.time_scale = 1
+	$HUD/Speed.visible = false
 	new_spawn.visible = false
 	thrown_balls = 0
 	falling_balls = 0
@@ -173,7 +179,7 @@ func _on_Turn_Completed() -> void:
 	balls_count.text = "x%d"%(total_balls)
 	balls_count.visible = true
 	turn_complete = true
-	bricketgrid.draw_update(level)
+	yield(bricketgrid.draw_update(level), "completed")
 	
 func _on_ball_plus() -> void:
 	ball_enhancer += 1
@@ -182,14 +188,14 @@ func _on_balls_updated() -> void:
 	balls_count.text = "x%d"%total_balls
 
 func _on_screen_clear() -> void:
-	print("Checkpoint")
-	LocalSettings.load()
+	$HUD/Center.visible = true
 	LocalSettings.set_setting("challenge_checkpoints", level)
 	var best_score = LocalSettings.get_setting("best_challenge_level", 0)
 	if level > best_score:
 		LocalSettings.set_setting("best_challenge_level", level)
 	
-	LocalSettings.save()
+	yield(get_tree().create_timer(2), "timeout")
+	$HUD/Center.visible = false
 
 func _on_challenge_failed() -> void:
 	print("oyun bittiiii!!!")
@@ -201,6 +207,7 @@ func _on_coins_updated() -> void:
 
 func _on_engine_speed() -> void:
 	Engine.time_scale *= 2
+	$HUD/Speed.visible = true
 
 func _on_ChallengeGame_tree_exited() -> void:
 	LocalSettings.load()
@@ -215,27 +222,57 @@ func _on_TakeButton_pressed() -> void:
 	timer.stop()
 	for ball in $Balls.get_children():
 		ball.go_home()
+	
+	falling_balls += total_balls - thrown_balls
+	if Engine.time_scale > 1:
+		Engine.time_scale = 1
+		$HUD/Speed.visible = false
 
 func _on_PauseButton_pressed() -> void:
-	pass # Replace with function body.
+	var popup = preload("res://Scenes/UI/PausePopup.tscn").instance()
+	$HUD.add_child(popup)
+	get_tree().paused = true
+	yield(popup, "ok")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	get_tree().paused = false
+	emit_signal("coins_updated")
+	emit_signal("balls_updated")
 
 
 func _on_AimingButton_pressed() -> void:
-	pass # Replace with function body.
+	var coins =  LocalSettings.get_setting("coins", 0)
+	if coins > 10:
+		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
+		popup._subtitle = "Gold Aiming!"
+		popup.coin = 10
+		$HUD.add_child(popup)
+		get_tree().paused = true
+		yield(popup, "ok")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		get_tree().paused = false
+		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 10)
+		emit_signal("coins_updated")
+		emit_signal("balls_updated")
+		is_booster_line = true
+	else:
+		pass
+	print("aiming")
 
 
 func _on_Extra50Button_pressed() -> void:
 	var coins =  LocalSettings.get_setting("coins", 0)
 	if coins > 20:
 		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
-#		popup.rect_position = Vector2(540, 960)
+		popup.coin = 20
 		$HUD.add_child(popup)
 		get_tree().paused = true
 		yield(popup, "ok")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
 		get_tree().paused = false
-		LocalSettings.load()
 		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 20)
-		LocalSettings.save()
 		total_balls += 50
 		is_extra50 = true
 		emit_signal("coins_updated")
@@ -247,8 +284,51 @@ func _on_Extra50Button_pressed() -> void:
 
 
 func _on_BreakBottomButton_pressed() -> void:
-	pass # Replace with function body.
+	var coins =  LocalSettings.get_setting("coins", 0)
+	if coins > 30:
+		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
+		popup.coin = 30
+		popup._subtitle = "Break Bottom Bricks!"
+#		popup.rect_position = Vector2(540, 960)
+		$HUD.add_child(popup)
+		get_tree().paused = true
+		yield(popup, "ok")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		get_tree().paused = false
+		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 30)
+		emit_signal("coins_updated")
+		emit_signal("balls_updated")
+		bricketgrid.end_row_bricks_kills()
+	else:
+		pass
+	print("break")
 
 
 func _on_HalveButton_pressed() -> void:
-	pass # Replace with function body.
+	var coins =  LocalSettings.get_setting("coins", 0)
+	if coins > 50:
+		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
+		popup._subtitle = "Halve Bricks Level!"
+		popup.coin = 50
+		$HUD.add_child(popup)
+		get_tree().paused = true
+		yield(popup, "ok")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		get_tree().paused = false
+		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 50)
+		emit_signal("coins_updated")
+		emit_signal("balls_updated")
+		bricketgrid.all_bricks_halved()
+	else:
+		pass
+	print("halve")
+
+func _notification(what: int) -> void:
+	match what:
+		MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
+			self._on_PauseButton_pressed()
+			
+		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+			self._on_PauseButton_pressed()

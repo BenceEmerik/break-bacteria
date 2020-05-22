@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/ChallengeGame.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/BricketGridChallenge.gd" type="Script" id=3]
@@ -9,7 +9,6 @@
 [ext_resource path="res://UI/LevelItem/coin48.png" type="Texture" id=8]
 [ext_resource path="res://UI/Game/toplari-cek.png" type="Texture" id=9]
 [ext_resource path="res://UI/Game/pause.png" type="Texture" id=10]
-[ext_resource path="res://UI/Game/help.png" type="Texture" id=11]
 [ext_resource path="res://Scenes/Tutorial.tscn" type="PackedScene" id=12]
 [ext_resource path="res://UI/Game/cizgi-ekle.png" type="Texture" id=16]
 [ext_resource path="res://UI/Game/top-ekle.png" type="Texture" id=17]
@@ -33,14 +32,25 @@ size = 36
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=4]
+size = 72
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 64
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=6]
 size = 32
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 4 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "turn"
-length = 0.5
+[sub_resource type="Animation" id=7]
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("HUD/Down/MarginContainer2:rect_position")
 tracks/0/interp = 1
@@ -48,10 +58,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -210 ), Vector2( 0, -420 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -360 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("HUD/Down/MarginContainer:rect_position")
@@ -60,10 +70,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -420 ), Vector2( 0, -210 ) ]
+"values": [ Vector2( 0, -360 ), Vector2( 0, 0 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("HUD/Down/MarginContainer2/TakeButton:disabled")
@@ -72,7 +82,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -84,7 +94,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -96,7 +106,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -108,7 +118,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -120,15 +130,14 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=6]
-resource_name = "turn_completed"
-length = 0.5
+[sub_resource type="Animation" id=8]
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("HUD/Down/MarginContainer2:rect_position")
 tracks/0/interp = 1
@@ -136,10 +145,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -420 ), Vector2( 0, -210 ) ]
+"values": [ Vector2( 0, -360 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("HUD/Down/MarginContainer:rect_position")
@@ -148,10 +157,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -210 ), Vector2( 0, -420 ) ]
+"values": [ Vector2( 0, 0 ), Vector2( 0, -360 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("HUD/Down/MarginContainer2/TakeButton:disabled")
@@ -160,7 +169,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ false, true ]
@@ -172,7 +181,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -184,7 +193,7 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -196,7 +205,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -208,7 +217,7 @@ tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.4 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -266,7 +275,7 @@ __meta__ = {
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Top/MarginContainer"]
 margin_left = 16.0
 margin_top = 36.0
-margin_right = 248.0
+margin_right = 124.0
 margin_bottom = 144.0
 custom_constants/separation = 16
 __meta__ = {
@@ -278,14 +287,6 @@ margin_right = 108.0
 margin_bottom = 108.0
 size_flags_vertical = 4
 texture_normal = ExtResource( 10 )
-stretch_mode = 3
-
-[node name="InfoButton" type="TextureButton" parent="HUD/Top/MarginContainer/HBoxContainer"]
-margin_left = 124.0
-margin_right = 232.0
-margin_bottom = 108.0
-size_flags_vertical = 6
-texture_normal = ExtResource( 11 )
 stretch_mode = 3
 
 [node name="MarginContainer2" type="MarginContainer" parent="HUD/Top"]
@@ -353,7 +354,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -540.0
+margin_top = 0.00012207
 margin_right = 540.0
+margin_bottom = 0.00012207
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -364,9 +367,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -540.0
-margin_top = -420.0
+margin_top = -360.0
 margin_right = 540.0
-rect_min_size = Vector2( 0, 420 )
 color = Color( 0.0627451, 0.0901961, 0.192157, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -378,23 +380,21 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -540.0
-margin_top = -210.0
+margin_top = -360.0
 margin_right = 540.0
-margin_bottom = 190.0
-rect_min_size = Vector2( 0, 400 )
-custom_constants/margin_top = 48
+margin_bottom = -60.0
+custom_constants/margin_top = 24
 custom_constants/margin_bottom = 32
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="TakeButton" type="TextureButton" parent="HUD/Down/MarginContainer2"]
-margin_left = 429.0
-margin_top = 48.0
-margin_right = 651.0
-margin_bottom = 368.0
+margin_left = 460.0
+margin_top = 24.0
+margin_right = 620.0
+margin_bottom = 268.0
 size_flags_horizontal = 6
-disabled = true
 texture_normal = ExtResource( 9 )
 stretch_mode = 3
 __meta__ = {
@@ -407,28 +407,26 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -540.0
-margin_top = -420.0
 margin_right = 540.0
-margin_bottom = -10.0
-rect_min_size = Vector2( 0, 400 )
-custom_constants/margin_top = 48
+margin_bottom = 300.0
+custom_constants/margin_top = 24
 custom_constants/margin_bottom = 32
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Down/MarginContainer"]
-margin_left = 77.0
-margin_top = 48.0
-margin_right = 1003.0
-margin_bottom = 378.0
-size_flags_horizontal = 6
+margin_top = 24.0
+margin_right = 1080.0
+margin_bottom = 268.0
 custom_constants/separation = 72
 alignment = 1
 
 [node name="HalveButton" type="TextureButton" parent="HUD/Down/MarginContainer/HBoxContainer"]
-margin_right = 178.0
-margin_bottom = 330.0
+margin_left = 177.0
+margin_right = 305.0
+margin_bottom = 244.0
+disabled = true
 texture_normal = ExtResource( 18 )
 stretch_mode = 3
 
@@ -438,9 +436,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -48.5
-margin_top = -24.0
+margin_top = 2.00001
 margin_right = 48.5
-margin_bottom = 24.0
+margin_bottom = 50.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -463,9 +461,10 @@ margin_bottom = 48.0
 texture = ExtResource( 8 )
 
 [node name="BreakBottomButton" type="TextureButton" parent="HUD/Down/MarginContainer/HBoxContainer"]
-margin_left = 250.0
-margin_right = 428.0
-margin_bottom = 330.0
+margin_left = 377.0
+margin_right = 505.0
+margin_bottom = 244.0
+disabled = true
 texture_normal = ExtResource( 19 )
 stretch_mode = 3
 
@@ -475,9 +474,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -48.5
-margin_top = -24.0
+margin_top = 2.00001
 margin_right = 48.5
-margin_bottom = 24.0
+margin_bottom = 50.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -500,9 +499,10 @@ margin_bottom = 48.0
 texture = ExtResource( 8 )
 
 [node name="Extra50Button" type="TextureButton" parent="HUD/Down/MarginContainer/HBoxContainer"]
-margin_left = 500.0
-margin_right = 677.0
-margin_bottom = 330.0
+margin_left = 577.0
+margin_right = 704.0
+margin_bottom = 244.0
+disabled = true
 texture_normal = ExtResource( 17 )
 stretch_mode = 3
 
@@ -512,9 +512,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -48.5
-margin_top = -24.0
+margin_top = 2.00001
 margin_right = 48.5
-margin_bottom = 24.0
+margin_bottom = 50.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -537,9 +537,10 @@ margin_bottom = 48.0
 texture = ExtResource( 8 )
 
 [node name="AimingButton" type="TextureButton" parent="HUD/Down/MarginContainer/HBoxContainer"]
-margin_left = 749.0
-margin_right = 926.0
-margin_bottom = 330.0
+margin_left = 776.0
+margin_right = 903.0
+margin_bottom = 244.0
+disabled = true
 texture_normal = ExtResource( 16 )
 stretch_mode = 3
 
@@ -549,9 +550,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 margin_left = -48.5
-margin_top = -24.0
+margin_top = 2.00001
 margin_right = 48.5
-margin_bottom = 24.0
+margin_bottom = 50.0
 alignment = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -573,6 +574,58 @@ margin_left = 45.0
 margin_right = 93.0
 margin_bottom = 48.0
 texture = ExtResource( 8 )
+
+[node name="Center" type="Control" parent="HUD"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/Center"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -230.0
+margin_top = -89.0
+margin_right = 230.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 1, 1, 1, 0.686275 )
+text = "Checkpoint!"
+
+[node name="Speed" type="Control" parent="HUD"]
+visible = false
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -40.0
+margin_top = -20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="HUD/Speed"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -303.0
+margin_top = -39.5
+margin_bottom = 39.5
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 1, 1, 1, 0.784314 )
+text = "Speed 2x"
+valign = 1
 
 [node name="Wall" type="Node2D" parent="."]
 __meta__ = {
@@ -609,20 +662,20 @@ __meta__ = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall/Ground"]
-polygon = PoolVector2Array( 0, 1500, 0, 1508, 1080, 1508, 1080, 1500 )
+polygon = PoolVector2Array( 0, 1560, 0, 1568, 1080, 1568, 1080, 1560 )
 
-[node name="BricketGrid" type="Node2D" parent="."]
+[node name="BricketGridChallenge" type="Node2D" parent="."]
 position = Vector2( 0, 180 )
 script = ExtResource( 3 )
 
 [node name="Tutorial" parent="." instance=ExtResource( 12 )]
-position = Vector2( 0, 180 )
+position = Vector2( 0, 240 )
 
 [node name="Balls" type="Node" parent="."]
 
 [node name="NewSpawn" type="Position2D" parent="."]
 visible = false
-position = Vector2( 540, 1498 )
+position = Vector2( 540, 1535 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -631,7 +684,7 @@ __meta__ = {
 texture = ExtResource( 6 )
 
 [node name="Spawn" type="Position2D" parent="."]
-position = Vector2( 540, 1498 )
+position = Vector2( 540, 1535 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -648,11 +701,23 @@ width = 2.0
 default_color = Color( 0.823529, 0.823529, 0.823529, 1 )
 antialiased = true
 
+[node name="BoosterLine" type="Line2D" parent="Spawn"]
+points = PoolVector2Array( 0, 0, 0, 0 )
+width = 2.0
+default_color = Color( 0.823529, 0.823529, 0.823529, 1 )
+antialiased = true
+
 [node name="FirstRay" type="RayCast2D" parent="Spawn"]
 enabled = true
 cast_to = Vector2( 0, 0 )
+collision_mask = 5
 
 [node name="EndRay" type="RayCast2D" parent="Spawn"]
+enabled = true
+cast_to = Vector2( 0, 0 )
+collision_mask = 5
+
+[node name="BoosterRay" type="RayCast2D" parent="Spawn"]
 enabled = true
 cast_to = Vector2( 0, 0 )
 
@@ -665,7 +730,7 @@ margin_left = -26.0
 margin_top = -63.0
 margin_right = 27.0
 margin_bottom = -18.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 6 )
 align = 1
 valign = 1
 __meta__ = {
@@ -679,13 +744,14 @@ texture = ExtResource( 6 )
 wait_time = 0.1
 
 [node name="SpeedTimer" type="Timer" parent="."]
+wait_time = 10.0
 one_shot = true
 
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/turn = SubResource( 5 )
-anims/turn_completed = SubResource( 6 )
+anims/turn = SubResource( 7 )
+anims/turn_completed = SubResource( 8 )
 [connection signal="tree_exited" from="." to="." method="_on_ChallengeGame_tree_exited"]
 [connection signal="pressed" from="HUD/Top/MarginContainer/HBoxContainer/PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="HUD/Down/MarginContainer2/TakeButton" to="." method="_on_TakeButton_pressed"]

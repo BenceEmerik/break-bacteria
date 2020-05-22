@@ -25,5 +25,5 @@ func _on_CloseButton_pressed() -> void:
 func _on_BuyButton_pressed() -> void:
 	var admob := get_parent().get_node("Admob")
 	admob.show_rewarded_video()
-	get_parent().watched_ball = title
+	get_parent().emit_signal("buyed_ball", title)
 	queue_free()

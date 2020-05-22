@@ -27,10 +27,9 @@ func _on_CloseButton_pressed() -> void:
 
 
 func _on_BuyButton_pressed() -> void:
-	LocalSettings.load()
 	var total_coins = LocalSettings.get_setting("coins", 0)
 	LocalSettings.set_setting("coins", total_coins-coins)
-	LocalSettings.save()
 	get_parent().emit_signal("coins_changed")
+	get_parent().emit_signal("buyed_ball", title)
 	queue_free()
 

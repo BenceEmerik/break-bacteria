@@ -1,6 +1,6 @@
 tool
 extends Node2D
-
+class_name BricketGrid
 
 export(int) var column:int = 9
 export(int) var row:int = 11
@@ -66,7 +66,7 @@ func add_row() -> void:
 	grid.insert(1, [null, null, null, bricket, null, null, null, null, null, ])
 
 func row_down() -> void:
-	for bricket in self.get_children():
+	for bricket in $Brickets.get_children():
 		bricket.position.y += cell_length
 	#pirketler hücre boyu kadar aşağı kayar
 	

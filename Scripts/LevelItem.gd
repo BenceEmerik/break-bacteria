@@ -23,11 +23,16 @@ func state_update() -> void:
 		lock_texture.visible = false
 		level_label.visible = true
 		self.disabled = false
+		var stat:Dictionary = LocalSettings.get_setting("completed_levels", {})
+		if level in stat.keys():
+			pass
 	
 	else:
 		lock_texture.visible = true
 		level_label.visible = false
 		self.disabled = true
+
+	
 
 func _on_LevelItem_pressed() -> void:
 	Globals.level = level

@@ -1,6 +1,3 @@
-düşen top rotate i normale dönecek
-
 adb logcat -s godot
 
 Jiko:
-arka plan değişsin ya arka plan ile rect simgeler uyumlu olsun ki görebilelim.

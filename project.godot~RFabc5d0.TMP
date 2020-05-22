@@ -19,7 +19,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Ball.gd"
 }, {
-"base": "StaticBody2D",
+"base": "KinematicBody2D",
 "class": "Bricket",
 "language": "GDScript",
 "path": "res://Scripts/Bricket.gd"

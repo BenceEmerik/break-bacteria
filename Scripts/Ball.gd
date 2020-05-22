@@ -29,9 +29,10 @@ func _process(delta:float) -> void:
 	if collision:
 		velocity = velocity.bounce(collision.normal)
 		
-		if collision.collider.has_method("is_bricket"):
+		if collision.collider is Bricket:
 			collision.collider.emit_signal("health_state")
-			
+		
+		print(collision.collider.get_name())
 		if collision.collider.get_name() == "Ground" and not is_shielded:
 			var pos = global_position
 			set_process(false)
@@ -42,11 +43,11 @@ func _process(delta:float) -> void:
 									Tween.EASE_IN)
 			tween.start()
 			yield(tween, "tween_all_completed")
-#			get_tree().current_scene.emit_signal("ground_collision", pos)
 			queue_free()
 		
 		elif collision.collider.get_name() == "Ground":
 			is_shielded = false
 
 func go_home() -> void:
+	collision_layer = 4
 	self.start(deg2rad(90))

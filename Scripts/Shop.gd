@@ -8,10 +8,11 @@ onready var back_button = $HUD/Back/MarginContainer/BackButton
 
 var selected_ball
 var buyed_balls
-var watched_ball:String
+var buyed_ball:String
 
 signal balls_state_update()
 signal coins_changed()
+signal buyed_ball(ballname)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -26,6 +27,7 @@ func _ready() -> void:
 	
 	connect("coins_changed", self, "_on_coins_changed")
 	connect("balls_state_update", self, "items_update")
+	connect("buyed_ball", self, "_on_buyed_ball")
 	
 
 
@@ -66,18 +68,22 @@ func _notification(what: int) -> void:
 			self._on_BackButton_pressed()
 
 func _on_coins_changed() -> void:
-	LocalSettings.load()
 	coins_label.text = str(LocalSettings.get_setting("coins", 0))
 
-func _on_Admob_rewarded(currency, ammount) -> void:
-	print(currency, ammount)
-	LocalSettings.load()
-	var b = LocalSettings.get_setting("buyed_balls", ["default"])
-	b.append(watched_ball)
+func _on_buyed_ball(ballname) -> void:
+	var b = LocalSettings.get_setting("buyed_balls", ["antikor"])
+	b.append(ballname)
 	LocalSettings.set_setting("buyed_balls", b)
-	LocalSettings.save()
-	watched_ball = ""
 	self.items_update()
+
+func _on_Admob_rewarded(currency, ammount) -> void:
+	pass
+#	var b = LocalSettings.get_setting("buyed_balls", ["antikor"])
+#	b.append(buyed_ball)
+#	LocalSettings.set_setting("buyed_balls", b)
+#	buyed_ball = ""
+#	self.items_update()
+#	emit_signal("buyed_ball", buyed_ball)
 	
 
 

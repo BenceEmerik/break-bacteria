@@ -18,6 +18,5 @@ func _ready() -> void:
 
 func _on_BallPlus_body_entered(body: Node) -> void:
 	if body is Ball:
-		print("body is Ball")
 		get_tree().current_scene.emit_signal("ball_plus")
 		queue_free()
