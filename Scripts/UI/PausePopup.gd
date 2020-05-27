@@ -17,7 +17,6 @@ func _ready() -> void:
 
 func _on_CloseButton_pressed() -> void:
 	queue_free()
-	get_tree().paused = false
 
 
 func _on_QuitButton_pressed() -> void:

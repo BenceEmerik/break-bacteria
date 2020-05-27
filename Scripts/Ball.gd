@@ -27,12 +27,12 @@ func start(dir:float) -> void:
 func _process(delta:float) -> void:
 	var collision = move_and_collide(velocity * delta)
 	if collision:
+		var reflect = collision.remainder.bounce(collision.normal)
 		velocity = velocity.bounce(collision.normal)
-		
+		move_and_collide(reflect)
 		if collision.collider is Bricket:
 			collision.collider.emit_signal("health_state")
 		
-		print(collision.collider.get_name())
 		if collision.collider.get_name() == "Ground" and not is_shielded:
 			var pos = global_position
 			set_process(false)

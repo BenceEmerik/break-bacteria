@@ -54,6 +54,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scripts/Booster/Shield.gd"
 }, {
+"base": "KinematicBody2D",
+"class": "TestBall",
+"language": "GDScript",
+"path": "res://Scripts/TestBall.gd"
+}, {
 "base": "Area2D",
 "class": "Triple",
 "language": "GDScript",
@@ -74,6 +79,7 @@ _global_script_class_icons={
 "FourDirections": "",
 "Mirror": "",
 "Shield": "",
+"TestBall": "",
 "Triple": "",
 "TwoDirections": ""
 }

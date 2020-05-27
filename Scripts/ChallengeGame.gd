@@ -17,7 +17,8 @@ signal challenge_failed()
 signal ball_plus()
 signal coins_updated()
 signal balls_updated()
-signal ground_collision(position)
+signal ground_collision(pos)
+signal collision_lines(points)
 
 const Ball = preload("res://Scenes/Ball.tscn")
 
@@ -30,14 +31,12 @@ onready var new_spawn:Position2D = $NewSpawn
 onready var first_line:Line2D = $Spawn/FirstLine
 onready var end_line:Line2D = $Spawn/EndLine
 onready var booster_line:Line2D = $Spawn/BoosterLine
-onready var first_ray:RayCast2D = $Spawn/FirstRay
-onready var end_ray:RayCast2D = $Spawn/EndRay
-onready var booster_ray:RayCast2D = $Spawn/BoosterRay
 onready var balls_count:Label = $Spawn/BallsCount
 onready var timer:Timer = $Timer
 onready var speed_timer:Timer = $SpeedTimer
 onready var tween:Tween = $Tween
 onready var animation:AnimationPlayer = $AnimationPlayer
+onready var test_ball = preload("res://Scenes/TestBall.tscn")
 
 var is_angle_valid:bool
 var angle:float
@@ -45,13 +44,11 @@ var thrown_balls:int
 var falling_balls:int
 var turn_complete:bool = true
 var first_ball:bool = false
-var is_booster_line:bool
 var total_balls:int
 var ball_enhancer:int
-
 var level:int
 var is_extra50:bool
-
+var is_aiming:bool
 
 func _ready() -> void:
 	LocalSettings.load()
@@ -61,7 +58,6 @@ func _ready() -> void:
 	coins_label.text = str(LocalSettings.get_setting("coins", 0))
 	balls_count.text = "x%d"%(total_balls)
 	
-	first_line.points[0] = first_line.position
 	animation.play("turn_completed")
 	bricketgrid.draw_update(level)
 	
@@ -74,52 +70,30 @@ func _ready() -> void:
 	connect("balls_updated", self, "_on_balls_updated")
 	connect("ground_collision", self, "_on_Ground_Collision")
 	connect("turn_completed", self, "_on_Turn_Completed")
+	connect("collision_lines", self, "_on_collision_lines")
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+func _process(delta: float) -> void:
+	pass
+	
 
 func _input(event: InputEvent) -> void:
 	if turn_complete and event.position.y > 180 and event.position.y < $Spawn.position.y:
-		if event is InputEventScreenDrag or event is InputEventScreenTouch:
+		if event is InputEventScreenDrag or event is InputEventScreenTouch and event.pressed:
+#			first_line.visible = true
+#			end_line.visible = true
+			if is_aiming: 
+				booster_line.visible = true
 			if has_node("Tutorial"):
 				$Tutorial.queue_free()
 			var direction = event.position - $Spawn.position
-			first_ray.cast_to = direction.normalized() * 2000
-			first_ray.force_raycast_update()
-			end_ray.clear_exceptions()
 
 			is_angle_valid = direction.angle() < -0.1 and direction.angle() > -3.04
+			
+			var tball = test_ball.instance()
+			spawn.add_child(tball)
+			tball.start(direction.angle())
 
-			if first_ray.is_colliding() and is_angle_valid:
-				first_line.visible = true
-				end_line.visible = true
-				var collider = first_ray.get_collider()
-				
-				first_line.points[1] = first_ray.get_collision_point() - first_line.global_position
-				end_ray.global_position = first_ray.get_collision_point()
-				end_ray.cast_to = first_ray.cast_to.bounce(first_ray.get_collision_normal())
-				end_ray.add_exception(first_ray.get_collider())
-				end_ray.force_raycast_update()
-				booster_ray.clear_exceptions()
-				
-				end_line.points[0] = first_line.points[1]
-				end_line.points[1] = end_ray.get_collision_point() - first_line.global_position
-				if is_booster_line:
-					booster_line.visible = true
-					end_line.points[1] = end_ray.get_collision_point() - end_line.global_position
-					booster_ray.global_position = end_ray.get_collision_point()
-					booster_ray.cast_to = end_ray.cast_to.bounce(end_ray.get_collision_normal())
-					booster_ray.add_exception(end_ray.get_collider())
-					booster_ray.force_raycast_update()
-					
-					booster_line.points[0] = end_line.points[1]
-					booster_line.points[1] = booster_ray.get_collision_point() - end_line.global_position
-
-			else:
-				first_line.visible = false
-				end_line.visible = false
 
 		if event is InputEventScreenTouch and not event.pressed and is_angle_valid:
 			first_line.visible = false
@@ -128,10 +102,24 @@ func _input(event: InputEvent) -> void:
 			angle = (get_global_mouse_position() - $Spawn.position).angle()
 			timer.start()
 			turn_complete = false
-			is_booster_line = false
+			is_aiming = false
 			animation.play("turn")
 			speed_timer.start()
 
+func _on_collision_lines(points:PoolVector2Array):
+	if is_angle_valid:
+		first_line.visible = true
+		end_line.visible = true
+		first_line.points[0] = Vector2.ZERO
+		first_line.points[1] = points[0] - spawn.global_position
+		end_line.points[0] = first_line.points[1]
+		end_line.points[1] = points[1] - spawn.global_position
+		booster_line.points[0] = end_line.points[1]
+		booster_line.points[1] = points[2] - spawn.global_position
+	else:
+		first_line.visible = false
+		end_line.visible = false
+		
 func _on_Ball_Shooting() -> void:
 	thrown_balls += 1
 	var ball = Ball.instance()
@@ -146,7 +134,6 @@ func _on_Ball_Shooting() -> void:
 
 func _on_Ground_Collision(pos) -> void:
 	falling_balls += 1
-	print(falling_balls)
 	if !first_ball:
 		new_spawn.position.x = pos.x
 		new_spawn.visible = true
@@ -179,7 +166,7 @@ func _on_Turn_Completed() -> void:
 	balls_count.text = "x%d"%(total_balls)
 	balls_count.visible = true
 	turn_complete = true
-	yield(bricketgrid.draw_update(level), "completed")
+	bricketgrid.draw_update(level)
 	
 func _on_ball_plus() -> void:
 	ball_enhancer += 1
@@ -214,8 +201,6 @@ func _on_ChallengeGame_tree_exited() -> void:
 	var checkpoint = LocalSettings.get_setting("challenge_checkpoints", 1)
 	if level != checkpoint:
 		LocalSettings.set_setting("challenge_checkpoints", 1)
-	
-	LocalSettings.save()
 
 
 func _on_TakeButton_pressed() -> void:
@@ -255,7 +240,7 @@ func _on_AimingButton_pressed() -> void:
 		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 10)
 		emit_signal("coins_updated")
 		emit_signal("balls_updated")
-		is_booster_line = true
+		is_aiming = true
 	else:
 		pass
 	print("aiming")

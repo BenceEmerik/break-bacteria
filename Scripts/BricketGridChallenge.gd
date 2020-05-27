@@ -192,8 +192,8 @@ func draw_update(lvl:int) -> void:
 	if is_grid_empty():
 		get_parent().emit_signal("screen_clear")
 	erase_row()
-	yield(row_down(), "completed")
-	yield(add_row(lvl), "completed")
+	row_down()
+	add_row(lvl)
 	bricket_control()
 
 func end_row_bricks_kills() -> void:
