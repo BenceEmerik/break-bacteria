@@ -13,7 +13,7 @@ var settings
 func _ready() -> void:
 	if !settings_file.file_exists(file_path):
 		settings_file.open(file_path, File.WRITE)
-		var d = {"coins": 50000,
+		var d = {"coins": 0,
 				"current_level": 1,
 				"challenge_checkpoints": 1,
 				"best_challenge_level": 0,

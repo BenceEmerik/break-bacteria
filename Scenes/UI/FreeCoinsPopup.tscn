@@ -1,13 +1,14 @@
 [gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Scripts/FreeCoinsPopup.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/UI/FreeCoinsPopup.gd" type="Script" id=2]
 [ext_resource path="res://UI/FreeCoins/videoplayer48.png" type="Texture" id=3]
 [ext_resource path="res://UI/FreeCoins/closebtn-beyaz.png" type="Texture" id=4]
 [ext_resource path="res://UI/FreeCoins/videoplayer.png" type="Texture" id=5]
 [ext_resource path="res://UI/LevelItem/coin.png" type="Texture" id=6]
 [ext_resource path="res://UI/FreeCoins/watchandcoin.png" type="Texture" id=7]
 [ext_resource path="res://UI/FreeCoins/rect-siyah.png" type="Texture" id=8]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 48

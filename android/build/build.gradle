@@ -44,7 +44,7 @@ dependencies {
         releaseİmplementation fileTree(dir: 'libs/release', include: ['*.jar', '*.aar'])
     }
 //CHUNK_DEPENDENCIES_BEGIN
-api ('com.google.android.gms:play-services-ads:16.0.0') { exclude group: 'com.android.support' }
+api ('com.google.android.gms:play-services-ads:19.1.0')
 //CHUNK_DEPENDENCIES_END
 }
 

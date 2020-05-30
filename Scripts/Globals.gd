@@ -1,6 +1,6 @@
 extends Node
 
-
+var level:int = 1
 var prev_time:int
 var colors =  [
 	Color.red, Color.blue, Color.orange, Color.yellow, Color.yellowgreen, Color.aqua, Color.green,
@@ -8,6 +8,7 @@ var colors =  [
 	Color.firebrick, Color.chocolate, Color.lawngreen, Color.olive, Color.limegreen, Color.snow,
 	
 ]
+var reload_level:int
 
 func _ready() -> void:
 	get_tree().set_quit_on_go_back(false)

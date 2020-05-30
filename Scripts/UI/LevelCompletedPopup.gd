@@ -1,12 +1,14 @@
 extends Control
 
 
-signal ok()
+export(int) var level:int = 1
 
+onready var title:Label = $Window/Title
 
-# Called when the node enters the scene tree for the first time.
+signal ok
+
 func _ready() -> void:
-	pass # Replace with function body.
+	title.text = "Level %d"%level
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -14,22 +16,19 @@ func _ready() -> void:
 #	pass
 
 
-
 func _on_CloseButton_pressed() -> void:
 	get_tree().paused = false
 	queue_free()
 
 
-func _on_QuitButton_pressed() -> void:
-	get_tree().quit()
+func _on_RetryButton_pressed() -> void:
+	get_tree().reload_current_scene()
 
 
 func _on_HomeButton_pressed() -> void:
 	get_tree().change_scene("res://Scenes/UI/Main.tscn")
-	get_tree().paused = false
 
 
-func _on_RetryButton_pressed() -> void:
-	get_tree().current_scene.emit_signal("retry_level")
-	queue_free()
-	get_tree().paused = false
+func _on_NextButton_pressed() -> void:
+	Globals.level += 1
+	get_tree().reload_current_scene()

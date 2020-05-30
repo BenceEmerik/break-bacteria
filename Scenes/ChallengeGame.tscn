@@ -1,5 +1,6 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=24 format=2]
 
+[ext_resource path="res://admob-lib/admob.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/ChallengeGame.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/BricketGridChallenge.gd" type="Script" id=3]
 [ext_resource path="res://Asset/OpenSans-Regular.ttf" type="DynamicFontData" id=4]
@@ -29,6 +30,8 @@ font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 36
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 7 )
 
 [sub_resource type="DynamicFont" id=4]
@@ -50,6 +53,7 @@ use_filter = true
 font_data = ExtResource( 4 )
 
 [sub_resource type="Animation" id=7]
+resource_name = "turn"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("HUD/Down/MarginContainer2:rect_position")
@@ -137,6 +141,7 @@ tracks/6/keys = {
 }
 
 [sub_resource type="Animation" id=8]
+resource_name = "turn_completed"
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("HUD/Down/MarginContainer2:rect_position")
@@ -226,10 +231,17 @@ tracks/6/keys = {
 [node name="ChallengeGame" type="Node2D"]
 script = ExtResource( 2 )
 
-[node name="BG2" type="CanvasLayer" parent="."]
+[node name="Admob" type="Node" parent="."]
+script = ExtResource( 1 )
+banner_on_top = false
+banner_id = "ca-app-pub-9677648781915911/3212564772"
+interstitial_id = "ca-app-pub-9677648781915911/3450090698"
+rewarded_id = "ca-app-pub-9677648781915911/4543680519"
+
+[node name="BG" type="CanvasLayer" parent="."]
 layer = -1
 
-[node name="ColorRect" type="ColorRect" parent="BG2"]
+[node name="ColorRect" type="ColorRect" parent="BG"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
@@ -237,7 +249,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="TextureRect" type="TextureRect" parent="BG2"]
+[node name="TextureRect" type="TextureRect" parent="BG"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 texture = ExtResource( 5 )
@@ -380,9 +392,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -540.0
-margin_top = -360.0
 margin_right = 540.0
-margin_bottom = -60.0
+margin_bottom = 300.0
 custom_constants/margin_top = 24
 custom_constants/margin_bottom = 32
 __meta__ = {
@@ -395,6 +406,7 @@ margin_top = 24.0
 margin_right = 620.0
 margin_bottom = 268.0
 size_flags_horizontal = 6
+disabled = true
 texture_normal = ExtResource( 9 )
 stretch_mode = 3
 __meta__ = {
@@ -407,8 +419,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -540.0
+margin_top = -360.0
 margin_right = 540.0
-margin_bottom = 300.0
+margin_bottom = -60.0
 custom_constants/margin_top = 24
 custom_constants/margin_bottom = 32
 __meta__ = {
@@ -426,7 +439,6 @@ alignment = 1
 margin_left = 177.0
 margin_right = 305.0
 margin_bottom = 244.0
-disabled = true
 texture_normal = ExtResource( 18 )
 stretch_mode = 3
 
@@ -464,7 +476,6 @@ texture = ExtResource( 8 )
 margin_left = 377.0
 margin_right = 505.0
 margin_bottom = 244.0
-disabled = true
 texture_normal = ExtResource( 19 )
 stretch_mode = 3
 
@@ -502,7 +513,6 @@ texture = ExtResource( 8 )
 margin_left = 577.0
 margin_right = 704.0
 margin_bottom = 244.0
-disabled = true
 texture_normal = ExtResource( 17 )
 stretch_mode = 3
 
@@ -540,7 +550,6 @@ texture = ExtResource( 8 )
 margin_left = 776.0
 margin_right = 903.0
 margin_bottom = 244.0
-disabled = true
 texture_normal = ExtResource( 16 )
 stretch_mode = 3
 
@@ -734,12 +743,20 @@ wait_time = 0.1
 wait_time = 10.0
 one_shot = true
 
+[node name="AdTimer" type="Timer" parent="."]
+wait_time = 300.0
+autostart = true
+
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/turn = SubResource( 7 )
 anims/turn_completed = SubResource( 8 )
 [connection signal="tree_exited" from="." to="." method="_on_ChallengeGame_tree_exited"]
+[connection signal="rewarded" from="Admob" to="." method="_on_Admob_rewarded"]
+[connection signal="rewarded_video_closed" from="Admob" to="." method="_on_Admob_rewarded_video_closed"]
+[connection signal="rewarded_video_failed_to_load" from="Admob" to="." method="_on_Admob_rewarded_video_failed_to_load"]
+[connection signal="rewarded_video_loaded" from="Admob" to="." method="_on_Admob_rewarded_video_loaded"]
 [connection signal="pressed" from="HUD/Top/MarginContainer/HBoxContainer/PauseButton" to="." method="_on_PauseButton_pressed"]
 [connection signal="pressed" from="HUD/Down/MarginContainer2/TakeButton" to="." method="_on_TakeButton_pressed"]
 [connection signal="pressed" from="HUD/Down/MarginContainer/HBoxContainer/HalveButton" to="." method="_on_HalveButton_pressed"]

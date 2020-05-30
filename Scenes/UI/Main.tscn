@@ -9,7 +9,8 @@
 [ext_resource path="res://UI/LevelItem/coin.png" type="Texture" id=7]
 [ext_resource path="res://UI/Main/freecoin-wb.png" type="Texture" id=8]
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=9]
-[ext_resource path="res://Scripts/Main.gd" type="Script" id=12]
+[ext_resource path="res://Scripts/UI/Main.gd" type="Script" id=12]
+
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Asset/Montserrat-Bold.ttf"
@@ -79,9 +80,9 @@ __meta__ = {
 [node name="Admob" type="Node" parent="."]
 script = ExtResource( 2 )
 banner_on_top = false
-banner_id = "ca-app-pub-6806793675683811/2985098985"
-interstitial_id = "ca-app-pub-6806793675683811/9714158866"
-rewarded_id = "ca-app-pub-6806793675683811/7742601645"
+banner_id = "ca-app-pub-9677648781915911/3212564772"
+interstitial_id = "ca-app-pub-9677648781915911/3450090698"
+rewarded_id = "ca-app-pub-9677648781915911/4543680519"
 
 [node name="BG" parent="." instance=ExtResource( 6 )]
 

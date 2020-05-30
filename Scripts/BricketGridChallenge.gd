@@ -2,9 +2,6 @@ tool
 extends Node2D
 class_name BricketGridChallenge
 
-enum State {
-	IDLE,
-}
 
 signal all_halved()
 signal break_bottom()
@@ -13,7 +10,6 @@ signal gold_aiming()
 
 export(int) var column:int = 9
 export(int) var row:int = 11
-export(int) var turn:int = 0
 export(int) var cell_length:int = 120
 export(int) var offset:int = 60
 
@@ -60,19 +56,18 @@ func add_row(level:int) -> void:
 		booster_count = 2
 	
 	if level > 29:
-		brickets = 4
 		booster_count = 3
 	
 	if level > 50:
+		brickets = 4
 		double = true
 		booster_count = 4
 	
 	if level > 75:
-		brickets = 5
 		booster_count = 5
 	
 	if level > 90:
-		pass
+		brickets = 5
 	
 	
 	var row_list:Array = []
@@ -83,6 +78,9 @@ func add_row(level:int) -> void:
 		bricket.color = color.front()
 		bricket.health = level
 		if !index and double and randi()%100 < 33:
+			if randi()%100 < 35:
+				bricket.bricket_type = "Triangle"
+				bricket.degress = randi()%4
 			bricket.color = color.back()
 			bricket.health = level * 2
 		row_list.append(bricket)
@@ -110,7 +108,7 @@ func add_row(level:int) -> void:
 			var triple = preload("res://Scenes/Booster/Triple.tscn").instance()
 			booster_list.append(triple)
 		5: 
-			var shield = preload("res://Scenes/Booster/Coin.tscn").instance()
+			var shield = preload("res://Scenes/Booster/Shield.tscn").instance()
 			booster_list.append(shield)
 	
 	if booster_count and randi()%100 < 33:
@@ -145,13 +143,11 @@ func row_down() -> void:
 	var tw := Tween.new()
 	add_child(tw)
 	for bricket in bricket_area.get_children():
-#		bricket.position.y += cell_length
 		tw.interpolate_property(bricket, "position:y", bricket.position.y, bricket.position.y+cell_length,
 		0.2, Tween.TRANS_CIRC, Tween.EASE_IN)
 	tw.start()
 	yield(tw, "tween_all_completed")
 	tw.queue_free()
-	#pirketler hücre boyu kadar aşağı kayar
 	
 func deleted_item_clear() -> void:
 	for i in range(grid.size()):
@@ -177,15 +173,16 @@ func is_grid_empty() -> bool:
 	return true
 
 func erase_row() -> void:
-	var last_row = grid.pop_back()
+	var last_row = grid[-1]
 	for i in last_row:
-		if i is KinematicBody2D:
-			print("oyun biter!")
+		if i is Bricket:
 			get_tree().current_scene.emit_signal("challenge_failed")
-		
+			#tree paused
+			print("failed")
+			return
 		if i is Area2D:
 			i.queue_free()
-
+	grid.pop_back() #veya end_row_bricks_kills()
 
 func draw_update(lvl:int) -> void:
 	deleted_item_clear()
@@ -203,7 +200,6 @@ func end_row_bricks_kills() -> void:
 	bricket_control()
 	for r in range(-1, -row, -1):
 		var ok := false
-		print(grid[r])
 		for i in grid[r]:
 			if i is Bricket:
 				i.emit_signal("death")
@@ -217,7 +213,6 @@ func all_bricks_halved() -> void:
 				col.emit_signal("halved")
 
 func grid_to_world(column:int, row:int) -> Vector2:
-	# dönen pozisyon hücrenin merkez noktasını verir.
 	return Vector2(column * cell_length + offset, row * cell_length + offset)
 
 func world_to_grid(position:Vector2) -> Vector2:

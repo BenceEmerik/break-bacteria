@@ -4,10 +4,11 @@
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://UI/LevelItem/rect-beyaz192.png" type="Texture" id=3]
 [ext_resource path="res://UI/LevelItem/coin48.png" type="Texture" id=4]
-[ext_resource path="res://Scripts/ShopItem.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/UI/ShopItem.gd" type="Script" id=5]
 [ext_resource path="res://UI/check.png" type="Texture" id=6]
 [ext_resource path="res://UI/check2.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/ballanim.tres" type="Animation" id=8]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 36

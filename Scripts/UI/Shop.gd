@@ -17,7 +17,6 @@ signal buyed_ball(ballname)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Admob.load_rewarded_video()
-	LocalSettings.load()
 	coins_label.text = str(LocalSettings.get_setting("coins", 0))
 	selected_ball = LocalSettings.get_setting("selected_ball", "default")
 	buyed_balls = LocalSettings.get_setting("buyed_balls", ["default"])
@@ -36,7 +35,6 @@ func _ready() -> void:
 #	pass
 
 func items_update() -> void:
-	LocalSettings.load()
 	selected_ball = LocalSettings.get_setting("selected_ball", "default")
 	buyed_balls = LocalSettings.get_setting("buyed_balls", ["default"])
 	

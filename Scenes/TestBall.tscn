@@ -5,7 +5,7 @@
 
 [sub_resource type="CircleShape2D" id=1]
 resource_local_to_scene = true
-radius = 23.0
+radius = 22.0
 
 [node name="TestBall" type="KinematicBody2D"]
 collision_layer = 2

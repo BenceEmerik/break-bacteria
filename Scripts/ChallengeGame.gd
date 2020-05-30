@@ -1,15 +1,5 @@
 extends Node2D
 
-enum State {
-	ACTION,
-	DELETED_ITEM_CLEAR,
-	ERASE
-	ROW_DOWN,
-	ADD_ROW,
-	IDLE
-}
-
-
 
 signal screen_clear()
 signal turn_completed()
@@ -19,6 +9,7 @@ signal coins_updated()
 signal balls_updated()
 signal ground_collision(pos)
 signal collision_lines(points)
+signal retry_level()
 
 const Ball = preload("res://Scenes/Ball.tscn")
 
@@ -34,6 +25,7 @@ onready var booster_line:Line2D = $Spawn/BoosterLine
 onready var balls_count:Label = $Spawn/BallsCount
 onready var timer:Timer = $Timer
 onready var speed_timer:Timer = $SpeedTimer
+onready var ad_timer:Timer = $AdTimer
 onready var tween:Tween = $Tween
 onready var animation:AnimationPlayer = $AnimationPlayer
 onready var test_ball = preload("res://Scenes/TestBall.tscn")
@@ -49,9 +41,13 @@ var ball_enhancer:int
 var level:int
 var is_extra50:bool
 var is_aiming:bool
+var is_ads_ready:bool
+var is_inter_ready:bool
 
 func _ready() -> void:
-	LocalSettings.load()
+	$Admob.load_banner()
+	$Admob.load_interstitial()
+	$Admob.load_rewarded_video()
 	level = LocalSettings.get_setting("challenge_checkpoints", 1)
 	total_balls = level
 	score_label.text = str(level)
@@ -63,6 +59,7 @@ func _ready() -> void:
 	
 	timer.connect("timeout", self, "_on_Ball_Shooting")
 	speed_timer.connect("timeout", self, "_on_engine_speed")
+	ad_timer.connect("timeout", self, "_on_ad_show")
 	connect("challenge_failed", self, "_on_challenge_failed")
 	connect("screen_clear", self, "_on_screen_clear")
 	connect("ball_plus", self, "_on_ball_plus")
@@ -71,6 +68,7 @@ func _ready() -> void:
 	connect("ground_collision", self, "_on_Ground_Collision")
 	connect("turn_completed", self, "_on_Turn_Completed")
 	connect("collision_lines", self, "_on_collision_lines")
+	connect("retry_level", self, "_on_scene_reload")
 
 
 func _process(delta: float) -> void:
@@ -78,8 +76,9 @@ func _process(delta: float) -> void:
 	
 
 func _input(event: InputEvent) -> void:
-	if turn_complete and event.position.y > 180 and event.position.y < $Spawn.position.y:
-		if event is InputEventScreenDrag or event is InputEventScreenTouch and event.pressed:
+	if turn_complete:
+		if event is InputEventScreenDrag or event is InputEventScreenTouch and \
+		event.position.y > 180 and event.position.y < $Spawn.position.y and event.pressed:
 #			first_line.visible = true
 #			end_line.visible = true
 			if is_aiming: 
@@ -95,7 +94,7 @@ func _input(event: InputEvent) -> void:
 			tball.start(direction.angle())
 
 
-		if event is InputEventScreenTouch and not event.pressed and is_angle_valid:
+		elif event is InputEventScreenTouch and not event.pressed and is_angle_valid:
 			first_line.visible = false
 			end_line.visible = false
 			booster_line.visible = false
@@ -107,18 +106,19 @@ func _input(event: InputEvent) -> void:
 			speed_timer.start()
 
 func _on_collision_lines(points:PoolVector2Array):
-	if is_angle_valid:
-		first_line.visible = true
-		end_line.visible = true
-		first_line.points[0] = Vector2.ZERO
-		first_line.points[1] = points[0] - spawn.global_position
-		end_line.points[0] = first_line.points[1]
-		end_line.points[1] = points[1] - spawn.global_position
-		booster_line.points[0] = end_line.points[1]
-		booster_line.points[1] = points[2] - spawn.global_position
-	else:
-		first_line.visible = false
-		end_line.visible = false
+	if turn_complete:
+		if is_angle_valid:
+			first_line.visible = true
+			end_line.visible = true
+			first_line.points[0] = Vector2.ZERO
+			first_line.points[1] = points[0] - spawn.global_position
+			end_line.points[0] = first_line.points[1]
+			end_line.points[1] = points[1] - spawn.global_position
+			booster_line.points[0] = end_line.points[1]
+			booster_line.points[1] = points[2] - spawn.global_position
+		else:
+			first_line.visible = false
+			end_line.visible = false
 		
 func _on_Ball_Shooting() -> void:
 	thrown_balls += 1
@@ -167,6 +167,10 @@ func _on_Turn_Completed() -> void:
 	balls_count.visible = true
 	turn_complete = true
 	bricketgrid.draw_update(level)
+	if is_inter_ready:
+		$Admob.show_interstitial()
+		is_inter_ready = false
+		$Admob.load_interstitial()
 	
 func _on_ball_plus() -> void:
 	ball_enhancer += 1
@@ -185,8 +189,14 @@ func _on_screen_clear() -> void:
 	$HUD/Center.visible = false
 
 func _on_challenge_failed() -> void:
-	print("oyun bittiiii!!!")
+	var failed = preload("res://Scenes/UI/FailedPopup.tscn").instance()
+	$HUD.add_child(failed)
 	get_tree().paused = true
+	yield(failed, "ok")
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
+	get_tree().paused = false
+	emit_signal("coins_updated")
 
 func _on_coins_updated() -> void:
 	var up_coins = LocalSettings.get_setting("coins", 0)
@@ -197,10 +207,13 @@ func _on_engine_speed() -> void:
 	$HUD/Speed.visible = true
 
 func _on_ChallengeGame_tree_exited() -> void:
-	LocalSettings.load()
+	if Globals.reload_level:
+		return
+	
 	var checkpoint = LocalSettings.get_setting("challenge_checkpoints", 1)
 	if level != checkpoint:
 		LocalSettings.set_setting("challenge_checkpoints", 1)
+	Globals.reload_level = 0
 
 
 func _on_TakeButton_pressed() -> void:
@@ -224,6 +237,9 @@ func _on_PauseButton_pressed() -> void:
 	emit_signal("coins_updated")
 	emit_signal("balls_updated")
 
+func _on_scene_reload():
+	Globals.reload_level = level
+	get_tree().reload_current_scene()
 
 func _on_AimingButton_pressed() -> void:
 	var coins =  LocalSettings.get_setting("coins", 0)
@@ -242,8 +258,14 @@ func _on_AimingButton_pressed() -> void:
 		emit_signal("balls_updated")
 		is_aiming = true
 	else:
-		pass
-	print("aiming")
+		var missing = preload("res://Scenes/UI/CoinsMissing.tscn").instance()
+		$HUD.add_child(missing)
+		get_tree().paused = true
+		yield(missing, "ok")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		get_tree().paused = false
+		emit_signal("coins_updated")
 
 
 func _on_Extra50Button_pressed() -> void:
@@ -263,9 +285,14 @@ func _on_Extra50Button_pressed() -> void:
 		emit_signal("coins_updated")
 		emit_signal("balls_updated")
 	else:
-		pass
-	print("extra")
-	
+		var missing = preload("res://Scenes/UI/CoinsMissing.tscn").instance()
+		$HUD.add_child(missing)
+		get_tree().paused = true
+		yield(missing, "ok")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		get_tree().paused = false
+		emit_signal("coins_updated")
 
 
 func _on_BreakBottomButton_pressed() -> void:
@@ -286,8 +313,14 @@ func _on_BreakBottomButton_pressed() -> void:
 		emit_signal("balls_updated")
 		bricketgrid.end_row_bricks_kills()
 	else:
-		pass
-	print("break")
+		var missing = preload("res://Scenes/UI/CoinsMissing.tscn").instance()
+		$HUD.add_child(missing)
+		get_tree().paused = true
+		yield(missing, "ok")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		get_tree().paused = false
+		emit_signal("coins_updated")
 
 
 func _on_HalveButton_pressed() -> void:
@@ -304,11 +337,16 @@ func _on_HalveButton_pressed() -> void:
 		get_tree().paused = false
 		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 50)
 		emit_signal("coins_updated")
-		emit_signal("balls_updated")
 		bricketgrid.all_bricks_halved()
 	else:
-		pass
-	print("halve")
+		var missing = preload("res://Scenes/UI/CoinsMissing.tscn").instance()
+		$HUD.add_child(missing)
+		get_tree().paused = true
+		yield(missing, "ok")
+		yield(get_tree(), "idle_frame")
+		yield(get_tree(), "idle_frame")
+		get_tree().paused = false
+		emit_signal("coins_updated")
 
 func _notification(what: int) -> void:
 	match what:
@@ -317,3 +355,26 @@ func _notification(what: int) -> void:
 			
 		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
 			self._on_PauseButton_pressed()
+
+
+func _on_ad_show() -> void:
+	is_inter_ready = true
+
+func _on_Admob_rewarded_video_failed_to_load(error_code) -> void:
+	$Admob.load_rewarded_video()
+
+
+func _on_Admob_rewarded_video_closed() -> void:
+	$Admob.load_rewarded_video()
+
+
+func _on_Admob_rewarded(currency, ammount) -> void:
+	LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + ammount)
+	emit_signal("coins_updated")
+	if ammount == 1:
+		pass # devamke
+		#burada reklam sonrası bir şey yapılıp erase_row işlemi devam etmeli
+
+
+func _on_Admob_rewarded_video_loaded() -> void:
+	is_ads_ready = true
