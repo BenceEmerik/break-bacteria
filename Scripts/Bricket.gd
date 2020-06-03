@@ -30,7 +30,7 @@ func _ready() -> void:
 	connect("death", self, "_on_death")
 	connect("danger", self, "_on_danger")
 	connect("halved", self, "_on_halved")
-	
+
 	if bricket_type == "Square":
 		sprite.texture = load("res://Sprites/square.png")
 		collision.polygon = square_shape
@@ -91,4 +91,3 @@ func _on_death() -> void:
 	particles.color = color
 	particles.emitting = true
 	queue_free()
-

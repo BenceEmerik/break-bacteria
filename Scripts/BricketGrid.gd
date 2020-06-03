@@ -7,10 +7,11 @@ const row:int = 11
 const cell_length:int = 120
 const offset:int = 60
 export(int) var turn:int
+export(int) var how_many:int = 1
 export(int) var bricket_health:int = 30
 export(int) var default_balls:int = 30
 export(int) var targeted_score:int
-
+export(bool) var double:bool
 export(int) var ball_plus_booster:int #?
 export(bool) var two_directions_booster:bool
 export(bool) var four_directions_booster:bool
@@ -54,24 +55,22 @@ func _input(event:InputEvent) -> void:
 	
 
 func add_row() -> void:
-	var brickets:int = 1
 	var booster_count:int
-	var double:bool
-	
 	
 	var row_list:Array = []
 	var color:Array = Globals.colors
 	color.shuffle()
-	for index in range(brickets):
+	var health = int(rand_range(bricket_health, bricket_health+10))
+	for index in range(how_many):
 		var bricket = preload("res://Scenes/Bricket.tscn").instance()
-		bricket.color = color.front()
-		bricket.health = 12#level
+		bricket.color = color[index]
+		bricket.health = health
 		if !index and double and randi()%100 < 33:
 			if randi()%100 < 35:
 				bricket.bricket_type = "Triangle"
 				bricket.degress = randi()%4
 			bricket.color = color.back()
-			bricket.health = 12 * 2
+			bricket.health = health * 2
 		row_list.append(bricket)
 	
 #	var ballplus = preload("res://Scenes/Booster/BallPlus.tscn").instance()
@@ -102,7 +101,6 @@ func add_row() -> void:
 	if booster_count and randi()%100 < 33:
 		booster_list.shuffle()
 		var booster = booster_list.pop_front()
-#		add_child(booster)
 		row_list.append(booster)
 	
 	var random_index = range(column)
@@ -126,8 +124,7 @@ func add_row() -> void:
 	grid.insert(1, insert_row)
 	yield(tw, "tween_all_completed")
 	tw.queue_free()
-	
-	#######
+
 
 func row_down() -> void:
 	var tw := Tween.new()

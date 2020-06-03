@@ -6,8 +6,6 @@
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 1 )
-turn = 1
-targeted_score = 30
 
 [node name="Brickets" type="Node2D" parent="."]
 
@@ -27,7 +25,6 @@ position = Vector2( 900, 420 )
 
 [node name="Bricket3" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 420, 300 )
-health = 33
 bricket_type = "Triangle"
 color = Color( 0.0196078, 0.14902, 0.835294, 1 )
 
