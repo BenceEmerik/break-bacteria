@@ -177,12 +177,10 @@ func erase_row() -> void:
 	for i in last_row:
 		if i is Bricket:
 			get_tree().current_scene.emit_signal("challenge_failed")
-			#tree paused
-			print("failed")
 			return
 		if i is Area2D:
 			i.queue_free()
-	grid.pop_back() #veya end_row_bricks_kills()
+	grid.pop_back()
 
 func draw_update(lvl:int) -> void:
 	deleted_item_clear()
@@ -191,6 +189,11 @@ func draw_update(lvl:int) -> void:
 	erase_row()
 	row_down()
 	add_row(lvl)
+	bricket_control()
+
+func end_row_clear() -> void:
+	end_row_bricks_kills()
+	grid.pop_back()
 	bricket_control()
 
 func end_row_bricks_kills() -> void:

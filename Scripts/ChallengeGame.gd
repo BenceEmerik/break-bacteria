@@ -10,6 +10,7 @@ signal balls_updated()
 signal ground_collision(pos)
 signal collision_lines(points)
 signal retry_level()
+signal admob_type(type)
 
 const Ball = preload("res://Scenes/Ball.tscn")
 
@@ -30,6 +31,9 @@ onready var tween:Tween = $Tween
 onready var animation:AnimationPlayer = $AnimationPlayer
 onready var test_ball = preload("res://Scenes/TestBall.tscn")
 
+onready var spawn_ball:Sprite = $Spawn/Ball
+onready var new_spawn_ball:Sprite = $NewSpawn/Ball
+
 var is_angle_valid:bool
 var angle:float
 var thrown_balls:int
@@ -43,6 +47,8 @@ var is_extra50:bool
 var is_aiming:bool
 var is_ads_ready:bool
 var is_inter_ready:bool
+var what_admob_type:String
+var ball_texture
 
 func _ready() -> void:
 	$Admob.load_banner()
@@ -57,6 +63,10 @@ func _ready() -> void:
 	animation.play("turn_completed")
 	bricketgrid.draw_update(level)
 	
+	ball_texture = load("res://Sprites/Balls/%s.png"%LocalSettings.get_setting("selected_ball", "antikor"))
+	spawn_ball.texture = ball_texture
+	new_spawn_ball.texture = ball_texture
+	
 	timer.connect("timeout", self, "_on_Ball_Shooting")
 	speed_timer.connect("timeout", self, "_on_engine_speed")
 	ad_timer.connect("timeout", self, "_on_ad_show")
@@ -69,6 +79,7 @@ func _ready() -> void:
 	connect("turn_completed", self, "_on_Turn_Completed")
 	connect("collision_lines", self, "_on_collision_lines")
 	connect("retry_level", self, "_on_scene_reload")
+	connect("admob_type", self, "_on_admob_type")
 
 
 func _process(delta: float) -> void:
@@ -123,6 +134,7 @@ func _on_collision_lines(points:PoolVector2Array):
 func _on_Ball_Shooting() -> void:
 	thrown_balls += 1
 	var ball = Ball.instance()
+	ball.texture = ball_texture
 	$Balls.add_child(ball)
 	ball.position = $Spawn.position
 	ball.start(angle)
@@ -369,12 +381,18 @@ func _on_Admob_rewarded_video_closed() -> void:
 
 
 func _on_Admob_rewarded(currency, ammount) -> void:
-	LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + ammount)
-	emit_signal("coins_updated")
-	if ammount == 1:
-		pass # devamke
+#	LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + ammount)
+#	emit_signal("coins_updated")
+	var ty = what_admob_type
+	if ty == "continue":
+		bricketgrid.end_row_clear()
 		#burada reklam sonrası bir şey yapılıp erase_row işlemi devam etmeli
-
+	if ty == "buy":
+		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + ammount)
+		emit_signal("coins_updated")
 
 func _on_Admob_rewarded_video_loaded() -> void:
 	is_ads_ready = true
+
+func _on_admob_type(type:String) -> void:
+	what_admob_type = type

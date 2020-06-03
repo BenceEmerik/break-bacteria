@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ic_launcher.png-75879bc6b229b9df0181708b97498a94.stex"
+path="res://.import/playstore-icon.png-2bc0bc5c548cefa5ac875b62523d5432.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://androidicons/mipmap-xhdpi/ic_launcher.png"
-dest_files=[ "res://.import/ic_launcher.png-75879bc6b229b9df0181708b97498a94.stex" ]
+source_file="res://playstore-icon.png"
+dest_files=[ "res://.import/playstore-icon.png-2bc0bc5c548cefa5ac875b62523d5432.stex" ]
 
 [params]
 

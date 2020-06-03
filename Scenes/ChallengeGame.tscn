@@ -1,9 +1,8 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://admob-lib/admob.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/ChallengeGame.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/BricketGridChallenge.gd" type="Script" id=3]
-[ext_resource path="res://Asset/OpenSans-Regular.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://UI/Main/backbg.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/Balls/antikor.png" type="Texture" id=6]
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=7]
@@ -50,7 +49,7 @@ font_data = ExtResource( 7 )
 size = 32
 use_mipmaps = true
 use_filter = true
-font_data = ExtResource( 4 )
+font_data = ExtResource( 7 )
 
 [sub_resource type="Animation" id=7]
 resource_name = "turn"

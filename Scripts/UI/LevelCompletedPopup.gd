@@ -22,13 +22,16 @@ func _on_CloseButton_pressed() -> void:
 
 
 func _on_RetryButton_pressed() -> void:
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 
 func _on_HomeButton_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene("res://Scenes/UI/Main.tscn")
 
 
 func _on_NextButton_pressed() -> void:
+	get_tree().paused = false
 	Globals.level += 1
 	get_tree().reload_current_scene()

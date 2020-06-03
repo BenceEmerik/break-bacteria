@@ -11,7 +11,6 @@
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=9]
 [ext_resource path="res://Scripts/UI/Main.gd" type="Script" id=12]
 
-
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Asset/Montserrat-Bold.ttf"
 
@@ -81,7 +80,6 @@ __meta__ = {
 script = ExtResource( 2 )
 banner_on_top = false
 banner_id = "ca-app-pub-9677648781915911/3212564772"
-interstitial_id = "ca-app-pub-9677648781915911/3450090698"
 rewarded_id = "ca-app-pub-9677648781915911/4543680519"
 
 [node name="BG" parent="." instance=ExtResource( 6 )]
@@ -332,6 +330,7 @@ anims/free_button = SubResource( 7 )
 
 [node name="Timer" type="Timer" parent="."]
 [connection signal="rewarded" from="Admob" to="." method="_on_Admob_rewarded"]
+[connection signal="rewarded_video_closed" from="Admob" to="." method="_on_Admob_rewarded_video_closed"]
 [connection signal="rewarded_video_failed_to_load" from="Admob" to="." method="_on_Admob_rewarded_video_failed_to_load"]
 [connection signal="rewarded_video_loaded" from="Admob" to="." method="_on_Admob_rewarded_video_loaded"]
 [connection signal="pressed" from="FreeBox/MarginContainer/HBoxContainer/FreeButton" to="." method="_on_FreeButton_pressed"]

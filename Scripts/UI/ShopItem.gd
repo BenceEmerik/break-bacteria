@@ -1,4 +1,3 @@
-tool
 extends TextureButton
 
 export(Texture) var ball_texture 
@@ -21,11 +20,7 @@ func _ready() -> void:
 	$Sprite.texture = ball_texture
 	self.state_update()
 		
-	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
 
 func state_update() -> void:
 	if selected:
@@ -54,8 +49,6 @@ func _on_ShopItem_pressed() -> void:
 	if !selected and buyed:
 		selected = true
 		LocalSettings.set_setting("selected_ball", ball_name)
-		LocalSettings.save()
-#		self.state_update()
 		get_node("/root/Shop").emit_signal("balls_state_update")
 		return
 	

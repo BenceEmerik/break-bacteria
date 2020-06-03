@@ -13,16 +13,26 @@ targeted_score = 30
 [node name="Bricket" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 300, 660 )
 health = 25
+color = Color( 0.12549, 0.65098, 0.0196078, 1 )
+
+[node name="Label" parent="Brickets/Bricket" index="5"]
+text = "25"
 
 [node name="Bricket2" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 900, 420 )
-color = 5
+
+[node name="Sprite" parent="Brickets/Bricket2" index="0"]
+modulate = Color( 0, 0, 0, 0.0196078 )
 
 [node name="Bricket3" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 420, 300 )
 health = 33
 bricket_type = "Triangle"
-color = 4
+color = Color( 0.0196078, 0.14902, 0.835294, 1 )
 
 [node name="Tutorial" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 60 )
+
+[editable path="Brickets/Bricket"]
+
+[editable path="Brickets/Bricket2"]

@@ -16,7 +16,6 @@
 [ext_resource path="res://Sprites/Balls/stronsiyum.png" type="Texture" id=14]
 [ext_resource path="res://Sprites/Balls/antikor.png" type="Texture" id=15]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 64
 use_mipmaps = true
@@ -459,7 +458,8 @@ __meta__ = {
 [node name="Admob" type="Node" parent="."]
 script = ExtResource( 6 )
 banner_on_top = false
-rewarded_id = "ca-app-pub-9677648781915911/2137009020"
+banner_id = "ca-app-pub-9677648781915911/3212564772"
+rewarded_id = "ca-app-pub-9677648781915911/4543680519"
 
 [node name="BG" parent="." instance=ExtResource( 4 )]
 
@@ -610,10 +610,6 @@ margin_right = 192.0
 margin_bottom = 192.0
 ball_texture = ExtResource( 15 )
 ball_name = "antikor"
-rewarded = false
-coins = 0
-selected = false
-buyed = false
 
 [node name="ShopItem2" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_left = 276.0
@@ -622,9 +618,6 @@ margin_bottom = 192.0
 ball_texture = ExtResource( 9 )
 ball_name = "iyot"
 rewarded = true
-coins = 0
-selected = false
-buyed = false
 
 [node name="ShopItem3" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_left = 552.0
@@ -632,10 +625,7 @@ margin_right = 744.0
 margin_bottom = 192.0
 ball_texture = ExtResource( 10 )
 ball_name = "kükürt"
-rewarded = false
 coins = 100
-selected = false
-buyed = false
 
 [node name="ShopItem4" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_top = 328.0
@@ -644,9 +634,6 @@ margin_bottom = 520.0
 ball_texture = ExtResource( 11 )
 ball_name = "lityum"
 rewarded = true
-coins = 0
-selected = false
-buyed = false
 
 [node name="ShopItem5" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_left = 276.0
@@ -657,8 +644,6 @@ ball_texture = ExtResource( 8 )
 ball_name = "magnezyum"
 rewarded = true
 coins = 100
-selected = false
-buyed = false
 
 [node name="ShopItem6" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_left = 552.0
@@ -669,8 +654,6 @@ ball_texture = ExtResource( 12 )
 ball_name = "platin"
 rewarded = true
 coins = 100
-selected = false
-buyed = false
 
 [node name="ShopItem7" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_top = 656.0
@@ -678,10 +661,7 @@ margin_right = 192.0
 margin_bottom = 848.0
 ball_texture = ExtResource( 13 )
 ball_name = "rubidyum"
-rewarded = false
 coins = 250
-selected = false
-buyed = false
 
 [node name="ShopItem8" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
 margin_left = 276.0
@@ -690,10 +670,7 @@ margin_right = 468.0
 margin_bottom = 848.0
 ball_texture = ExtResource( 14 )
 ball_name = "stronsiyum"
-rewarded = false
 coins = 500
-selected = false
-buyed = false
 [connection signal="rewarded" from="Admob" to="." method="_on_Admob_rewarded"]
 [connection signal="rewarded_video_closed" from="Admob" to="." method="_on_Admob_rewarded_video_closed"]
 [connection signal="rewarded_video_failed_to_load" from="Admob" to="." method="_on_Admob_rewarded_video_failed_to_load"]

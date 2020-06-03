@@ -20,5 +20,6 @@ func _on_BuyButton_pressed() -> void:
 	var parent = get_tree().current_scene
 	if parent.is_ads_ready:
 		parent.get_node("Admob").show_rewarded_video()
+	parent.emit_signal("admob_type", "buy")
 	emit_signal("ok")
 	queue_free()

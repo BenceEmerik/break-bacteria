@@ -9,7 +9,6 @@
 [ext_resource path="res://UI/check2.png" type="Texture" id=7]
 [ext_resource path="res://Scenes/ballanim.tres" type="Animation" id=8]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 36
 use_mipmaps = true

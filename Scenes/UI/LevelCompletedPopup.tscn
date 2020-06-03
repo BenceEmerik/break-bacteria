@@ -103,6 +103,7 @@ __meta__ = {
 }
 
 [node name="CloseButton" type="TextureButton" parent="Window"]
+visible = false
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -82.9999

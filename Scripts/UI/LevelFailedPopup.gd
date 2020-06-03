@@ -21,13 +21,14 @@ func _on_CloseButton_pressed() -> void:
 
 
 func _on_HomeButton_pressed() -> void:
+	get_tree().paused = false
 	get_tree().change_scene("res://Scenes/UI/Main.tscn")
 
 
 func _on_RetryButton_pressed() -> void:
+	get_tree().paused = false
 	get_tree().reload_current_scene()
 
 
-func _on_ContinueButton_pressed() -> void:
-	get_tree().current_scene.emit_signal("ad_popup")
-	queue_free()
+func _on_ExitButton_pressed() -> void:
+	get_tree().quit()

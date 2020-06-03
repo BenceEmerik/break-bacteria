@@ -25,6 +25,9 @@ onready var tween:Tween = $Tween
 onready var animation:AnimationPlayer = $AnimationPlayer
 onready var test_ball = preload("res://Scenes/TestBall.tscn")
 
+onready var spawn_ball:Sprite = $Spawn/Ball
+onready var new_spawn_ball:Sprite = $NewSpawn/Ball
+
 var is_angle_valid:bool
 var angle:float
 var thrown_balls:int
@@ -37,6 +40,8 @@ var is_extra50:bool
 var is_aiming:bool
 var is_ads_ready:bool
 var is_inter_ready:bool
+var what_admob_type:String
+var ball_texture
 
 signal level_completed()
 signal level_failed()
@@ -48,6 +53,7 @@ signal balls_updated()
 signal score_updated(score)
 signal collision_lines(points)
 signal retry_level()
+signal admob_type(type)
 
 
 func _ready() -> void:
@@ -75,6 +81,10 @@ func _ready() -> void:
 	total_balls = bricketgrid.default_balls
 	balls_count.text = "x%d"%(total_balls)
 	
+	ball_texture = load("res://Sprites/Balls/%s.png"%LocalSettings.get_setting("selected_ball", "antikor"))
+	spawn_ball.texture = ball_texture
+	new_spawn_ball.texture = ball_texture
+	
 	animation.play("turn_completed")
 	
 	timer.connect("timeout", self, "_on_Ball_Shooting")
@@ -90,6 +100,7 @@ func _ready() -> void:
 	connect("score_updated", self, "_progress_updated")
 	connect("collision_lines", self, "_on_collision_lines")
 	connect("retry_level", self, "_on_scene_reload")
+	connect("admob_type", self, "_on_admob_type")
 #	bricketgrid.draw_update(level)
 	
 	
@@ -145,6 +156,7 @@ func _on_collision_lines(points:PoolVector2Array):
 func _on_Ball_Shooting() -> void:
 	thrown_balls += 1
 	var ball = Ball.instance()
+	ball.texture = ball_texture
 	$Balls.add_child(ball)
 	ball.position = $Spawn.position
 	ball.start(angle)
@@ -215,7 +227,6 @@ func _on_scene_reload():
 func _on_Game_tree_exited() -> void:
 	pass #oyun kayıt edebiliriz belki
 
-
 func _progress_updated(score) -> void:
 	score_progress.value += score
 	var target = bricketgrid.targeted_score
@@ -229,7 +240,11 @@ func _progress_updated(score) -> void:
 		circle3.texture = preload("res://UI/Game/active.png")
 
 func _on_Level_Completed() -> void:
+	var last_level = LocalSettings.get_setting("last_completed_level", 0)
+	if Globals.level > last_level:
+		LocalSettings.set_setting("last_completed_level", Globals.level)
 	var level_completed = preload("res://Scenes/UI/LevelCompletedPopup.tscn").instance()
+	level_completed.level = Globals.level
 	$HUD.add_child(level_completed)
 	get_tree().paused = true
 	yield(level_completed, "ok")
@@ -385,6 +400,9 @@ func _notification(what: int) -> void:
 func _on_ad_show() -> void:
 	is_inter_ready = true
 
+func _on_admob_type(type:String) -> void:
+	what_admob_type = type
+
 func _on_Admob_rewarded_video_failed_to_load(error_code) -> void:
 	$Admob.load_rewarded_video()
 
@@ -394,11 +412,15 @@ func _on_Admob_rewarded_video_closed() -> void:
 
 
 func _on_Admob_rewarded(currency, ammount) -> void:
-	LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + ammount)
-	emit_signal("coins_updated")
-	if ammount == 1:
-		pass # devamke
-		#burada reklam sonrası bir şey yapılıp erase_row işlemi devam etmeli
+	var ty = what_admob_type
+	print(ty)
+	if ty == "continue":
+		bricketgrid.end_row_clear()
+		
+	if ty == "buy":
+		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + ammount)
+		emit_signal("coins_updated")
+
 
 func _on_Admob_rewarded_video_loaded() -> void:
 	is_ads_ready = true

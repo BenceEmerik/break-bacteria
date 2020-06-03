@@ -179,17 +179,23 @@ func erase_row() -> void:
 func draw_update() -> void:
 	deleted_item_clear()
 	if is_grid_empty() and not turn:
-		get_parent().emit_signal("level_completed")
+		get_tree().current_scene.emit_signal("level_completed")
+		print("level complete")
 	erase_row()
 	row_down()
 	if turn:
 		add_row()
 	bricket_control()
 
+func end_row_clear() -> void:
+	end_row_bricks_kills()
+	grid.pop_back()
+	bricket_control()
+
 func end_row_bricks_kills() -> void:
 	deleted_item_clear()
 	if is_grid_empty():
-		get_parent().emit_signal("screen_clear")
+		get_tree().current_scene.emit_signal("screen_clear")
 	bricket_control()
 	for r in range(-1, -row, -1):
 		var ok := false

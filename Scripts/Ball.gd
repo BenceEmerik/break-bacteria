@@ -6,6 +6,7 @@ var velocity:Vector2 = Vector2.ZERO
 
 onready var tween:Tween = $Tween
 
+export(Texture) var texture
 
 var is_shielded:bool
 var is_shield_used:bool
@@ -13,7 +14,7 @@ var is_mirrored:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
-	pass
+	$Sprite.texture = texture
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

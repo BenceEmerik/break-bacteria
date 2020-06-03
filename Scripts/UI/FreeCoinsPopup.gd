@@ -18,6 +18,7 @@ func _ready() -> void:
 
 func _on_WatchButton_pressed() -> void:
 	get_parent().get_node("Admob").show_rewarded_video()
+	queue_free()
 
 
 func _on_XButton_pressed() -> void:

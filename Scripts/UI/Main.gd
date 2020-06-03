@@ -24,9 +24,9 @@ func _ready() -> void:
 
 	connect("free_coins_watched", self, "_on_free_coins_watched")
 	free_coins_timer.connect("timeout", self, "_on_count_down")
-#	free_coins_timer.start()
-
-	if Globals.prev_time:
+	
+	var time = Globals.prev_time + count_down_time <= OS.get_unix_time()
+	if Globals.prev_time and !time:
 		free_label.text = Globals.time_to_string(Globals.prev_time, count_down_time)
 #		free_button.disabled = true
 		free_coins_timer.start()
@@ -34,11 +34,7 @@ func _ready() -> void:
 	else:
 		free_label.text = "Free Coins"
 #		free_button.disabled = false
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta: float) -> void:
-#	pass
+		Globals.prev_time = 0
 
 
 func _on_PlayButton_pressed() -> void:
@@ -49,20 +45,14 @@ func _on_ShopButton_pressed() -> void:
 	get_tree().change_scene("res://Scenes/UI/Shop.tscn")
 
 
-#func _on_OptionButton_pressed() -> void:
-#	options_popup = OptionsPopup.instance()
-#	add_child(options_popup)
-
-
 func _on_FreeButton_pressed() -> void:
 	if $Admob.is_rewarded_video_loaded():
 		freecoins_popup = preload("res://Scenes/UI/FreeCoinsPopup.tscn").instance()
 		add_child(freecoins_popup)
 
 func _on_free_coins_watched() -> void:
-	free_coins_timer.start()
 	free_button.disabled = true
-	freecoins_popup.queue_free()
+	free_coins_timer.start()
 	coins_label.text = str(LocalSettings.get_setting("coins", 0))
 
 func _notification(what: int) -> void:
@@ -77,13 +67,14 @@ func _on_count_down() -> void:
 	var current_time = OS.get_unix_time()
 	free_label.text = Globals.time_to_string(Globals.prev_time, count_down_time)
 	
+	
 	if Globals.prev_time + count_down_time <= current_time:
 		free_coins_timer.stop()
-		free_button.disabled = false
+#		free_button.disabled = false
+		$Admob.load_rewarded_video()
 		free_label.text = "Free Coins"
 		LocalSettings.set_setting("prev_time", 0)
 		Globals.prev_time = 0
-		LocalSettings.save()
 
 
 func _on_ChallengeButton_pressed() -> void:
@@ -108,4 +99,8 @@ func _on_Admob_rewarded_video_loaded() -> void:
 
 
 func _on_Admob_rewarded_video_failed_to_load(error_code) -> void:
-	print("err %s"%error_code)
+	$Admob.load_rewarded_video()
+
+
+func _on_Admob_rewarded_video_closed() -> void:
+	$Admob.load_rewarded_video()

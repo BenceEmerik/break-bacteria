@@ -40,6 +40,8 @@ func _countdown() -> void:
 
 func _on_WatchButton_pressed() -> void:
 	get_tree().current_scene.get_node("Admob").show_rewarded_video()
+	var parent = get_tree().current_scene
+	parent.emit_signal("admob_type", "continue")
 	emit_signal("ok")
 	queue_free()
 
