@@ -40,20 +40,19 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=5]
 size = 64
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 7 )
 
-[sub_resource type="DynamicFont" id=5]
+[sub_resource type="DynamicFont" id=6]
 size = 24
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 7 )
 
-[sub_resource type="Animation" id=6]
-resource_name = "turn"
+[sub_resource type="Animation" id=7]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("HUD/Down/MarginContainer2:rect_position")
@@ -140,8 +139,7 @@ tracks/6/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="Animation" id=7]
-resource_name = "turn_completed"
+[sub_resource type="Animation" id=8]
 length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("HUD/Down/MarginContainer2:rect_position")
@@ -687,7 +685,7 @@ anchor_bottom = 0.5
 margin_left = -303.0
 margin_top = -39.5
 margin_bottom = 39.5
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 0.784314 )
 text = "Speed 2x"
 __meta__ = {
@@ -780,7 +778,7 @@ margin_left = -19.0
 margin_top = -60.0
 margin_right = 22.0
 margin_bottom = -26.0
-custom_fonts/font = SubResource( 5 )
+custom_fonts/font = SubResource( 6 )
 text = "x30"
 align = 1
 valign = 1
@@ -805,8 +803,8 @@ autostart = true
 [node name="Tween" type="Tween" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/turn = SubResource( 6 )
-anims/turn_completed = SubResource( 7 )
+anims/turn = SubResource( 7 )
+anims/turn_completed = SubResource( 8 )
 [connection signal="rewarded" from="Admob" to="." method="_on_Admob_rewarded"]
 [connection signal="rewarded_video_closed" from="Admob" to="." method="_on_Admob_rewarded_video_closed"]
 [connection signal="rewarded_video_failed_to_load" from="Admob" to="." method="_on_Admob_rewarded_video_failed_to_load"]

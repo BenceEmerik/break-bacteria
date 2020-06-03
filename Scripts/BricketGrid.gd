@@ -2,11 +2,11 @@ tool
 extends Node2D
 class_name BricketGrid
 
-export(int) var column:int = 9
-export(int) var row:int = 11
+const column:int = 9
+const row:int = 11
+const cell_length:int = 120
+const offset:int = 60
 export(int) var turn:int
-export(int) var cell_length:int = 120
-export(int) var offset:int = 60
 export(int) var bricket_health:int = 30
 export(int) var default_balls:int = 30
 export(int) var targeted_score:int
@@ -42,7 +42,6 @@ func _ready() -> void:
 			print(cell)
 			grid[cell.y-1][cell.x-1] = bricket as Bricket
 
-	print(grid)
 
 func _process(delta: float) -> void:
 	pass
@@ -129,7 +128,6 @@ func add_row() -> void:
 	tw.queue_free()
 	
 	#######
-	turn -= 1
 
 func row_down() -> void:
 	var tw := Tween.new()
@@ -185,6 +183,7 @@ func draw_update() -> void:
 	row_down()
 	if turn:
 		add_row()
+		turn -= 1
 	bricket_control()
 
 func end_row_clear() -> void:
