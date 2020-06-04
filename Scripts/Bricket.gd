@@ -90,4 +90,5 @@ func _on_death() -> void:
 	particles.position = position
 	particles.color = color
 	particles.emitting = true
+	get_tree().current_scene.emit_signal("score_updated", 10)
 	queue_free()

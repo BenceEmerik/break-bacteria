@@ -194,7 +194,7 @@ func _on_Turn_Completed() -> void:
 	falling_balls = 0
 	first_ball = false
 	
-	score_label.text = str(1)
+#	score_label.text = str(1)
 	total_balls += ball_enhancer
 	ball_enhancer = 0
 	balls_count.text = "x%d"%(total_balls)
@@ -227,8 +227,10 @@ func _on_scene_reload():
 func _on_Game_tree_exited() -> void:
 	pass #oyun kayıt edebiliriz belki
 
-func _progress_updated(score) -> void:
+func _progress_updated(score:int) -> void:
+	print("progress ", score)
 	score_progress.value += score
+	score_label.text = str(score_progress.value)
 	var target = bricketgrid.targeted_score
 	if score_progress.value > target * .20:
 		circle1.texture = preload("res://UI/Game/active.png")
@@ -236,7 +238,7 @@ func _progress_updated(score) -> void:
 	if score_progress.value > target * .75:
 		circle2.texture = preload("res://UI/Game/active.png")
 	
-	if score_progress.value > target:
+	if score_progress.value >= target:
 		circle3.texture = preload("res://UI/Game/active.png")
 
 func _on_Level_Completed() -> void:
