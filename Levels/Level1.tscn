@@ -23,6 +23,12 @@ text = "25"
 [node name="Bricket2" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 900, 420 )
 
+[node name="Label" parent="Brickets/Bricket2" index="5"]
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+
 [node name="Bricket3" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 420, 300 )
 bricket_type = "Triangle"
