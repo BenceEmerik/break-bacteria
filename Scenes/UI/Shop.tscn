@@ -624,7 +624,7 @@ margin_left = 552.0
 margin_right = 744.0
 margin_bottom = 192.0
 ball_texture = ExtResource( 10 )
-ball_name = "kükürt"
+ball_name = "kukurt"
 coins = 100
 
 [node name="ShopItem4" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]

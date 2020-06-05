@@ -243,8 +243,25 @@ func _progress_updated(score:int) -> void:
 
 func _on_Level_Completed() -> void:
 	var last_level = LocalSettings.get_setting("last_completed_level", 0)
+	var completed_levels = LocalSettings.get_setting("completed_levels", {})
+	if !completed_levels.has(Globals.level):
+		completed_levels[Globals.level] = {}
+		completed_levels[Globals.level]["score"] = int(score_label.text)
+	var target = bricketgrid.targeted_score
+	var circle:int
+	if score_progress.value > target * .20:
+		circle += 1
+	if score_progress.value > target * .75:
+		circle += 1
+	if score_progress.value >= target:
+		circle += 1
+		
+	completed_levels[Globals.level]["circle"] = circle
+	LocalSettings.set_setting("completed_levels", completed_levels)
+	
 	if Globals.level > last_level:
 		LocalSettings.set_setting("last_completed_level", Globals.level)
+		
 	var level_completed = preload("res://Scenes/UI/LevelCompletedPopup.tscn").instance()
 	level_completed.level = Globals.level
 	$HUD.add_child(level_completed)

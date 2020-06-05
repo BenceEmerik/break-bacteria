@@ -6,7 +6,6 @@
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scripts/UI/LevelItem.gd" type="Script" id=5]
 
-
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 4 )
@@ -67,7 +66,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="star1" type="TextureRect" parent="HBoxContainer"]
+[node name="circle1" type="TextureRect" parent="HBoxContainer"]
 margin_right = 56.0
 margin_bottom = 56.0
 texture = ExtResource( 3 )
@@ -75,13 +74,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="star2" type="TextureRect" parent="HBoxContainer"]
+[node name="circle2" type="TextureRect" parent="HBoxContainer"]
 margin_left = 68.0
 margin_right = 124.0
 margin_bottom = 56.0
 texture = ExtResource( 3 )
 
-[node name="star3" type="TextureRect" parent="HBoxContainer"]
+[node name="circle3" type="TextureRect" parent="HBoxContainer"]
 margin_left = 136.0
 margin_right = 192.0
 margin_bottom = 56.0

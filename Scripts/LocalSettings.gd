@@ -24,7 +24,8 @@ func _ready() -> void:
 				"last_completed_level": 0,
 				"completed_levels": {
 #					1: {
-#						"score": 0}
+#						"score": 0,
+#						"circle": 0
 #						}
 				},
 #				"challenge": {

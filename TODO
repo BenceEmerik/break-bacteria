@@ -1,3 +1,5 @@
 adb logcat -s godot
 
-Jiko:
+level ekranında alınan daireler gözükecek.
+alınan score kayıt edilecek
+boosterlardan eksik olanlar yapılacak.
