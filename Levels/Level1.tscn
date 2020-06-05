@@ -1,251 +1,36 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Scripts/BricketGrid.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Bricket.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Tutorial.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Scenes/Booster/BallPlus.tscn" type="PackedScene" id=4]
 
 [node name="Level1" type="Node2D"]
 script = ExtResource( 1 )
+default_balls = 50
 targeted_score = 30
 
 [node name="Brickets" type="Node2D" parent="."]
 
 [node name="Bricket" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 540, 660 )
-health = 25
+health = 40
+bricket_type = "Square"
+degress = 0
 color = Color( 0.180392, 0.309804, 0.309804, 1 )
-
-[node name="Sprite" parent="Brickets/Bricket" index="0"]
-modulate = Color( 0.180392, 0.309804, 0.309804, 1 )
-
-[node name="Label" parent="Brickets/Bricket" index="5"]
-text = "25"
 
 [node name="Bricket2" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 60, 420 )
-
-[node name="Label" parent="Brickets/Bricket2" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-rect_pivot_offset = Vector2( -62, 58 )
-
-[node name="Bricket12" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 180, 420 )
-
-[node name="Label" parent="Brickets/Bricket12" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-rect_pivot_offset = Vector2( -62, 58 )
-
-[node name="Bricket15" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 300, 420 )
-
-[node name="Label" parent="Brickets/Bricket15" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-rect_pivot_offset = Vector2( -62, 58 )
-
-[node name="Bricket3" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 60, 300 )
-bricket_type = "Triangle"
-degress = 1
-color = Color( 0.866667, 0.580392, 0.0392157, 1 )
-
-[node name="Bricket22" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 60, 180 )
-bricket_type = "Triangle"
-degress = 3
-color = Color( 0.866667, 0.580392, 0.0392157, 1 )
-
-[node name="Bricket23" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 1020, 180 )
-bricket_type = "Triangle"
-color = Color( 0.866667, 0.580392, 0.0392157, 1 )
-
-[node name="Bricket17" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 660, 420 )
-bricket_type = "Triangle"
-degress = 3
-color = Color( 0.866667, 0.580392, 0.0392157, 1 )
-
-[node name="Bricket18" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 420, 420 )
-bricket_type = "Triangle"
-color = Color( 0.866667, 0.580392, 0.0392157, 1 )
-
-[node name="Bricket19" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 420, 60 )
-bricket_type = "Triangle"
-degress = 1
-color = Color( 0.866667, 0.580392, 0.0392157, 1 )
-
-[node name="Bricket20" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 660, 60 )
-bricket_type = "Triangle"
-degress = 2
-color = Color( 0.866667, 0.580392, 0.0392157, 1 )
-
-[node name="Bricket13" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 1020, 300 )
-bricket_type = "Triangle"
-degress = 2
-color = Color( 0.866667, 0.580392, 0.0392157, 1 )
-
-[node name="Bricket4" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 180, 180 )
-color = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Sprite" parent="Brickets/Bricket4" index="0"]
-modulate = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Label" parent="Brickets/Bricket4" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-
-[node name="Bricket5" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 300, 180 )
-color = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Sprite" parent="Brickets/Bricket5" index="0"]
-modulate = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Label" parent="Brickets/Bricket5" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-
-[node name="Bricket6" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 420, 180 )
-color = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Sprite" parent="Brickets/Bricket6" index="0"]
-modulate = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Label" parent="Brickets/Bricket6" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-
-[node name="Bricket7" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 540, 180 )
-color = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Sprite" parent="Brickets/Bricket7" index="0"]
-modulate = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Label" parent="Brickets/Bricket7" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-
-[node name="Bricket21" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 540, 60 )
-color = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Sprite" parent="Brickets/Bricket21" index="0"]
-modulate = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Label" parent="Brickets/Bricket21" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-
-[node name="Bricket8" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 660, 180 )
-color = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Sprite" parent="Brickets/Bricket8" index="0"]
-modulate = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Label" parent="Brickets/Bricket8" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-
-[node name="Bricket9" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 780, 180 )
-color = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Sprite" parent="Brickets/Bricket9" index="0"]
-modulate = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Label" parent="Brickets/Bricket9" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
+health = 40
+bricket_type = "Square"
+degress = 0
+color = Color( 0.18, 0.31, 0.31, 1 )
 
 [node name="Bricket10" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 900, 180 )
+health = 40
+bricket_type = "Square"
+degress = 0
 color = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Sprite" parent="Brickets/Bricket10" index="0"]
-modulate = Color( 0.47451, 0.564706, 0.690196, 1 )
-
-[node name="Label" parent="Brickets/Bricket10" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-
-[node name="Bricket11" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 1020, 420 )
-
-[node name="Label" parent="Brickets/Bricket11" index="5"]
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.0
-anchor_bottom = 0.0
-
-[node name="Bricket14" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 900, 420 )
-
-[node name="Bricket16" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 780, 420 )
-color = Color( 0.180392, 0.309804, 0.309804, 1 )
-
-[node name="BallPlus" parent="Brickets" instance=ExtResource( 4 )]
-position = Vector2( 540, 300 )
 
 [node name="Tutorial" parent="." instance=ExtResource( 3 )]
 position = Vector2( 0, 60 )
-
-[editable path="Brickets/Bricket"]
-
-[editable path="Brickets/Bricket2"]
-
-[editable path="Brickets/Bricket12"]
-
-[editable path="Brickets/Bricket15"]
-
-[editable path="Brickets/Bricket4"]
-
-[editable path="Brickets/Bricket5"]
-
-[editable path="Brickets/Bricket6"]
-
-[editable path="Brickets/Bricket7"]
-
-[editable path="Brickets/Bricket21"]
-
-[editable path="Brickets/Bricket8"]
-
-[editable path="Brickets/Bricket9"]
-
-[editable path="Brickets/Bricket10"]
-
-[editable path="Brickets/Bricket11"]
