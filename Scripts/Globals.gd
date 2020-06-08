@@ -1,6 +1,6 @@
 extends Node
 
-var level:int = 1
+var level:int = 0
 var prev_time:int
 var colors =  [
 	Color.red, Color.blue, Color.orange, Color.yellow, Color.yellowgreen, Color.aqua, Color.green,

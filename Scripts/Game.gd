@@ -61,9 +61,11 @@ func _ready() -> void:
 	$Admob.load_interstitial()
 	$Admob.load_rewarded_video()
 	
-	
-	var path = "res://Levels/Level" + str(Globals.level) + ".tscn"
-	bricketgrid = load(path).instance()
+	if Globals.level == 0:
+		bricketgrid = load("res://Levels/TestLevel.tscn").instance()
+	else:
+		var path = "res://Levels/Level" + str(Globals.level) + ".tscn"
+		bricketgrid = load(path).instance()
 	level_node.add_child(bricketgrid)
 	
 	

@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Scripts/BricketGrid.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Bricket.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Tutorial.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Booster/FourDirections.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Booster/BallPlus.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Booster/Coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scenes/Booster/Mirror.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scenes/Booster/Shield.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Scenes/Booster/TwoDirections.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Scenes/Booster/Triple.tscn" type="PackedScene" id=10]
+
+[node name="Level1" type="Node2D"]
+script = ExtResource( 1 )
+default_balls = 50
+targeted_score = 30
+
+[node name="Brickets" type="Node2D" parent="."]
+
+[node name="Bricket" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 540, 660 )
+health = 40
+color = Color( 0.180392, 0.309804, 0.309804, 1 )
+
+[node name="Bricket2" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 60, 420 )
+health = 40
+
+[node name="Bricket10" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 900, 180 )
+health = 40
+color = Color( 0.47451, 0.564706, 0.690196, 1 )
+
+[node name="BallPlus" parent="Brickets" instance=ExtResource( 5 )]
+position = Vector2( 180, 540 )
+
+[node name="Coin" parent="Brickets" instance=ExtResource( 6 )]
+position = Vector2( 300, 540 )
+
+[node name="FourDirections" parent="Brickets" instance=ExtResource( 4 )]
+position = Vector2( 900, 660 )
+
+[node name="Mirror" parent="Brickets" instance=ExtResource( 7 )]
+position = Vector2( 660, 900 )
+
+[node name="Shield" parent="Brickets" instance=ExtResource( 8 )]
+position = Vector2( 660, 540 )
+
+[node name="Triple" parent="Brickets" instance=ExtResource( 10 )]
+position = Vector2( 420, 900 )
+
+[node name="TwoDirections" parent="Brickets" instance=ExtResource( 9 )]
+position = Vector2( 60, 780 )
+direct = 1
+
+[node name="Tutorial" parent="." instance=ExtResource( 3 )]
+position = Vector2( 0, 60 )

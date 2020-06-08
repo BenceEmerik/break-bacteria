@@ -1,5 +1,2 @@
 adb logcat -s godot
 
-level ekranında alınan daireler gözükecek.
-alınan score kayıt edilecek
-boosterlardan eksik olanlar yapılacak.

@@ -1,12 +1,19 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Sprites/laser-v-h.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Booster/TwoDirections.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/line.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 58.0
 
+[sub_resource type="RectangleShape2D" id=2]
+resource_local_to_scene = true
+extents = Vector2( 1429, 9 )
+
 [node name="TwoDirections" type="Area2D"]
+collision_layer = 4
+collision_mask = 10
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -16,4 +23,16 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Line" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Line"]
+shape = SubResource( 2 )
+
+[node name="line" type="Sprite" parent="Line"]
+visible = false
+texture = ExtResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_TwoDirections_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_TwoDirections_body_exited"]
+[connection signal="body_entered" from="Line" to="." method="_on_Line_body_entered"]

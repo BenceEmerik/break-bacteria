@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Sprites/laser4way.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Booster/FourDirections.gd" type="Script" id=2]
+[ext_resource path="res://Sprites/line.png" type="Texture" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 58.0
 
 [node name="FourDirections" type="Area2D"]
+collision_layer = 4
+collision_mask = 10
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -16,4 +19,21 @@ texture = ExtResource( 1 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Plus" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Plus"]
+polygon = PoolVector2Array( -1430, -9, -1430, 9, -9, 9, -9, 1430, 9, 1430, 9, 9, 1430, 9, 1430, -9, 9, -9, 9, -1430, -9, -1430, -9, -9 )
+
+[node name="H" type="Sprite" parent="Plus"]
+visible = false
+texture = ExtResource( 3 )
+
+[node name="V" type="Sprite" parent="Plus"]
+visible = false
+rotation = 1.5708
+texture = ExtResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_FourDirections_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_FourDirections_body_exited"]
+[connection signal="body_entered" from="Plus" to="." method="_on_Plus_body_entered"]

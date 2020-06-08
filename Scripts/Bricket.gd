@@ -21,7 +21,7 @@ signal danger()
 signal halved()
 
 var square_shape:PoolVector2Array = PoolVector2Array([Vector2(-58, -58), Vector2(58, -58), Vector2(58, 58), Vector2(-58, 58)])
-var triangle_shape:PoolVector2Array = PoolVector2Array([Vector2(-60, -60), Vector2(60, 60), Vector2(-60, 60)])
+var triangle_shape:PoolVector2Array = PoolVector2Array([Vector2(-58, -58), Vector2(58, 58), Vector2(-58, 58)])
 
 
 func _ready() -> void:

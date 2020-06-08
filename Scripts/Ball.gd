@@ -11,6 +11,7 @@ export(Texture) var texture
 var is_shielded:bool
 var is_shield_used:bool
 var is_mirrored:bool
+var is_tripled:bool
 
 # Called when the node enters the scene tree for the first time.
 func _ready(): 
@@ -26,6 +27,8 @@ func start(dir:float) -> void:
 	velocity = Vector2(speed, 0).rotated(rotation)
 
 func _process(delta:float) -> void:
+	if is_shielded: $Shield.visible = true
+	
 	var collision = move_and_collide(velocity * delta)
 	if collision:
 		var reflect = collision.remainder.bounce(collision.normal)
@@ -48,6 +51,7 @@ func _process(delta:float) -> void:
 		
 		elif collision.collider.get_name() == "Ground":
 			is_shielded = false
+			$Shield.visible = false
 
 func go_home() -> void:
 	collision_layer = 4

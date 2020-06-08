@@ -40,8 +40,7 @@ func _ready() -> void:
 	if bricket_area.get_child_count():
 		for bricket in bricket_area.get_children():
 			var cell = world_to_grid(bricket.position)
-			print(cell)
-			grid[cell.y-1][cell.x-1] = bricket as Bricket
+			grid[cell.y-1][cell.x-1] = bricket
 
 
 func _process(delta: float) -> void:
@@ -168,6 +167,7 @@ func erase_row() -> void:
 			print("failed")
 			return
 		if i is Area2D:
+			print(i, "area2d")
 			i.queue_free()
 	grid.pop_back() #veya end_row_bricks_kills()
 

@@ -70,7 +70,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Booster/TwoDirections.gd"
 } ]
 _global_script_class_icons={
-"Admob": "res://admob-lib/icon.png",
+"Admob": "",
 "Ball": "",
 "Bricket": "",
 "BricketGrid": "",
