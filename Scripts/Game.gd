@@ -42,6 +42,7 @@ var is_ads_ready:bool
 var is_inter_ready:bool
 var what_admob_type:String
 var ball_texture
+var level_score:int
 
 signal level_completed()
 signal level_failed()
@@ -60,7 +61,7 @@ func _ready() -> void:
 	$Admob.load_banner()
 	$Admob.load_interstitial()
 	$Admob.load_rewarded_video()
-	
+#	$Admob.banner_resize()
 	if Globals.level == 0:
 		bricketgrid = load("res://Levels/TestLevel.tscn").instance()
 	else:
@@ -104,8 +105,12 @@ func _ready() -> void:
 	connect("retry_level", self, "_on_scene_reload")
 	connect("admob_type", self, "_on_admob_type")
 #	bricketgrid.draw_update(level)
-	
-	
+#	var yy = OS.window_size.y-360
+#	spawn.position.y = yy-25
+#	new_spawn.position.y = yy-25
+#	$Wall/Ground.position.y = OS.window_size.y - 1920
+#	$Level.position.y = OS.window_size.y - 1920 + 180
+
 
 func _process(delta:float) -> void:
 	pass
@@ -229,10 +234,21 @@ func _on_scene_reload():
 func _on_Game_tree_exited() -> void:
 	pass #oyun kayıt edebiliriz belki
 
+func __score_text(val):
+	score_label.text = str(int(val))
+
 func _progress_updated(score:int) -> void:
 	print("progress ", score)
-	score_progress.value += score
-	score_label.text = str(score_progress.value)
+	level_score += score
+	var tw:Tween = Tween.new()
+	$HUD.add_child(tw)
+	tw.interpolate_property(score_progress, "value", score_progress.value, level_score,
+							0.2, Tween.TRANS_QUAD, Tween.EASE_IN)
+	tw.interpolate_method(self, "__score_text", score_progress.value, level_score,
+							0.2, Tween.TRANS_QUAD, Tween.EASE_IN)
+	tw.start()
+	yield(tw, "tween_all_completed")
+	tw.queue_free()
 	var target = bricketgrid.targeted_score
 	if score_progress.value > target * .20:
 		circle1.texture = preload("res://UI/Game/active.png")

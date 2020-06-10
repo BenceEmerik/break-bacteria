@@ -330,6 +330,7 @@ __meta__ = {
 [node name="ScoreLabel" type="Label" parent="HUD/Top/MarginContainer2/VBoxContainer"]
 margin_right = 541.0
 margin_bottom = 79.0
+rect_pivot_offset = Vector2( 270, 40 )
 custom_fonts/font = SubResource( 1 )
 text = "2222"
 align = 1
@@ -465,9 +466,8 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -540.0
-margin_top = -360.0
 margin_right = 540.0
-margin_bottom = -60.0
+margin_bottom = 300.0
 custom_constants/margin_top = 24
 custom_constants/margin_bottom = 32
 __meta__ = {
@@ -480,6 +480,7 @@ margin_top = 24.0
 margin_right = 620.0
 margin_bottom = 268.0
 size_flags_horizontal = 6
+disabled = true
 texture_normal = ExtResource( 9 )
 stretch_mode = 3
 
@@ -489,8 +490,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 margin_left = -540.0
+margin_top = -360.0
 margin_right = 540.0
-margin_bottom = 300.0
+margin_bottom = -60.0
 custom_constants/margin_top = 24
 custom_constants/margin_bottom = 32
 __meta__ = {
@@ -508,7 +510,6 @@ alignment = 1
 margin_left = 177.0
 margin_right = 305.0
 margin_bottom = 244.0
-disabled = true
 texture_normal = ExtResource( 18 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Down/MarginContainer/HBoxContainer/HalveButton"]
@@ -548,7 +549,6 @@ __meta__ = {
 margin_left = 377.0
 margin_right = 505.0
 margin_bottom = 244.0
-disabled = true
 texture_normal = ExtResource( 19 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Down/MarginContainer/HBoxContainer/BreakBottomButton"]
@@ -588,7 +588,6 @@ __meta__ = {
 margin_left = 577.0
 margin_right = 704.0
 margin_bottom = 244.0
-disabled = true
 texture_normal = ExtResource( 17 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Down/MarginContainer/HBoxContainer/Extra50Button"]
@@ -628,7 +627,6 @@ __meta__ = {
 margin_left = 776.0
 margin_right = 903.0
 margin_bottom = 244.0
-disabled = true
 texture_normal = ExtResource( 16 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUD/Down/MarginContainer/HBoxContainer/AimingButton"]
@@ -703,7 +701,7 @@ __meta__ = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall/RightWall"]
-polygon = PoolVector2Array( 1080, 164, 1080, 1680, 1096, 1680, 1096, 164 )
+polygon = PoolVector2Array( 1080, 164, 1080, 2200, 1096, 2200, 1096, 164 )
 
 [node name="LeftWall" type="StaticBody2D" parent="Wall"]
 __meta__ = {
@@ -711,7 +709,7 @@ __meta__ = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall/LeftWall"]
-polygon = PoolVector2Array( 0, 164, 0, 1680, -16, 1680, -16, 164 )
+polygon = PoolVector2Array( 0, 164, 0, 2200, -16, 2200, -16, 164 )
 
 [node name="Ceil" type="StaticBody2D" parent="Wall"]
 __meta__ = {

@@ -599,7 +599,6 @@ margin_top = 320.0
 margin_right = 984.0
 margin_bottom = 1640.0
 theme = SubResource( 5 )
-follow_focus = true
 scroll_horizontal_enabled = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -617,6 +616,7 @@ columns = 4
 [node name="LevelItem" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_right = 192.0
 margin_bottom = 192.0
+focus_mode = 0
 
 [node name="LevelItem2" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_left = 224.0

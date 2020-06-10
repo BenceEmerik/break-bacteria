@@ -80,14 +80,14 @@ func _on_halved() -> void:
 				Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
 	tween.start()
 	get_tree().current_scene.add_child(particles)
-	particles.position = position
+	particles.position = global_position
 	particles.color = color
 	particles.emitting = true
 
 func _on_death() -> void:
 	var particles:CPUParticles2D = preload("res://Scenes/Particles.tscn").instance()
 	get_tree().current_scene.add_child(particles)
-	particles.position = position
+	particles.position = global_position
 	particles.color = color
 	particles.emitting = true
 	get_tree().current_scene.emit_signal("score_updated", 10)

@@ -18,6 +18,7 @@ font_data = ExtResource( 2 )
 [node name="ShopItem" type="TextureButton"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 1
 texture_normal = ExtResource( 1 )
 script = ExtResource( 5 )
 __meta__ = {

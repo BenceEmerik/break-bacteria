@@ -54,5 +54,7 @@ func _process(delta:float) -> void:
 			$Shield.visible = false
 
 func go_home() -> void:
+	is_shielded = false
+	$Shield.visible = false
 	collision_layer = 4
 	self.start(deg2rad(90))

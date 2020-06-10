@@ -13,6 +13,7 @@ font_data = ExtResource( 4 )
 [node name="LevelItem" type="TextureButton"]
 margin_right = 40.0
 margin_bottom = 40.0
+mouse_filter = 1
 disabled = true
 texture_normal = ExtResource( 1 )
 script = ExtResource( 5 )
