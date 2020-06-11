@@ -1,8 +1,12 @@
 adb logcat -s godot
 
 levelitem düzenlenmeli.
-farklı boyutlar için farklı appler üretilmeli ya da oto ayar koymalı
 popup bgsi düzenlenmeli. game bg de düzenlenebilir.
+
+challenge a ayar çekilmeli
+genel olarak bug kontrolü yapılmalı
+levellarda eksik görülen, hatalı olan şeyler kontrol edilmeli
+
 
 
 ------------

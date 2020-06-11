@@ -51,7 +51,6 @@ var what_admob_type:String
 var ball_texture
 
 func _ready() -> void:
-	$Admob.load_banner()
 	$Admob.load_interstitial()
 	$Admob.load_rewarded_video()
 	level = LocalSettings.get_setting("challenge_checkpoints", 1)
@@ -67,6 +66,7 @@ func _ready() -> void:
 	spawn_ball.texture = ball_texture
 	new_spawn_ball.texture = ball_texture
 	
+	get_tree().connect("screen_resized", self, "_window_update")
 	timer.connect("timeout", self, "_on_Ball_Shooting")
 	speed_timer.connect("timeout", self, "_on_engine_speed")
 	ad_timer.connect("timeout", self, "_on_ad_show")
@@ -80,7 +80,21 @@ func _ready() -> void:
 	connect("collision_lines", self, "_on_collision_lines")
 	connect("retry_level", self, "_on_scene_reload")
 	connect("admob_type", self, "_on_admob_type")
+	
+	var yy = get_viewport_rect().size.y
+	$Wall/Ground.position.y = yy - 1920
+	bricketgrid.position.y = 180 + yy - 1920
+	spawn.position.y = 1535 + yy - 1920
+	new_spawn.position.y = 1535 + yy - 1920
+	$Tutorial.position.y = 240 + yy - 1920
 
+func _window_update() -> void:
+	var yy = get_viewport_rect().size.y
+	$Wall/Ground.position.y = yy - 1920
+	bricketgrid.position.y = 180 + yy - 1920
+	spawn.position.y = 1535 + yy - 1920
+	new_spawn.position.y = 1535 + yy - 1920
+	$Tutorial.position.y = 240 + yy - 1920
 
 func _process(delta: float) -> void:
 	pass

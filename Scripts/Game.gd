@@ -58,10 +58,9 @@ signal admob_type(type)
 
 
 func _ready() -> void:
-	$Admob.load_banner()
 	$Admob.load_interstitial()
 	$Admob.load_rewarded_video()
-#	$Admob.banner_resize()
+	
 	if Globals.level == 0:
 		bricketgrid = load("res://Levels/TestLevel.tscn").instance()
 	else:
@@ -89,7 +88,7 @@ func _ready() -> void:
 	new_spawn_ball.texture = ball_texture
 	
 	animation.play("turn_completed")
-	
+	get_tree().connect("screen_resized", self, "_window_update")
 	timer.connect("timeout", self, "_on_Ball_Shooting")
 	speed_timer.connect("timeout", self, "_on_engine_speed")
 	ad_timer.connect("timeout", self, "_on_ad_show")
@@ -104,13 +103,20 @@ func _ready() -> void:
 	connect("collision_lines", self, "_on_collision_lines")
 	connect("retry_level", self, "_on_scene_reload")
 	connect("admob_type", self, "_on_admob_type")
-#	bricketgrid.draw_update(level)
-#	var yy = OS.window_size.y-360
-#	spawn.position.y = yy-25
-#	new_spawn.position.y = yy-25
-#	$Wall/Ground.position.y = OS.window_size.y - 1920
-#	$Level.position.y = OS.window_size.y - 1920 + 180
 
+	var yy = get_viewport_rect().size.y
+	$Wall/Ground.position.y = yy - 1920
+	$Level.position.y = 180 + yy - 1920
+	$Spawn.position.y = 1535 + yy - 1920
+	$NewSpawn.position.y = 1535 + yy - 1920
+
+func _window_update() -> void:
+	var yy = get_viewport_rect().size.y
+	print(yy - 1920)
+	$Wall/Ground.position.y = yy - 1920
+	$Level.position.y = 180 + yy - 1920
+	$Spawn.position.y = 1535 + yy - 1920
+	$NewSpawn.position.y = 1535 + yy - 1920
 
 func _process(delta:float) -> void:
 	pass

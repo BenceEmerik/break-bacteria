@@ -646,7 +646,7 @@ __meta__ = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall/RightWall"]
-polygon = PoolVector2Array( 1080, 164, 1080, 1680, 1096, 1680, 1096, 164 )
+polygon = PoolVector2Array( 1080, 164, 1080, 4000, 1096, 4000, 1096, 164 )
 
 [node name="LeftWall" type="StaticBody2D" parent="Wall"]
 __meta__ = {
@@ -654,7 +654,7 @@ __meta__ = {
 }
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall/LeftWall"]
-polygon = PoolVector2Array( 0, 164, 0, 1680, -16, 1680, -16, 164 )
+polygon = PoolVector2Array( 0, 164, 0, 4000, -16, 4000, -16, 164 )
 
 [node name="Ceil" type="StaticBody2D" parent="Wall"]
 __meta__ = {
