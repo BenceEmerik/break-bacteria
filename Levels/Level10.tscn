@@ -146,7 +146,7 @@ position = Vector2( 60, 300 )
 position = Vector2( 1020, 300 )
 
 [node name="TwoDirections" parent="Brickets" instance=ExtResource( 5 )]
-position = Vector2( 540, 60 )
+position = Vector2( 540, 420 )
 
-[node name="Shield2" parent="." instance=ExtResource( 4 )]
+[node name="Shield2" parent="Brickets" instance=ExtResource( 4 )]
 position = Vector2( 540, 300 )
