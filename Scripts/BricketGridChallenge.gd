@@ -40,35 +40,38 @@ func add_row(level:int) -> void:
 	# null, ball+, bricket[tri][rot] level < 5 square > random %20
 	var brickets:int = 1
 	var booster_count:int
+	var double_booster:bool
 	var coin:bool
 	var double:bool
 	
 	
-	if level > 3:
+	if level > 4:
 		brickets = 2
 	
-	if level > 7:
+	if level > 9:
 		coin = true
 		booster_count = 1
 	
-	if level > 15:
+	if level > 19:
 		brickets = 3
 		booster_count = 2
 	
 	if level > 29:
 		booster_count = 3
 	
-	if level > 50:
+	if level > 49:
 		brickets = 4
-		double = true
 		booster_count = 4
 	
 	if level > 75:
 		booster_count = 5
 	
-	if level > 90:
+	if level > 99:
 		brickets = 5
 	
+	if level > 124:
+		double = true
+		double_booster = true
 	
 	var row_list:Array = []
 	var color:Array = Globals.colors
@@ -77,45 +80,47 @@ func add_row(level:int) -> void:
 		var bricket = preload("res://Scenes/Bricket.tscn").instance()
 		bricket.color = color.front()
 		bricket.health = level
+		if randi()%100 < 10:
+			bricket.bricket_type = "Triangle"
+			bricket.degress = randi()%4
+			
 		if !index and double and randi()%100 < 33:
-			if randi()%100 < 35:
-				bricket.bricket_type = "Triangle"
-				bricket.degress = randi()%4
 			bricket.color = color.back()
 			bricket.health = level * 2
+			
 		row_list.append(bricket)
 	
 	var ballplus = preload("res://Scenes/Booster/BallPlus.tscn").instance()
 	row_list.append(ballplus)
 	
-	if coin and randi()%100 < 33: #%25 ihtimal ile diye düşünüyorum.
+	if coin and randi()%100 < 30: #%25 ihtimal ile diye düşünüyorum.
 		var coins = preload("res://Scenes/Booster/Coin.tscn").instance()
-#		add_child(coins)
 		row_list.append(coins)
 	
 	var booster_list = []
-	match booster_count:
-		1: 
-			var mirror = preload("res://Scenes/Booster/Mirror.tscn").instance()
-			booster_list.append(mirror)
-		2: 
-			var two_directions = preload("res://Scenes/Booster/TwoDirections.tscn").instance()
-			booster_list.append(two_directions)
-		3: 
-			var four_directions = preload("res://Scenes/Booster/FourDirections.tscn").instance()
-			booster_list.append(four_directions)
-		4: 
-			var triple = preload("res://Scenes/Booster/Triple.tscn").instance()
-			booster_list.append(triple)
-		5: 
-			var shield = preload("res://Scenes/Booster/Shield.tscn").instance()
-			booster_list.append(shield)
+	if booster_count > 4:
+		var shield = preload("res://Scenes/Booster/Shield.tscn").instance()
+		booster_list.append(shield)
+	if booster_count > 3:
+		var triple = preload("res://Scenes/Booster/Triple.tscn").instance()
+		booster_list.append(triple)
+	if booster_count > 2:
+		var four_directions = preload("res://Scenes/Booster/FourDirections.tscn").instance()
+		booster_list.append(four_directions)
+	if booster_count > 1:
+		var two_directions = preload("res://Scenes/Booster/TwoDirections.tscn").instance()
+		booster_list.append(two_directions)
+	if booster_count > 0:
+		var mirror = preload("res://Scenes/Booster/Mirror.tscn").instance()
+		booster_list.append(mirror)
 	
-	if booster_count and randi()%100 < 33:
+	if booster_count and randi()%100 < 30:
 		booster_list.shuffle()
 		var booster = booster_list.pop_front()
-#		add_child(booster)
 		row_list.append(booster)
+		if double_booster and randi()%100 > 40:
+			var boosterd = booster_list.pop_front()
+			row_list.append(boosterd)
 	
 	var random_index = range(column)
 	random_index.shuffle()

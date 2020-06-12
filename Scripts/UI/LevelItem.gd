@@ -7,9 +7,9 @@ export(bool) var lock = true
 
 onready var level_label = $Level
 onready var lock_texture = $Lock
-onready var circle1 = $HBoxContainer/circle1
-onready var circle2 = $HBoxContainer/circle2
-onready var circle3 = $HBoxContainer/circle3
+onready var circle1 = $MarginContainer/HBoxContainer/circle1
+onready var circle2 = $MarginContainer/HBoxContainer/circle2
+onready var circle3 = $MarginContainer/HBoxContainer/circle3
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,14 +35,14 @@ func state_update() -> void:
 				circle = int(stat["circle"])
 				match circle:
 					1:
-						circle1.texture = load("res://UI/LevelItem/star-yes.png")
+						circle1.texture = load("res://UI/star-yes48.png")
 					2:
-						circle1.texture = load("res://UI/LevelItem/star-yes.png")
-						circle2.texture = load("res://UI/LevelItem/star-yes.png")
+						circle1.texture = load("res://UI/star-yes48.png")
+						circle2.texture = load("res://UI/star-yes48.png")
 					3:
-						circle1.texture = load("res://UI/LevelItem/star-yes.png")
-						circle2.texture = load("res://UI/LevelItem/star-yes.png")
-						circle3.texture = load("res://UI/LevelItem/star-yes.png")
+						circle1.texture = load("res://UI/star-yes48.png")
+						circle2.texture = load("res://UI/star-yes48.png")
+						circle3.texture = load("res://UI/star-yes48.png")
 	
 	else:
 		lock_texture.visible = true

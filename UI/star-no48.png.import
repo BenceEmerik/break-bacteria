@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/options.png-013240f03f87f0033a384fd5c32b2752.stex"
+path="res://.import/star-no48.png-a976364079b41b14dfc576315de69a2e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Main/options.png"
-dest_files=[ "res://.import/options.png-013240f03f87f0033a384fd5c32b2752.stex" ]
+source_file="res://UI/star-no48.png"
+dest_files=[ "res://.import/star-no48.png-a976364079b41b14dfc576315de69a2e.stex" ]
 
 [params]
 

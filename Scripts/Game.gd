@@ -10,6 +10,8 @@ onready var circle2:TextureRect = $HUD/Top/MarginContainer2/VBoxContainer/ScoreP
 onready var circle3:TextureRect = $HUD/Top/MarginContainer2/VBoxContainer/ScoreProgress/Circle3
 onready var coins_label:Label = $HUD/Top/MarginContainer3/VBoxContainer2/HBoxContainer/CoinLabel
 onready var level_label:Label = $HUD/Top/MarginContainer3/VBoxContainer2/LevelLabel
+onready var extra_button:TextureButton = $HUD/Down/MarginContainer/HBoxContainer/Extra50Button
+onready var aiming_button:TextureButton = $HUD/Down/MarginContainer/HBoxContainer/AimingButton
 onready var level_node := $Level
 onready var bricketgrid:BricketGrid
 onready var spawn:Position2D = $Spawn
@@ -198,6 +200,12 @@ func _on_Turn_Completed() -> void:
 	if is_extra50:
 		total_balls -= 50
 		is_extra50 = false
+		extra_button.disabled = false
+		
+	if is_aiming:
+		is_aiming = false
+		aiming_button.disabled = false
+		
 	animation.play("turn_completed")
 	speed_timer.stop()
 	Engine.time_scale = 1
@@ -393,6 +401,7 @@ func _on_Extra50Button_pressed() -> void:
 		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 20)
 		total_balls += 50
 		is_extra50 = true
+		extra_button.disabled = true
 		emit_signal("coins_updated")
 		emit_signal("balls_updated")
 	else:
@@ -419,9 +428,10 @@ func _on_AimingButton_pressed() -> void:
 		yield(get_tree(), "idle_frame")
 		get_tree().paused = false
 		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 10)
+		is_aiming = true
+		aiming_button.disabled = true
 		emit_signal("coins_updated")
 		emit_signal("balls_updated")
-		is_aiming = true
 	else:
 		var missing = preload("res://Scenes/UI/CoinsMissing.tscn").instance()
 		$HUD.add_child(missing)

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/rect.png-9a509363b92ae1317ea0d5e2cce6a326.stex"
+path="res://.import/star-yes48.png-3af907c689f6c2fb3aa48d2c9ebb817b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/LevelItem/rect.png"
-dest_files=[ "res://.import/rect.png-9a509363b92ae1317ea0d5e2cce6a326.stex" ]
+source_file="res://UI/star-yes48.png"
+dest_files=[ "res://.import/star-yes48.png-3af907c689f6c2fb3aa48d2c9ebb817b.stex" ]
 
 [params]
 

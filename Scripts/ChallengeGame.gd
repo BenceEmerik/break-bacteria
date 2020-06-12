@@ -16,6 +16,8 @@ const Ball = preload("res://Scenes/Ball.tscn")
 
 onready var score_label:Label = $HUD/Top/MarginContainer2/ScoreLabel
 onready var coins_label:Label = $HUD/Top/MarginContainer3/HBoxContainer/CoinsLabel
+onready var extra_button:TextureButton = $HUD/Down/MarginContainer/HBoxContainer/Extra50Button
+onready var aiming_button:TextureButton = $HUD/Down/MarginContainer/HBoxContainer/AimingButton
 onready var bricketgrid := $BricketGridChallenge
 
 onready var spawn:Position2D = $Spawn
@@ -94,7 +96,7 @@ func _window_update() -> void:
 	bricketgrid.position.y = 180 + yy - 1920
 	spawn.position.y = 1535 + yy - 1920
 	new_spawn.position.y = 1535 + yy - 1920
-	$Tutorial.position.y = 240 + yy - 1920
+#	$Tutorial.position.y = 240 + yy - 1920
 
 func _process(delta: float) -> void:
 	pass
@@ -176,6 +178,12 @@ func _on_Turn_Completed() -> void:
 	if is_extra50:
 		total_balls -= 50
 		is_extra50 = false
+		extra_button.disabled = false
+	
+	if is_aiming:
+		is_aiming = false
+		aiming_button.disabled = false
+	
 	animation.play("turn_completed")
 	speed_timer.stop()
 	Engine.time_scale = 1
@@ -280,9 +288,10 @@ func _on_AimingButton_pressed() -> void:
 		yield(get_tree(), "idle_frame")
 		get_tree().paused = false
 		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 10)
+		is_aiming = true
+		aiming_button.disabled = true
 		emit_signal("coins_updated")
 		emit_signal("balls_updated")
-		is_aiming = true
 	else:
 		var missing = preload("res://Scenes/UI/CoinsMissing.tscn").instance()
 		$HUD.add_child(missing)
@@ -308,6 +317,7 @@ func _on_Extra50Button_pressed() -> void:
 		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) - 20)
 		total_balls += 50
 		is_extra50 = true
+		extra_button.disabled = true
 		emit_signal("coins_updated")
 		emit_signal("balls_updated")
 	else:
@@ -395,12 +405,9 @@ func _on_Admob_rewarded_video_closed() -> void:
 
 
 func _on_Admob_rewarded(currency, ammount) -> void:
-#	LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + ammount)
-#	emit_signal("coins_updated")
 	var ty = what_admob_type
 	if ty == "continue":
 		bricketgrid.end_row_clear()
-		#burada reklam sonrası bir şey yapılıp erase_row işlemi devam etmeli
 	if ty == "buy":
 		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + ammount)
 		emit_signal("coins_updated")

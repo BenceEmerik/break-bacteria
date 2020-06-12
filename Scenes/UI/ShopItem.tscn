@@ -1,6 +1,5 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
-[ext_resource path="res://UI/LevelItem/rect.png" type="Texture" id=1]
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=2]
 [ext_resource path="res://UI/LevelItem/rect-beyaz192.png" type="Texture" id=3]
 [ext_resource path="res://UI/LevelItem/coin48.png" type="Texture" id=4]
@@ -19,7 +18,7 @@ font_data = ExtResource( 2 )
 margin_right = 40.0
 margin_bottom = 40.0
 mouse_filter = 1
-texture_normal = ExtResource( 1 )
+texture_normal = ExtResource( 3 )
 script = ExtResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
