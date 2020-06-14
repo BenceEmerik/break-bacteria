@@ -12,7 +12,7 @@ export(int) var bricket_health:int = 30
 export(int) var default_balls:int = 30
 export(int) var targeted_score:int
 export(bool) var double:bool
-export(int) var ball_plus_booster:int #?
+export(bool) var ball_plus_booster:bool
 export(bool) var two_directions_booster:bool
 export(bool) var four_directions_booster:bool
 export(bool) var mirror_booster:bool
@@ -64,17 +64,19 @@ func add_row() -> void:
 		var bricket = preload("res://Scenes/Bricket.tscn").instance()
 		bricket.color = color[index]
 		bricket.health = health
+		if randi()%100 < 10:
+			bricket.bricket_type = "Triangle"
+			bricket.degress = randi()%4
+			
 		if !index and double and randi()%100 < 33:
-			if randi()%100 < 35:
-				bricket.bricket_type = "Triangle"
-				bricket.degress = randi()%4
 			bricket.color = color.back()
 			bricket.health = health * 2
+			
 		row_list.append(bricket)
 	
-#	var ballplus = preload("res://Scenes/Booster/BallPlus.tscn").instance()
-#	row_list.append(ballplus)
-	
+	if ball_plus_booster and randi()%100 < 20:
+		var ballplus = preload("res://Scenes/Booster/BallPlus.tscn").instance()
+		row_list.append(ballplus)
 	
 	var booster_list = []
 	if mirror_booster:
@@ -97,7 +99,7 @@ func add_row() -> void:
 		var shield = preload("res://Scenes/Booster/Shield.tscn").instance()
 		booster_list.append(shield)
 	
-	if booster_count and randi()%100 < 33:
+	if booster_count and randi()%100 < 20:
 		booster_list.shuffle()
 		var booster = booster_list.pop_front()
 		row_list.append(booster)
