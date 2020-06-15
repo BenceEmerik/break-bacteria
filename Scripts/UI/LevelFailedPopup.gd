@@ -15,11 +15,6 @@ func _ready() -> void:
 #	pass
 
 
-func _on_CloseButton_pressed() -> void:
-	get_tree().paused = false
-	queue_free()
-
-
 func _on_HomeButton_pressed() -> void:
 	get_tree().paused = false
 	get_tree().change_scene("res://Scenes/UI/Main.tscn")

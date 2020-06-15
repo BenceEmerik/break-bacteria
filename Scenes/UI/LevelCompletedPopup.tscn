@@ -1,18 +1,20 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/UI/LevelCompletedPopup.gd" type="Script" id=2]
-[ext_resource path="res://UI/FreeCoins/closebtn-beyaz.png" type="Texture" id=6]
+[ext_resource path="res://UI/FreeCoins/rect.png" type="Texture" id=3]
 [ext_resource path="res://UI/FreeCoins/watchandcoin.png" type="Texture" id=7]
-[ext_resource path="res://UI/FreeCoins/rect-siyah.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
+use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=2]
 size = 32
+use_mipmaps = true
+use_filter = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
@@ -60,7 +62,7 @@ margin_left = -450.0
 margin_top = -320.0
 margin_right = 450.0
 margin_bottom = 320.0
-texture = ExtResource( 9 )
+texture = ExtResource( 3 )
 patch_margin_left = 40
 patch_margin_top = 38
 patch_margin_right = 36
@@ -77,7 +79,7 @@ margin_top = 36.0
 margin_right = 182.0
 margin_bottom = 96.0
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Level 1"
 align = 1
 valign = 1
@@ -94,6 +96,7 @@ margin_top = 108.0
 margin_right = 306.0
 margin_bottom = 153.0
 custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "Congratulations! You have completed the level!"
 align = 1
 valign = 1
@@ -101,16 +104,6 @@ autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="CloseButton" type="TextureButton" parent="Window"]
-visible = false
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -82.9999
-margin_top = 36.0
-margin_right = -35.9999
-margin_bottom = 84.0
-texture_normal = ExtResource( 6 )
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Window"]
 anchor_left = 0.5
@@ -204,7 +197,6 @@ uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="pressed" from="Window/CloseButton" to="." method="_on_CloseButton_pressed"]
 [connection signal="pressed" from="Window/VBoxContainer/RetryButton" to="." method="_on_RetryButton_pressed"]
 [connection signal="pressed" from="Window/VBoxContainer/HomeButton" to="." method="_on_HomeButton_pressed"]
 [connection signal="pressed" from="Window/VBoxContainer/NextButton" to="." method="_on_NextButton_pressed"]

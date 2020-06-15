@@ -5,14 +5,14 @@
 [ext_resource path="res://Scripts/UI/ItemBuy.gd" type="Script" id=3]
 [ext_resource path="res://UI/LevelItem/coin48.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/ballanim.tres" type="Animation" id=5]
-[ext_resource path="res://UI/FreeCoins/closebtn-beyaz.png" type="Texture" id=6]
+[ext_resource path="res://UI/rectb-border.png" type="Texture" id=6]
 [ext_resource path="res://UI/FreeCoins/watchandcoin.png" type="Texture" id=7]
-[ext_resource path="res://UI/LevelItem/rect-beyaz192.png" type="Texture" id=8]
-[ext_resource path="res://UI/FreeCoins/rect-siyah.png" type="Texture" id=9]
-
+[ext_resource path="res://UI/FreeCoins/rect.png" type="Texture" id=8]
+[ext_resource path="res://UI/FreeCoins/closebtn.png" type="Texture" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
+use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
@@ -53,7 +53,7 @@ margin_left = -450.0
 margin_top = -320.0
 margin_right = 450.0
 margin_bottom = 320.0
-texture = ExtResource( 9 )
+texture = ExtResource( 8 )
 patch_margin_left = 40
 patch_margin_top = 38
 patch_margin_right = 36
@@ -69,7 +69,7 @@ margin_left = -82.9999
 margin_top = 36.0
 margin_right = -35.9999
 margin_bottom = 84.0
-texture_normal = ExtResource( 6 )
+texture_normal = ExtResource( 9 )
 
 [node name="Title" type="Label" parent="Window"]
 anchor_left = 0.5
@@ -79,7 +79,7 @@ margin_top = 48.0
 margin_right = 143.0
 margin_bottom = 108.0
 custom_fonts/font = SubResource( 1 )
-custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
 text = "BALLNAME"
 uppercase = true
 
@@ -92,7 +92,7 @@ margin_left = -96.0
 margin_top = -96.0
 margin_right = 96.0
 margin_bottom = 96.0
-texture_normal = ExtResource( 8 )
+texture_normal = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
