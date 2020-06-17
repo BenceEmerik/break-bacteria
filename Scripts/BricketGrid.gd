@@ -53,9 +53,7 @@ func _input(event:InputEvent) -> void:
 			$Tutorial.queue_free()
 	
 
-func add_row() -> void:
-	var booster_count:int
-	
+func add_row() -> void:	
 	var row_list:Array = []
 	var color:Array = Globals.colors
 	color.shuffle()
@@ -85,6 +83,7 @@ func add_row() -> void:
 	
 	if two_directions_booster: 
 		var two_directions = preload("res://Scenes/Booster/TwoDirections.tscn").instance()
+		two_directions.direct = randi()%1
 		booster_list.append(two_directions)
 	
 	if four_directions_booster:
@@ -99,7 +98,7 @@ func add_row() -> void:
 		var shield = preload("res://Scenes/Booster/Shield.tscn").instance()
 		booster_list.append(shield)
 	
-	if booster_count and randi()%100 < 20:
+	if booster_list.size() > 0 and randi()%100 < 25:
 		booster_list.shuffle()
 		var booster = booster_list.pop_front()
 		row_list.append(booster)
