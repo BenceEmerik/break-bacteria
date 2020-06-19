@@ -276,9 +276,10 @@ func _progress_updated(score:int) -> void:
 func _on_Level_Completed() -> void:
 	var last_level = LocalSettings.get_setting("last_completed_level", 0)
 	var completed_levels = LocalSettings.get_setting("completed_levels", {})
-	if !completed_levels.has(Globals.level):
-		completed_levels[Globals.level] = {}
-		completed_levels[Globals.level]["score"] = int(score_label.text)
+	if !completed_levels.has(str(Globals.level)):
+		LocalSettings.set_setting("coins", LocalSettings.get_setting("coins", 0) + 50)
+		completed_levels[str(Globals.level)] = {}
+		completed_levels[str(Globals.level)]["score"] = int(score_label.text)
 	var target = bricketgrid.targeted_score
 	var circle:int
 	if score_progress.value > target * .20:
@@ -288,7 +289,7 @@ func _on_Level_Completed() -> void:
 	if score_progress.value >= target:
 		circle += 1
 		
-	completed_levels[Globals.level]["circle"] = circle
+	completed_levels[str(Globals.level)]["circle"] = circle
 	LocalSettings.set_setting("completed_levels", completed_levels)
 	
 	if Globals.level > last_level:

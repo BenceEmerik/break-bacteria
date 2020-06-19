@@ -1,0 +1,69 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://UI/Splash/gokturkce.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=2]
+script/source = "extends Control
+
+
+onready var tween:Tween = $Tween
+var logo:Texture = load(\"res://UI/Splash/turkce.png\")
+onready var sprite:Sprite = $Control/Logo
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	yield(get_tree().create_timer(2), \"timeout\")
+#	$AnimationPlayer.play(\"splash\")
+	tween.interpolate_property(sprite, \"modulate\", sprite.modulate, Color.transparent, 1,
+							   Tween.TRANS_QUAD, Tween.EASE_IN)
+	tween.interpolate_callback(self, 1, \"texture_change\")
+	tween.interpolate_property(sprite, \"modulate\", Color.transparent, Color.white, 1,
+							   Tween.TRANS_QUAD, Tween.EASE_OUT, 1)
+
+	tween.start()
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+#	print(sprite.modulate)
+
+func texture_change():
+	sprite.texture = logo
+
+func _on_Tween_tween_all_completed() -> void:
+	yield(get_tree().create_timer(1), \"timeout\")
+	get_tree().change_scene(\"res://Scenes/UI/Main.tscn\")
+"
+
+[node name="Splash" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Logo" type="Sprite" parent="Control"]
+texture = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

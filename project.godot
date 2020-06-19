@@ -70,7 +70,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Booster/TwoDirections.gd"
 } ]
 _global_script_class_icons={
-"Admob": "res://admob-lib/icon.png",
+"Admob": "",
 "Ball": "",
 "Bricket": "",
 "BricketGrid": "",
@@ -91,11 +91,13 @@ modules="org/godotengine/godot/GodotAdMob"
 [application]
 
 config/name="Break Bacteria"
-run/main_scene="res://Scenes/UI/Main.tscn"
+run/main_scene="res://Scenes/Splash.tscn"
 config/use_custom_user_dir=true
 config/custom_user_dir_name="Break Bacteria"
+boot_splash/image="res://sp.png"
+boot_splash/bg_color=Color( 0.0627451, 0.0627451, 0.0627451, 1 )
 config/icon="res://icon.png"
-run/name="Bricket"
+run/name="Break Bacteria"
 
 [autoload]
 
