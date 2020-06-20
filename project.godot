@@ -137,6 +137,10 @@ pointing/emulate_touch_from_mouse=true
 2d_render/layer_11="Brickets"
 2d_physics/layer_11="Brickets"
 
+[locale]
+
+locale_filter=[ 0, [  ] ]
+
 [rendering]
 
 quality/driver/driver_name="GLES2"
