@@ -12,7 +12,7 @@ onready var free_coins_timer:Timer = $Timer
 
 signal free_coins_watched()
 
-var count_down_time = 60#2*60*60 # 2 hours
+var count_down_time = 2*60*60 # 2 hours
 var current_time
 
 # Called when the node enters the scene tree for the first time.
