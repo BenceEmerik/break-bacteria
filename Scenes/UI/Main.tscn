@@ -104,7 +104,7 @@ __meta__ = {
 [node name="HBoxContainer" type="VBoxContainer" parent="FreeBox/MarginContainer"]
 margin_left = 36.0
 margin_top = 36.0
-margin_right = 236.0
+margin_right = 271.0
 margin_bottom = 204.0
 custom_constants/separation = 8
 __meta__ = {
@@ -112,8 +112,8 @@ __meta__ = {
 }
 
 [node name="FreeButton" type="TextureButton" parent="FreeBox/MarginContainer/HBoxContainer"]
-margin_left = 42.0
-margin_right = 157.0
+margin_left = 60.0
+margin_right = 175.0
 margin_bottom = 115.0
 rect_pivot_offset = Vector2( 57, 57 )
 size_flags_horizontal = 6
@@ -126,11 +126,11 @@ __meta__ = {
 
 [node name="FreeLabel" type="Label" parent="FreeBox/MarginContainer/HBoxContainer"]
 margin_top = 123.0
-margin_right = 200.0
+margin_right = 235.0
 margin_bottom = 168.0
 rect_pivot_offset = Vector2( 100, 22 )
 custom_fonts/font = SubResource( 2 )
-text = "Free Coins"
+text = "FREE_COINS"
 align = 1
 valign = 1
 
@@ -259,16 +259,12 @@ margin_bottom = 197.0
 texture_normal = ExtResource( 1 )
 
 [node name="Label" type="Label" parent="Buttons/MarginContainer/VBoxContainer/PlayButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -107.5
-margin_top = -59.0
-margin_right = 107.5
-margin_bottom = 59.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 5 )
-text = "Play"
+text = "PLAY"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -285,16 +281,10 @@ margin_bottom = 197.0
 texture_normal = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="Buttons/MarginContainer/VBoxContainer/HBoxContainer/ShopButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -96.5
-margin_top = -44.5
-margin_right = 96.5
-margin_bottom = 44.5
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 6 )
-text = "Shop"
+text = "SHOP"
 align = 1
 valign = 1
 __meta__ = {
@@ -308,16 +298,10 @@ margin_bottom = 197.0
 texture_normal = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="Buttons/MarginContainer/VBoxContainer/HBoxContainer/ChallengeButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -190.5
-margin_top = -44.5
-margin_right = 190.5
-margin_bottom = 44.5
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 6 )
-text = "Challenge"
+text = "CHALLENGE"
 align = 1
 valign = 1
 __meta__ = {

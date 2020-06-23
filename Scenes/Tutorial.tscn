@@ -58,13 +58,13 @@ default_color = Color( 1, 1, 1, 1 )
 antialiased = true
 
 [node name="Label" type="Label" parent="."]
-margin_left = 598.565
+margin_left = 550.0
 margin_top = 910.736
 margin_right = 1167.57
 margin_bottom = 999.736
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
-text = "Swipe to Shoot"
+text = "SWIPE_TO_SHOOT"
 __meta__ = {
 "_edit_use_anchors_": false
 }

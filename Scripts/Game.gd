@@ -71,7 +71,7 @@ func _ready() -> void:
 	level_node.add_child(bricketgrid)
 	
 	
-	level_label.text = "Level %d"%Globals.level
+	level_label.text = tr("LEVEL")%Globals.level
 	var completed_levels = LocalSettings.get_setting("completed_levels", {})
 	if completed_levels.has(Globals.level):
 		score_label.text = str(completed_levels[Globals.level]["score"])
@@ -338,7 +338,7 @@ func _on_HalveButton_pressed() -> void:
 	var coins =  LocalSettings.get_setting("coins", 0)
 	if coins > 50:
 		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
-		popup._subtitle = "Halve Bricks Level!"
+		popup._subtitle = "HALVE"
 		popup.coin = 50
 		$HUD.add_child(popup)
 		get_tree().paused = true
@@ -365,7 +365,7 @@ func _on_BreakBottomButton_pressed() -> void:
 	if coins > 30:
 		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
 		popup.coin = 30
-		popup._subtitle = "Break Bottom Bricks!"
+		popup._subtitle = "BREAK"
 #		popup.rect_position = Vector2(540, 960)
 		$HUD.add_child(popup)
 		get_tree().paused = true
@@ -393,6 +393,7 @@ func _on_Extra50Button_pressed() -> void:
 	if coins > 20:
 		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
 		popup.coin = 20
+		popup._subtitle = "EXTRA"
 		$HUD.add_child(popup)
 		get_tree().paused = true
 		yield(popup, "ok")

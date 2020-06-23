@@ -68,13 +68,13 @@ __meta__ = {
 [node name="Title" type="Label" parent="Window"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -182.0
+margin_left = -368.0
 margin_top = 36.0
-margin_right = 182.0
+margin_right = 333.0
 margin_bottom = 96.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "BUY CONFIRM"
+text = "POPUP_SINGLE_TITLE"
 align = 1
 valign = 1
 uppercase = true
@@ -85,13 +85,12 @@ __meta__ = {
 [node name="SubTitle" type="Label" parent="Window"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -132.5
+margin_left = -359.0
 margin_top = 108.0
-margin_right = 132.5
+margin_right = 356.0
 margin_bottom = 153.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Extra 50 Balls!"
 align = 1
 valign = 1
 __meta__ = {
@@ -118,7 +117,7 @@ margin_right = 210.0
 margin_bottom = 63.0
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Would you like to buy it with COIN %d ?"
+text = "POPUP_SINGLE_DESC"
 align = 1
 valign = 1
 autowrap = true
@@ -141,17 +140,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Window/Button"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -46.5
-margin_top = -26.0
-margin_right = 46.5
-margin_bottom = 26.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 4 )
 text = "OK"
 align = 1
+valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

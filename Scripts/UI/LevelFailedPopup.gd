@@ -7,7 +7,7 @@ onready var title:Label = $Window/Title
 signal ok
 
 func _ready() -> void:
-	title.text = "Level %d"%level
+	title.text = tr("POPUP_LEVELCOMP_TITLE")%level
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

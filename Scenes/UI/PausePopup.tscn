@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://Scripts/UI/PausePopup.gd" type="Script" id=2]
@@ -12,20 +12,14 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=2]
-size = 32
-use_mipmaps = true
-use_filter = true
-font_data = ExtResource( 1 )
-
 [sub_resource type="DynamicFont" id=3]
-size = 42
+size = 48
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=4]
-size = 42
+size = 48
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
@@ -68,9 +62,9 @@ __meta__ = {
 [node name="Title" type="Label" parent="Window"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -182.0
+margin_left = -355.0
 margin_top = 36.0
-margin_right = 182.0
+margin_right = 341.0
 margin_bottom = 96.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
@@ -78,22 +72,6 @@ text = "PAUSE"
 align = 1
 valign = 1
 uppercase = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SubTitle" type="Label" parent="Window"]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -227.0
-margin_top = 108.0
-margin_right = 227.0
-margin_bottom = 153.0
-custom_fonts/font = SubResource( 2 )
-custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Close window save change"
-align = 1
-valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -130,18 +108,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Window/VBoxContainer/HomeButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -68.5
-margin_top = -26.0
-margin_right = 68.5
-margin_bottom = 26.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 3 )
 text = "HOME"
 align = 1
 valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -156,18 +129,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Window/VBoxContainer/RetryButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -72.0
-margin_top = -26.0
-margin_right = 72.0
-margin_bottom = 26.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 3 )
 text = "RETRY"
 align = 1
 valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -182,18 +150,13 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="Window/VBoxContainer/QuitButton"]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -54.0
-margin_top = -26.0
-margin_right = 54.0
-margin_bottom = 26.0
+anchor_right = 1.0
+anchor_bottom = 1.0
 custom_fonts/font = SubResource( 4 )
 text = "QUIT"
 align = 1
 valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

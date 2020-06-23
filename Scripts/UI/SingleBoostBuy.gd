@@ -12,7 +12,7 @@ onready var description:Label = $Window/Description
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	subtitle.text = _subtitle
-	description.text = description.text%coin
+	description.text = tr(description.text)%coin
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

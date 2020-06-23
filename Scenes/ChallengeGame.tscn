@@ -586,29 +586,26 @@ texture = ExtResource( 8 )
 
 [node name="Center" type="Control" parent="HUD"]
 visible = false
-anchor_left = 0.5
 anchor_top = 0.5
-anchor_right = 0.5
+anchor_right = 1.0
 anchor_bottom = 0.5
-margin_left = -20.0
-margin_top = -20.0
-margin_right = 20.0
-margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Label" type="Label" parent="HUD/Center"]
 anchor_left = 0.5
-anchor_top = 1.0
+anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -230.0
-margin_top = -89.0
-margin_right = 230.0
+anchor_bottom = 0.5
+margin_left = -540.0
+margin_top = -44.5
+margin_right = 540.0
+margin_bottom = 44.5
 custom_fonts/font = SubResource( 4 )
 custom_colors/font_color = Color( 1, 1, 1, 0.686275 )
-text = "Checkpoint!"
+text = "CHECKPOINT"
+align = 1
 
 [node name="Speed" type="Control" parent="HUD"]
 visible = false
@@ -633,7 +630,8 @@ margin_top = -39.5
 margin_bottom = 39.5
 custom_fonts/font = SubResource( 5 )
 custom_colors/font_color = Color( 1, 1, 1, 0.784314 )
-text = "Speed 2x"
+text = "SPEED"
+align = 2
 valign = 1
 
 [node name="Wall" type="Node2D" parent="."]

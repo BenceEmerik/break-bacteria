@@ -74,13 +74,13 @@ __meta__ = {
 [node name="Title" type="Label" parent="Window"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -182.0
+margin_left = -407.0
 margin_top = 36.0
-margin_right = 182.0
+margin_right = 412.0
 margin_bottom = 96.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "failed"
+text = "POPUP_FAILED_TITLE"
 align = 1
 valign = 1
 uppercase = true
@@ -97,7 +97,7 @@ margin_right = 306.0
 margin_bottom = 153.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "You failed! What do you want to do?"
+text = "POPUP_FAILED_SUBTITLE"
 align = 1
 valign = 1
 __meta__ = {
@@ -139,6 +139,7 @@ custom_fonts/font = SubResource( 3 )
 text = "HOME"
 align = 1
 valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -162,7 +163,7 @@ margin_top = -26.0
 margin_right = 231.0
 margin_bottom = 26.0
 custom_fonts/font = SubResource( 4 )
-text = "watch & continue"
+text = "WATCH_CONTINUE"
 align = 1
 valign = 1
 uppercase = true
@@ -192,6 +193,7 @@ custom_fonts/font = SubResource( 5 )
 text = "QUIT"
 align = 1
 valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

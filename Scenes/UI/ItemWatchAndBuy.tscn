@@ -136,12 +136,14 @@ margin_bottom = 64.0
 texture = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="Window/BuyButton/Container"]
-margin_left = 88.0
+margin_left = 94.0
 margin_top = 6.0
-margin_right = 260.0
+margin_right = 266.0
 margin_bottom = 58.0
+size_flags_horizontal = 6
 custom_fonts/font = SubResource( 2 )
 text = "WATCH"
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

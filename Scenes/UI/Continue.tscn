@@ -20,7 +20,7 @@ use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=4]
+[sub_resource type="DynamicFont" id=3]
 size = 42
 use_mipmaps = true
 use_filter = true
@@ -64,13 +64,15 @@ __meta__ = {
 [node name="Title" type="Label" parent="Window"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -224.5
+margin_left = -421.0
 margin_top = 48.0
-margin_right = 224.5
+margin_right = 415.0
 margin_bottom = 108.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "One More Chance"
+text = "POPUP_CONTINUE_TITLE"
+align = 1
+valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -124,7 +126,7 @@ margin_left = -136.0
 margin_top = -32.0
 margin_right = 136.0
 margin_bottom = 32.0
-custom_constants/separation = 24
+custom_constants/separation = 36
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -135,12 +137,13 @@ margin_bottom = 64.0
 texture = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="Window/WatchButton/Container"]
-margin_left = 88.0
+margin_left = 100.0
 margin_top = 6.0
-margin_right = 260.0
+margin_right = 272.0
 margin_bottom = 58.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 text = "WATCH"
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }

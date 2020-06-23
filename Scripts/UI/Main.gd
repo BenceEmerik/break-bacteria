@@ -32,7 +32,7 @@ func _ready() -> void:
 		free_coins_timer.start()
 	
 	else:
-		free_label.text = "Free Coins"
+		free_label.text = "FREE_COINS"
 #		free_button.disabled = false
 		Globals.prev_time = 0
 
@@ -72,7 +72,7 @@ func _on_count_down() -> void:
 		free_coins_timer.stop()
 #		free_button.disabled = false
 		$Admob.load_rewarded_video()
-		free_label.text = "Free Coins"
+		free_label.text = "FREE_COINS"
 		LocalSettings.set_setting("prev_time", 0)
 		Globals.prev_time = 0
 

@@ -22,7 +22,7 @@ use_filter = true
 font_data = ExtResource( 1 )
 
 [sub_resource type="DynamicFont" id=3]
-size = 28
+size = 30
 use_mipmaps = true
 use_filter = true
 font_data = ExtResource( 1 )
@@ -64,13 +64,15 @@ __meta__ = {
 [node name="Title" type="Label" parent="Window"]
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = -153.0
+margin_left = -349.0
 margin_top = 36.0
-margin_right = 153.0
+margin_right = 346.0
 margin_bottom = 96.0
 custom_fonts/font = SubResource( 1 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Free Coins"
+text = "POPUP_FREE_TITLE"
+align = 1
+valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -113,7 +115,7 @@ margin_top = 60.0
 margin_bottom = 120.0
 custom_fonts/font = SubResource( 2 )
 custom_colors/font_color = Color( 0, 0, 0, 1 )
-text = "Whatch video and get Coins."
+text = "POPUP_FREE_DESC"
 align = 1
 valign = 1
 autowrap = true
@@ -142,7 +144,7 @@ margin_left = -155.0
 margin_top = -32.0
 margin_right = 155.0
 margin_bottom = 32.0
-custom_constants/separation = 16
+custom_constants/separation = 8
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -154,22 +156,23 @@ texture = ExtResource( 3 )
 stretch_mode = 4
 
 [node name="Text" type="Label" parent="Window/WatchButton/HBoxContainer"]
-margin_left = 64.0
-margin_top = 14.0
-margin_right = 179.0
-margin_bottom = 50.0
+margin_left = 56.0
+margin_top = 13.0
+margin_right = 180.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "WATCH"
-align = 2
+align = 1
 valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Container" type="HBoxContainer" parent="Window/WatchButton/HBoxContainer"]
-margin_left = 195.0
-margin_right = 314.0
+margin_left = 188.0
+margin_right = 310.0
 margin_bottom = 64.0
 alignment = 1
 
@@ -185,9 +188,9 @@ __meta__ = {
 
 [node name="Text" type="Label" parent="Window/WatchButton/HBoxContainer/Container"]
 margin_left = 68.0
-margin_top = 14.0
-margin_right = 119.0
-margin_bottom = 50.0
+margin_top = 13.0
+margin_right = 122.0
+margin_bottom = 51.0
 size_flags_horizontal = 3
 custom_fonts/font = SubResource( 3 )
 text = "+25"

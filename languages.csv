@@ -1,1 +1,35 @@
 keys,en,tr
+SWIPE_TO_SHOOT,Swipe to Shoot,Vurmak için Kaydır
+CHECKPOINT,Checkpoint!,Denetim Noktası!
+SPEED,Speed 2x,2x Hız
+LEVEL,Level %d,Seviye %d
+PLAY,Play,Oyna
+CHALLENGE,Challenge,Meydan Oku
+SHOP,Shop,Dükkan
+WATCH,Watch,İzle
+FREE_COINS,Free Coins,Ücretsiz Coin
+LEVELS,Levels,Seviyeler
+POPUP_COINS_TITLE,Coins Missing, Coin Yetersiz
+POPUP_COINS_DESC,You don't have enough coins! You can earn 25 coins by watching a video ad.,Yeterince coin yok! Reklam izleyerek 25 coin kazanabilirsiniz.
+POPUP_CONTINUE_TITLE,One More Chance,Bir Şans Daha
+POPUP_FAILED_TITLE,failed,başarısız
+POPUP_FAILED_SUBTITLE,You failed! What do you want to do?,Başaramadın! Ne yapacaksın?
+HOME,home,menü
+WATCH_CONTINUE,watch & continue,izle ve devam et
+QUIT,quit,çıkış
+POPUP_FREE_TITLE,Free Coins,Ücretsiz Coin
+POPUP_FREE_DESC,Whatch video ads and get coins.,Video reklam izleyin ve coin kazanın.
+BUY,buy,al
+NEXT,next level,sonraki
+RETRY,retry,tekrar
+POPUP_LEVELCOMP_TITLE,level %d,seviye %d
+POPUP_LEVELCOMP_SUBTITLE,Congratulations! You have completed the level!,Tebrikler! Seviyeyi tamamladınız!
+POPUP_LEVELFAILED_SUBTITLE,Level Failed,Başarısız oldunuz
+PAUSE,pause,durakladı
+OK,ok,tamam
+POPUP_SINGLE_TITLE,buy confirm,satın alımı onayla
+POPUP_SINGLE_DESC,Would you like to buy it with COIN %d ?,%d coin karşılığı satın almak ister misiniz?
+HALVE,Halve Bricks Level!,Tuğlaların Canını Yarıya İndir!
+EXTRA,Extra 50 Balls!,Fazladan 50 Top!
+BREAK,Break Bottom Bricks!,Alt Tuğlaları Kırın!
+AIMING,Gold Aiming!,3. Nişan

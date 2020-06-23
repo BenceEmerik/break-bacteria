@@ -136,8 +136,12 @@ __meta__ = {
 [node name="Label" type="Label" parent="Window/BuyButton/Container"]
 margin_right = 93.0
 margin_bottom = 52.0
+size_flags_horizontal = 6
 custom_fonts/font = SubResource( 2 )
 text = "BUY"
+align = 2
+valign = 1
+uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -146,6 +150,7 @@ __meta__ = {
 margin_left = 117.0
 margin_right = 272.0
 margin_bottom = 52.0
+size_flags_horizontal = 10
 
 [node name="TextureRect" type="TextureRect" parent="Window/BuyButton/Container/Container"]
 margin_right = 48.0
