@@ -10,7 +10,7 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Node",
-"class": "Admob",
+"class": "AdMob",
 "language": "GDScript",
 "path": "res://admob-lib/admob.gd"
 }, {
@@ -70,7 +70,7 @@ _global_script_classes=[ {
 "path": "res://Scripts/Booster/TwoDirections.gd"
 } ]
 _global_script_class_icons={
-"Admob": "",
+"AdMob": "res://admob-lib/icon.png",
 "Ball": "",
 "Bricket": "",
 "BricketGrid": "",
