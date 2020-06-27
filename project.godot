@@ -84,10 +84,6 @@ _global_script_class_icons={
 "TwoDirections": ""
 }
 
-[android]
-
-modules="org/godotengine/godot/GodotAdMob"
-
 [application]
 
 config/name="Break Bacteria"
