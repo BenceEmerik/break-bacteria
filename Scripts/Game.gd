@@ -127,10 +127,6 @@ func _input(event: InputEvent) -> void:
 	if turn_complete:
 		if event is InputEventScreenDrag or event is InputEventScreenTouch and \
 		event.position.y > 180 and event.position.y < $Spawn.position.y and event.pressed:
-#			first_line.visible = true
-#			end_line.visible = true
-			if is_aiming: 
-				booster_line.visible = true
 			if has_node("Tutorial"):
 				$Tutorial.queue_free()
 			var direction = event.position - $Spawn.position
@@ -158,6 +154,8 @@ func _on_collision_lines(points:PoolVector2Array):
 		if is_angle_valid:
 			first_line.visible = true
 			end_line.visible = true
+			if is_aiming:
+				booster_line.visible = true
 			first_line.points[0] = Vector2.ZERO
 			first_line.points[1] = points[0] - spawn.global_position
 			end_line.points[0] = first_line.points[1]
@@ -167,6 +165,7 @@ func _on_collision_lines(points:PoolVector2Array):
 		else:
 			first_line.visible = false
 			end_line.visible = false
+			booster_line.visible = false
 
 func _on_Ball_Shooting() -> void:
 	thrown_balls += 1
