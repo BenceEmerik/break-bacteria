@@ -1,5 +1,6 @@
 extends Node
 
+const ALL_LEVELS = 50
 var level:int = 0
 var prev_time:int
 var colors =  [

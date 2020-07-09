@@ -4,10 +4,13 @@ extends Control
 export(int) var level:int = 1
 
 onready var title:Label = $Window/Title
+onready var next_button:TextureButton = $Window/VBoxContainer/NextButton
 
 signal ok
 
 func _ready() -> void:
+	if Globals.level == Globals.ALL_LEVELS:
+		next_button.visible = false
 	title.text = tr("POPUP_LEVELCOMP_TITLE")%level
 
 
