@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/backbg.png-c90e1285be71c09ea6f96a0a9a187d11.stex"
+path="res://.import/halfbtnbg.png-cdcbd017ccbe471faf015af20298f672.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Main/backbg.png"
-dest_files=[ "res://.import/backbg.png-c90e1285be71c09ea6f96a0a9a187d11.stex" ]
+source_file="res://UI/Main/halfbtnbg.png"
+dest_files=[ "res://.import/halfbtnbg.png-cdcbd017ccbe471faf015af20298f672.stex" ]
 
 [params]
 

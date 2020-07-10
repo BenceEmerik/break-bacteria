@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/playbutton-1.png-b5bd02717cd93ac04d124ce46b6961c6.stex"
+path="res://.import/shopicon.png-2daf4d46acd94637e7e68e7efd03f6f7.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/Main/playbutton-1.png"
-dest_files=[ "res://.import/playbutton-1.png-b5bd02717cd93ac04d124ce46b6961c6.stex" ]
+source_file="res://UI/Main/shopicon.png"
+dest_files=[ "res://.import/shopicon.png-2daf4d46acd94637e7e68e7efd03f6f7.stex" ]
 
 [params]
 

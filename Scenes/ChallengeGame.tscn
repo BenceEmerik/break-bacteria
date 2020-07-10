@@ -3,7 +3,7 @@
 [ext_resource path="res://admob-lib/admob.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/ChallengeGame.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/BricketGridChallenge.gd" type="Script" id=3]
-[ext_resource path="res://UI/Main/backbg.png" type="Texture" id=5]
+[ext_resource path="res://Scenes/BG.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Sprites/Balls/antikor.png" type="Texture" id=6]
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://UI/LevelItem/coin48.png" type="Texture" id=8]
@@ -237,26 +237,7 @@ banner_id = "ca-app-pub-9677648781915911/3212564772"
 interstitial_id = "ca-app-pub-9677648781915911/3450090698"
 rewarded_id = "ca-app-pub-9677648781915911/4543680519"
 
-[node name="BG" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="ColorRect" type="ColorRect" parent="BG"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-color = Color( 0.0666667, 0.0666667, 0.0666667, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="TextureRect" type="TextureRect" parent="BG"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-texture = ExtResource( 5 )
-expand = true
-stretch_mode = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="BG" parent="." instance=ExtResource( 4 )]
 
 [node name="HUD" type="CanvasLayer" parent="."]
 
