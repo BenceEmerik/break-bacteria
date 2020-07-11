@@ -16,6 +16,8 @@ func _ready() -> void:
 
 
 func _on_CloseButton_pressed() -> void:
+	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
 	get_tree().paused = false
 	queue_free()
 

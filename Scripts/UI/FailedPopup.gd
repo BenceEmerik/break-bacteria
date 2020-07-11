@@ -2,10 +2,11 @@ extends Control
 
 
 signal ok
-
+var parent
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	parent = get_tree().current_scene
+	$Window/VBoxContainer/WatchButton.visible = parent.get_node("Admob").is_rewarded_video_loaded()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -19,7 +20,6 @@ func _on_HomeButton_pressed() -> void:
 
 
 func _on_WatchButton_pressed() -> void:
-	var parent = get_tree().current_scene
 	if parent.is_ads_ready:
 		parent.get_node("Admob").show_rewarded_video()
 	parent.emit_signal("admob_type", "continue")

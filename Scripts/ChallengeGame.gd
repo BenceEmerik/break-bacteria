@@ -276,7 +276,7 @@ func _on_scene_reload():
 
 func _on_AimingButton_pressed() -> void:
 	var coins =  LocalSettings.get_setting("coins", 0)
-	if coins > 10:
+	if coins > 9:
 		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
 		popup._subtitle = "AIMING"
 		popup.coin = 10
@@ -304,7 +304,7 @@ func _on_AimingButton_pressed() -> void:
 
 func _on_Extra50Button_pressed() -> void:
 	var coins =  LocalSettings.get_setting("coins", 0)
-	if coins > 20:
+	if coins > 19:
 		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
 		popup.coin = 20
 		popup._subtitle = "EXTRA"
@@ -333,7 +333,7 @@ func _on_Extra50Button_pressed() -> void:
 
 func _on_BreakBottomButton_pressed() -> void:
 	var coins =  LocalSettings.get_setting("coins", 0)
-	if coins > 30:
+	if coins > 29:
 		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
 		popup.coin = 30
 		popup._subtitle = "BREAK"
@@ -361,7 +361,7 @@ func _on_BreakBottomButton_pressed() -> void:
 
 func _on_HalveButton_pressed() -> void:
 	var coins =  LocalSettings.get_setting("coins", 0)
-	if coins > 50:
+	if coins > 49:
 		var popup = preload("res://Scenes/UI/SingleBoostBuy.tscn").instance()
 		popup._subtitle = "HALVE"
 		popup.coin = 50
