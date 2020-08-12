@@ -615,6 +615,7 @@ columns = 4
 
 [node name="LevelItem" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 focus_mode = 0
+lock = false
 
 [node name="LevelItem2" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 10 )]
 margin_left = 224.0

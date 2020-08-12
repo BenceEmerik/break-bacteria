@@ -1,7 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=1]
-[ext_resource path="res://Sprites/Balls/antikor.png" type="Texture" id=2]
 [ext_resource path="res://Scripts/UI/ItemBuy.gd" type="Script" id=3]
 [ext_resource path="res://UI/LevelItem/coin48.png" type="Texture" id=4]
 [ext_resource path="res://Scenes/ballanim.tres" type="Animation" id=5]
@@ -99,7 +98,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Window/ShopItem"]
 position = Vector2( 96, 58 )
-texture = ExtResource( 2 )
+scale = Vector2( 0.17, 0.17 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Window/ShopItem"]
 autoplay = "bounce"

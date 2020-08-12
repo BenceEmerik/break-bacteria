@@ -1,10 +1,9 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://admob-lib/admob.gd" type="Script" id=1]
 [ext_resource path="res://Scripts/ChallengeGame.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/BricketGridChallenge.gd" type="Script" id=3]
 [ext_resource path="res://Scenes/BG.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Sprites/Balls/antikor.png" type="Texture" id=6]
 [ext_resource path="res://Asset/Montserrat-Bold.ttf" type="DynamicFontData" id=7]
 [ext_resource path="res://UI/LevelItem/coin48.png" type="Texture" id=8]
 [ext_resource path="res://UI/Game/toplari-cek.png" type="Texture" id=9]
@@ -669,7 +668,7 @@ __meta__ = {
 }
 
 [node name="Ball" type="Sprite" parent="NewSpawn"]
-texture = ExtResource( 6 )
+scale = Vector2( 0.17, 0.17 )
 
 [node name="Spawn" type="Position2D" parent="."]
 position = Vector2( 540, 1535 )
@@ -713,7 +712,7 @@ __meta__ = {
 }
 
 [node name="Ball" type="Sprite" parent="Spawn"]
-texture = ExtResource( 6 )
+scale = Vector2( 0.17, 0.17 )
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.1
