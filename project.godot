@@ -97,6 +97,7 @@ run/name="Break Bacteria"
 
 [autoload]
 
+GPlay="*res://Scripts/GPlay.gd"
 LocalSettings="*res://Scripts/LocalSettings.gd"
 Globals="*res://Scripts/Globals.gd"
 
