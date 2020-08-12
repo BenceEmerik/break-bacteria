@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/lityum.png-b9fab33873f13bcaca0dac96140e8288.stex"
+path="res://.import/phosphor.png-eb8196071c1dae0f0188004c7b6cce7b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Balls/lityum.png"
-dest_files=[ "res://.import/lityum.png-b9fab33873f13bcaca0dac96140e8288.stex" ]
+source_file="res://Sprites/Balls/phosphor.png"
+dest_files=[ "res://.import/phosphor.png-eb8196071c1dae0f0188004c7b6cce7b.stex" ]
 
 [params]
 

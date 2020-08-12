@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/antikor.png-cc7a5a78c667ad77defe41eb3148ec6f.stex"
+path="res://.import/alien.png-4ba696b9bab5897b5828f5f96df7380b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Balls/antikor.png"
-dest_files=[ "res://.import/antikor.png-cc7a5a78c667ad77defe41eb3148ec6f.stex" ]
+source_file="res://Sprites/Balls/alien.png"
+dest_files=[ "res://.import/alien.png-4ba696b9bab5897b5828f5f96df7380b.stex" ]
 
 [params]
 

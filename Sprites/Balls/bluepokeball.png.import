@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stronsiyum.png-ef7cafbd5dad169b51e921e98cd5bb92.stex"
+path="res://.import/bluepokeball.png-f9421410612a0941f7a8ecc47d8c927a.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Balls/stronsiyum.png"
-dest_files=[ "res://.import/stronsiyum.png-ef7cafbd5dad169b51e921e98cd5bb92.stex" ]
+source_file="res://Sprites/Balls/bluepokeball.png"
+dest_files=[ "res://.import/bluepokeball.png-f9421410612a0941f7a8ecc47d8c927a.stex" ]
 
 [params]
 

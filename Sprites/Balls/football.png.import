@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/magnezyum.png-c5580c64835cd58427b09ac5cfc5a39f.stex"
+path="res://.import/football.png-6a95c5e637724d4ac8945c13ee21a59c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Balls/magnezyum.png"
-dest_files=[ "res://.import/magnezyum.png-c5580c64835cd58427b09ac5cfc5a39f.stex" ]
+source_file="res://Sprites/Balls/football.png"
+dest_files=[ "res://.import/football.png-6a95c5e637724d4ac8945c13ee21a59c.stex" ]
 
 [params]
 

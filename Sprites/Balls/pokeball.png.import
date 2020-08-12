@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/kukurt.png-1ef21e7dd6affcb4425cfa85d3023740.stex"
+path="res://.import/pokeball.png-1352d38608027717862089037f01b6cb.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Balls/kukurt.png"
-dest_files=[ "res://.import/kukurt.png-1ef21e7dd6affcb4425cfa85d3023740.stex" ]
+source_file="res://Sprites/Balls/pokeball.png"
+dest_files=[ "res://.import/pokeball.png-1352d38608027717862089037f01b6cb.stex" ]
 
 [params]
 
