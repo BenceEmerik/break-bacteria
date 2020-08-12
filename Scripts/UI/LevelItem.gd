@@ -25,7 +25,7 @@ func state_update() -> void:
 	if !lock:
 		lock_texture.visible = false
 		level_label.visible = true
-		self.disabled = false
+		disabled = false
 		var stat:Dictionary = LocalSettings.get_setting("completed_levels", {})
 		
 		if stat.has(str(level)):

@@ -11,8 +11,8 @@ func _ready() -> void:
 	var last_level = LocalSettings.get_setting("last_completed_level", 0)
 	subtitle.text = "%d/%d"%[last_level, grid_container.get_child_count()]
 	for i in range(1, last_level + 1):
-		var level = i
-		var item = grid_container.get_child(i-1)
+		var level = i + 1
+		var item = grid_container.get_child(i)
 		if item.level == level:
 			item.lock = false
 		# tamamlanmış levellerin puanına göre daireler aktif olacak
