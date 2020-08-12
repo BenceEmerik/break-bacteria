@@ -33,6 +33,7 @@ func _process(delta:float) -> void:
 	if collision:
 		var reflect = collision.remainder.bounce(collision.normal)
 		velocity = velocity.bounce(collision.normal)
+		rotation = reflect.angle()
 		move_and_collide(reflect)
 		if collision.collider is Bricket:
 			collision.collider.emit_signal("health_state")
