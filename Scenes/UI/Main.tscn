@@ -74,6 +74,7 @@ __meta__ = {
 
 [node name="Admob" type="Node" parent="."]
 script = ExtResource( 2 )
+is_real = true
 banner_on_top = false
 banner_id = "ca-app-pub-9677648781915911/3212564772"
 rewarded_id = "ca-app-pub-9677648781915911/4543680519"

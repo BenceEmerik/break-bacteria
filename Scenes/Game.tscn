@@ -230,6 +230,7 @@ script = ExtResource( 2 )
 
 [node name="Admob" type="Node" parent="."]
 script = ExtResource( 3 )
+is_real = true
 banner_on_top = false
 banner_id = "ca-app-pub-9677648781915911/3212564772"
 interstitial_id = "ca-app-pub-9677648781915911/3450090698"
