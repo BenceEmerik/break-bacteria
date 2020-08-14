@@ -104,3 +104,8 @@ func _on_Admob_rewarded_video_failed_to_load(error_code) -> void:
 
 func _on_Admob_rewarded_video_closed() -> void:
 	$Admob.load_rewarded_video()
+
+
+func _on_TextureButton_pressed() -> void:
+	if !GPlay.play_game.isSignedIn():
+		GPlay.play_game.signIn()

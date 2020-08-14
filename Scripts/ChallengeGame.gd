@@ -212,6 +212,8 @@ func _on_balls_updated() -> void:
 	balls_count.text = "x%d"%total_balls
 
 func _on_screen_clear() -> void:
+	if GPlay.play_game.isSignedIn():
+		GPlay.play_game.submitLeaderBoardScore("CgkIzqrC9pwQEAIQAQ", level)
 	$HUD/Center.visible = true
 	LocalSettings.set_setting("challenge_checkpoints", level)
 	var best_score = LocalSettings.get_setting("best_challenge_level", 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://UI/Main/playbtnbg.png" type="Texture" id=1]
 [ext_resource path="res://admob-lib/admob.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://UI/Main/shopicon.png" type="Texture" id=10]
 [ext_resource path="res://UI/Main/logov2.png" type="Texture" id=11]
 [ext_resource path="res://Scripts/UI/Main.gd" type="Script" id=12]
+[ext_resource path="res://UI/gservice.png" type="Texture" id=13]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://Asset/Montserrat-Bold.ttf"
@@ -244,7 +245,7 @@ __meta__ = {
 [node name="VBoxContainer" type="VBoxContainer" parent="Buttons/MarginContainer"]
 margin_top = 96.0
 margin_right = 848.0
-margin_bottom = 514.0
+margin_bottom = 730.0
 custom_constants/separation = 24
 __meta__ = {
 "_edit_use_anchors_": false
@@ -295,6 +296,14 @@ anchor_bottom = 1.0
 texture = ExtResource( 3 )
 stretch_mode = 4
 
+[node name="TextureButton" type="TextureButton" parent="Buttons/MarginContainer/VBoxContainer"]
+margin_left = 328.0
+margin_top = 442.0
+margin_right = 520.0
+margin_bottom = 634.0
+size_flags_horizontal = 4
+texture_normal = ExtResource( 13 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "free_button"
 anims/free_button = SubResource( 6 )
@@ -308,3 +317,4 @@ anims/free_button = SubResource( 6 )
 [connection signal="pressed" from="Buttons/MarginContainer/VBoxContainer/PlayButton" to="." method="_on_PlayButton_pressed"]
 [connection signal="pressed" from="Buttons/MarginContainer/VBoxContainer/HBoxContainer/ShopButton" to="." method="_on_ShopButton_pressed"]
 [connection signal="pressed" from="Buttons/MarginContainer/VBoxContainer/HBoxContainer/ChallengeButton" to="." method="_on_ChallengeButton_pressed"]
+[connection signal="pressed" from="Buttons/MarginContainer/VBoxContainer/TextureButton" to="." method="_on_TextureButton_pressed"]
