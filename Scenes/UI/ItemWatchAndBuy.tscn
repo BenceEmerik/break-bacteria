@@ -95,7 +95,7 @@ __meta__ = {
 
 [node name="Sprite" type="Sprite" parent="Window/ShopItem"]
 position = Vector2( 96, 58 )
-scale = Vector2( 0.17, 0.17 )
+scale = Vector2( 0.2, 0.2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Window/ShopItem"]
 autoplay = "bounce"

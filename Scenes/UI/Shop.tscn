@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://UI/backbtn.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/UI/Shop.gd" type="Script" id=2]
@@ -28,6 +28,15 @@
 [ext_resource path="res://Sprites/Balls/deadpoll.png" type="Texture" id=26]
 [ext_resource path="res://Sprites/Balls/shild.png" type="Texture" id=27]
 [ext_resource path="res://Sprites/Balls/yinyang.png" type="Texture" id=28]
+[ext_resource path="res://Sprites/Balls/russia.png" type="Texture" id=29]
+[ext_resource path="res://Sprites/Balls/germany.png" type="Texture" id=30]
+[ext_resource path="res://Sprites/Balls/france.png" type="Texture" id=31]
+[ext_resource path="res://Sprites/Balls/japan.png" type="Texture" id=32]
+[ext_resource path="res://Sprites/Balls/usa.png" type="Texture" id=33]
+[ext_resource path="res://Sprites/Balls/italy.png" type="Texture" id=34]
+[ext_resource path="res://Sprites/Balls/southkorea.png" type="Texture" id=35]
+[ext_resource path="res://Sprites/Balls/canada.png" type="Texture" id=36]
+[ext_resource path="res://Sprites/Balls/unitedkingdom.png" type="Texture" id=37]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
@@ -612,7 +621,7 @@ __meta__ = {
 [node name="GridContainer" type="GridContainer" parent="MarginContainer/ScrollContainer"]
 margin_left = 40.0
 margin_right = 784.0
-margin_bottom = 2438.0
+margin_bottom = 3524.0
 size_flags_horizontal = 6
 custom_constants/vseparation = 96
 custom_constants/hseparation = 84
@@ -785,6 +794,81 @@ margin_bottom = 2438.0
 ball_texture = ExtResource( 28 )
 ball_name = "yinyang"
 coins = 1000
+
+[node name="ShopItem22" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 2534.0
+margin_bottom = 2800.0
+ball_texture = ExtResource( 33 )
+ball_name = "usa"
+coins = 3000
+
+[node name="ShopItem23" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 276.0
+margin_top = 2534.0
+margin_right = 468.0
+margin_bottom = 2800.0
+ball_texture = ExtResource( 29 )
+ball_name = "russia"
+rewarded = true
+
+[node name="ShopItem24" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 552.0
+margin_top = 2534.0
+margin_right = 744.0
+margin_bottom = 2800.0
+ball_texture = ExtResource( 37 )
+ball_name = "unitedkingdom"
+rewarded = true
+
+[node name="ShopItem25" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 2896.0
+margin_bottom = 3162.0
+ball_texture = ExtResource( 35 )
+ball_name = "southkorea"
+rewarded = true
+
+[node name="ShopItem26" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 276.0
+margin_top = 2896.0
+margin_right = 468.0
+margin_bottom = 3162.0
+ball_texture = ExtResource( 32 )
+ball_name = "japan"
+coins = 2000
+
+[node name="ShopItem27" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 552.0
+margin_top = 2896.0
+margin_right = 744.0
+margin_bottom = 3162.0
+ball_texture = ExtResource( 34 )
+ball_name = "italy"
+rewarded = true
+
+[node name="ShopItem28" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_top = 3258.0
+margin_bottom = 3524.0
+ball_texture = ExtResource( 30 )
+ball_name = "germany"
+coins = 2000
+
+[node name="ShopItem29" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 276.0
+margin_top = 3258.0
+margin_right = 468.0
+margin_bottom = 3524.0
+ball_texture = ExtResource( 31 )
+ball_name = "france"
+coins = 750
+
+[node name="ShopItem30" parent="MarginContainer/ScrollContainer/GridContainer" instance=ExtResource( 5 )]
+margin_left = 552.0
+margin_top = 3258.0
+margin_right = 744.0
+margin_bottom = 3524.0
+ball_texture = ExtResource( 36 )
+ball_name = "canada"
+coins = 1500
 [connection signal="rewarded" from="Admob" to="." method="_on_Admob_rewarded"]
 [connection signal="rewarded_video_closed" from="Admob" to="." method="_on_Admob_rewarded_video_closed"]
 [connection signal="rewarded_video_failed_to_load" from="Admob" to="." method="_on_Admob_rewarded_video_failed_to_load"]
