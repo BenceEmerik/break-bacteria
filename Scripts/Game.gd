@@ -302,6 +302,15 @@ func _on_Level_Completed() -> void:
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 	get_tree().paused = false
+	if GPlay.play_game.isSignedIn():
+		if Globals.level >= 50:
+			GPlay.play_game.unlockAchievement(1)
+		if Globals.level >= 100:
+			GPlay.play_game.unlockAchievement(2)
+		if Globals.level >= 150:
+			GPlay.play_game.unlockAchievement(3)
+		if Globals.level >= 200:
+			GPlay.play_game.unlockAchievement(4)
 
 func _on_Level_Failed() -> void:
 	var contine = preload("res://Scenes/UI/Continue.tscn").instance()

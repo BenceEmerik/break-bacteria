@@ -214,6 +214,8 @@ func _on_balls_updated() -> void:
 func _on_screen_clear() -> void:
 	if GPlay.play_game.isSignedIn():
 		GPlay.play_game.submitLeaderBoardScore("CgkIzqrC9pwQEAIQAQ", level)
+		if level > 10:
+			GPlay.play_game.unlockAchievement(5)
 	$HUD/Center.visible = true
 	LocalSettings.set_setting("challenge_checkpoints", level)
 	var best_score = LocalSettings.get_setting("best_challenge_level", 0)
