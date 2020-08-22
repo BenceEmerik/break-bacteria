@@ -60,6 +60,7 @@ signal admob_type(type)
 
 
 func _ready() -> void:
+	$Admob.load_banner()
 	$Admob.load_interstitial()
 	$Admob.load_rewarded_video()
 	
@@ -304,13 +305,13 @@ func _on_Level_Completed() -> void:
 	get_tree().paused = false
 	if GPlay.play_game.isSignedIn():
 		if Globals.level >= 50:
-			GPlay.play_game.unlockAchievement(1)
+			GPlay.play_game.unlockAchievement("CgkIzqrC9pwQEAIQAw")
 		if Globals.level >= 100:
-			GPlay.play_game.unlockAchievement(2)
+			GPlay.play_game.unlockAchievement("CgkIzqrC9pwQEAIQBA")
 		if Globals.level >= 150:
-			GPlay.play_game.unlockAchievement(3)
+			GPlay.play_game.unlockAchievement("CgkIzqrC9pwQEAIQBg")
 		if Globals.level >= 200:
-			GPlay.play_game.unlockAchievement(4)
+			GPlay.play_game.unlockAchievement("CgkIzqrC9pwQEAIQBw")
 
 func _on_Level_Failed() -> void:
 	var contine = preload("res://Scenes/UI/Continue.tscn").instance()

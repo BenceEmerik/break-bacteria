@@ -53,6 +53,7 @@ var what_admob_type:String
 var ball_texture
 
 func _ready() -> void:
+	$Admob.load_banner()
 	$Admob.load_interstitial()
 	$Admob.load_rewarded_video()
 	level = LocalSettings.get_setting("challenge_checkpoints", 1)
@@ -212,13 +213,14 @@ func _on_balls_updated() -> void:
 	balls_count.text = "x%d"%total_balls
 
 func _on_screen_clear() -> void:
+	var best_score = LocalSettings.get_setting("best_challenge_level", 0)
 	if GPlay.play_game.isSignedIn():
-		GPlay.play_game.submitLeaderBoardScore("CgkIzqrC9pwQEAIQAQ", level)
+		if level > best_score:
+			GPlay.play_game.submitLeaderBoardScore("CgkIzqrC9pwQEAIQAQ", level)
 		if level > 10:
-			GPlay.play_game.unlockAchievement(5)
+			GPlay.play_game.unlockAchievement("CgkIzqrC9pwQEAIQBw")
 	$HUD/Center.visible = true
 	LocalSettings.set_setting("challenge_checkpoints", level)
-	var best_score = LocalSettings.get_setting("best_challenge_level", 0)
 	if level > best_score:
 		LocalSettings.set_setting("best_challenge_level", level)
 	

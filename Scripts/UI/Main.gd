@@ -19,7 +19,6 @@ var current_time
 func _ready() -> void:
 	$Admob.load_banner()
 	$Admob.load_rewarded_video()
-	$Admob.banner_resize()
 	coins_label.text = str(LocalSettings.get_setting("coins", 0))
 
 	connect("free_coins_watched", self, "_on_free_coins_watched")
