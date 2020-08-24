@@ -107,8 +107,8 @@ func _input(event: InputEvent) -> void:
 	if turn_complete:
 		if event is InputEventScreenDrag or event is InputEventScreenTouch and \
 		event.position.y > 180 and event.position.y < $Spawn.position.y and event.pressed:
-			if has_node("Tutorial"):
-				$Tutorial.queue_free()
+			if find_node("Tutorial", true, false):
+				find_node("Tutorial", true, false).queue_free()
 			var direction = event.position - $Spawn.position
 
 			is_angle_valid = direction.angle() < -0.1 and direction.angle() > -3.04
@@ -118,7 +118,8 @@ func _input(event: InputEvent) -> void:
 			tball.start(direction.angle())
 
 
-		elif event is InputEventScreenTouch and not event.pressed and is_angle_valid:
+		elif event is InputEventScreenTouch and not event.pressed and is_angle_valid and \
+		event.position.y > 180 and event.position.y < $Spawn.position.y:
 			first_line.visible = false
 			end_line.visible = false
 			booster_line.visible = false
@@ -131,7 +132,8 @@ func _input(event: InputEvent) -> void:
 
 func _on_collision_lines(points:PoolVector2Array):
 	if turn_complete:
-		if is_angle_valid:
+		if is_angle_valid and get_global_mouse_position().y > 180 and \
+		get_global_mouse_position().y < $Spawn.position.y:
 			first_line.visible = true
 			end_line.visible = true
 			if is_aiming:

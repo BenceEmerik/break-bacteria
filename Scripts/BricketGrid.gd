@@ -47,10 +47,11 @@ func _process(delta: float) -> void:
 	pass
 
 func _input(event:InputEvent) -> void:
-	if event is InputEventScreenTouch or event is InputEventScreenDrag:
-		
-		if has_node("Tutorial"):
-			$Tutorial.queue_free()
+	pass
+#	if event is InputEventScreenTouch or event is InputEventScreenDrag:
+#
+#		if has_node("Tutorial"):
+#			$Tutorial.queue_free()
 	
 
 func add_row() -> void:	
