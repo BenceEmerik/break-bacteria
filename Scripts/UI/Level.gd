@@ -7,7 +7,7 @@ onready var subtitle:Label = $HUD/Title/MarginContainer/VBoxContainer/SubTitle
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Admob.load_banner()
+	$AdMob.load_banner()
 	coins_label.text = str(LocalSettings.get_setting("coins", 0))
 	var last_level = LocalSettings.get_setting("last_completed_level", 0)
 	subtitle.text = "%d/%d"%[last_level, grid_container.get_child_count()]
