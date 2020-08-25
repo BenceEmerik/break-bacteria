@@ -59,6 +59,10 @@ func _on_health_status() -> void:
 				Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween.interpolate_property(label, "rect_scale", label.rect_scale, Vector2(1, 1), 0.1,
 				Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
+	tween.interpolate_property(sprite, "scale", Vector2(1, 1), Vector2(.8, .8), 0.1,
+				Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	tween.interpolate_property(sprite, "scale", sprite.scale, Vector2(1, 1), 0.1,
+				Tween.TRANS_BOUNCE, Tween.EASE_OUT, 0.1)
 	tween.start()
 
 func _on_danger() -> void:
@@ -66,6 +70,10 @@ func _on_danger() -> void:
 				Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	tween.interpolate_property(label, "rect_scale", label.rect_scale, Vector2(1.0, 1.0), .5,
 				Tween.TRANS_ELASTIC, Tween.EASE_IN, .5)
+	tween.interpolate_property(sprite, "scale", Vector2(1, 1), Vector2(.9, .9), 0.5,
+				Tween.TRANS_BOUNCE, Tween.EASE_OUT)
+	tween.interpolate_property(sprite, "scale", sprite.scale, Vector2(1, 1), 0.5,
+				Tween.TRANS_BOUNCE, Tween.EASE_IN, 0.5)
 	tween.start()
 	yield(tween, "tween_all_completed")
 	self._on_danger()
@@ -91,5 +99,12 @@ func _on_death() -> void:
 	particles.color = color
 	particles.emitting = true
 	if get_tree().current_scene.get_name() == "Game":
-		get_tree().current_scene.emit_signal("score_updated", 10)
+		if Globals.level > 50:
+			get_tree().current_scene.emit_signal("score_updated", 15)
+		elif Globals.level > 75:
+			get_tree().current_scene.emit_signal("score_updated", 20)
+		elif Globals.level > 100:
+			get_tree().current_scene.emit_signal("score_updated", 25)
+		else:
+			get_tree().current_scene.emit_signal("score_updated", 10)
 	queue_free()

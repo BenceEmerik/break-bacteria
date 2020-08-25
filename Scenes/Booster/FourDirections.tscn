@@ -28,11 +28,13 @@ polygon = PoolVector2Array( -1430, -9, -1430, 9, -9, 9, -9, 1430, 9, 1430, 9, 9,
 
 [node name="H" type="Sprite" parent="Plus"]
 visible = false
+z_index = 9
 texture = ExtResource( 3 )
 
 [node name="V" type="Sprite" parent="Plus"]
 visible = false
 rotation = 1.5708
+z_index = 9
 texture = ExtResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_FourDirections_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_FourDirections_body_exited"]

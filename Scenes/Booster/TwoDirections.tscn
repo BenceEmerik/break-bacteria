@@ -32,6 +32,7 @@ shape = SubResource( 2 )
 
 [node name="line" type="Sprite" parent="Line"]
 visible = false
+z_index = 10
 texture = ExtResource( 3 )
 [connection signal="body_entered" from="." to="." method="_on_TwoDirections_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_TwoDirections_body_exited"]
