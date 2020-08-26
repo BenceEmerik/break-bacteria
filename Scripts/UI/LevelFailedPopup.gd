@@ -1,13 +1,13 @@
 extends Control
 
-export(int) var level:int = 1
+
 
 onready var title:Label = $Window/Title
 
 signal ok
 
 func _ready() -> void:
-	title.text = tr("POPUP_LEVELCOMP_TITLE")%level
+	title.text = tr("POPUP_LEVELCOMP_TITLE")%Globals.level
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
