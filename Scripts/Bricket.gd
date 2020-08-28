@@ -9,6 +9,7 @@ export(Color, RGB) var color = Color.darkslategray
 
 
 onready var sprite:Sprite = $Sprite
+onready var sprite2:Sprite = $Sprite/Sprite2
 onready var collision:CollisionPolygon2D = $Collision
 onready var animation:AnimationPlayer = $AnimationPlayer
 onready var timer:Timer = $Timer
@@ -32,14 +33,17 @@ func _ready() -> void:
 	connect("halved", self, "_on_halved")
 
 	if bricket_type == "Square":
-		sprite.texture = load("res://Sprites/square.png")
+		sprite.texture = load("res://Sprites/rect.png")
 		collision.polygon = square_shape
+		animation.play("rot")
 		
 	else:
-		sprite.texture = load("res://Sprites/triangle.png")
+		sprite.texture = load("res://Sprites/tri.png")
 		collision.polygon = triangle_shape
-		$Sprite.rotation_degrees = degress * 90
-		$Collision.rotation_degrees = degress * 90
+		animation.play("rot2")
+		sprite.rotation_degrees = degress * 90
+#		sprite2.rotation_degrees = degress * 90
+		collision.rotation_degrees = degress * 90
 	
 #	sprite.modulate = bricket_color
 	sprite.modulate = color
@@ -59,9 +63,9 @@ func _on_health_status() -> void:
 				Tween.TRANS_SINE, Tween.EASE_OUT)
 	tween.interpolate_property(label, "rect_scale", label.rect_scale, Vector2(1, 1), 0.1,
 				Tween.TRANS_SINE, Tween.EASE_OUT, 0.1)
-	tween.interpolate_property(sprite, "scale", Vector2(1, 1), Vector2(.8, .8), 0.1,
+	tween.interpolate_property(sprite, "scale", Vector2(.23, .23), Vector2(.18, .18), 0.1,
 				Tween.TRANS_BOUNCE, Tween.EASE_OUT)
-	tween.interpolate_property(sprite, "scale", sprite.scale, Vector2(1, 1), 0.1,
+	tween.interpolate_property(sprite, "scale", sprite.scale, Vector2(.23, .23), 0.1,
 				Tween.TRANS_BOUNCE, Tween.EASE_OUT, 0.1)
 	tween.start()
 
@@ -70,9 +74,9 @@ func _on_danger() -> void:
 				Tween.TRANS_ELASTIC, Tween.EASE_OUT)
 	tween.interpolate_property(label, "rect_scale", label.rect_scale, Vector2(1.0, 1.0), .5,
 				Tween.TRANS_ELASTIC, Tween.EASE_IN, .5)
-	tween.interpolate_property(sprite, "scale", Vector2(1, 1), Vector2(.9, .9), 0.5,
+	tween.interpolate_property(sprite, "scale", Vector2(.23, .23), Vector2(.2, .2), 0.5,
 				Tween.TRANS_BOUNCE, Tween.EASE_OUT)
-	tween.interpolate_property(sprite, "scale", sprite.scale, Vector2(1, 1), 0.5,
+	tween.interpolate_property(sprite, "scale", sprite.scale, Vector2(.23, .23), 0.5,
 				Tween.TRANS_BOUNCE, Tween.EASE_IN, 0.5)
 	tween.start()
 	yield(tween, "tween_all_completed")

@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/triangle.png-c89c6ddfd969da386ed128997a7204cc.stex"
+path="res://.import/triarrow.png-fa75b8caed3e4830099b347a1c1ee184.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/triangle.png"
-dest_files=[ "res://.import/triangle.png-c89c6ddfd969da386ed128997a7204cc.stex" ]
+source_file="res://Sprites/triarrow.png"
+dest_files=[ "res://.import/triarrow.png-fa75b8caed3e4830099b347a1c1ee184.stex" ]
 
 [params]
 
