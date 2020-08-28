@@ -22,7 +22,7 @@ func _ready() -> void:
 		# tamamlanmış levellerin puanına göre daireler aktif olacak
 		item.state_update()
 	print(grid_container.get_child(last_level).rect_position.y)
-	var scroll_position = grid_container.get_child(last_level+1).rect_position.y
+	var scroll_position = grid_container.get_child(last_level).rect_position.y
 	tween.interpolate_property(scroll, "scroll_vertical", 0, scroll_position, 2.0, Tween.TRANS_QUAD, Tween.EASE_OUT, .5)
 	tween.start()
 	
