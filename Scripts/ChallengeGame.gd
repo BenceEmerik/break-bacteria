@@ -217,7 +217,7 @@ func _on_balls_updated() -> void:
 
 func _on_screen_clear() -> void:
 	var best_score = LocalSettings.get_setting("best_challenge_level", 0)
-	if GPlay.play_game.isSignedIn():
+	if GPlay.is_mobil() and GPlay.play_game.isSignedIn():
 		if level > best_score:
 			GPlay.play_game.submitLeaderBoardScore("CgkIzqrC9pwQEAIQAQ", level)
 		if level > 10:

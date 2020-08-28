@@ -29,6 +29,13 @@ func _ready() -> void:
 #  play_games_services.connect("_on_achievement_incrementing_failed", self, "_on_achievement_incrementing_failed") # achievement: String
 #  play_games_services.connect("_on_create_new_snapshot", self, "_on_create_new_snapshot") # name: String
 
+func is_mobil() -> bool:
+	if Engine.has_singleton("GodotPlayGamesServices"):
+		return true
+	
+	else:
+		return false
+
 func _on_sign_in_success(id:String) -> void:
 	print("sign in id " + id)
 
