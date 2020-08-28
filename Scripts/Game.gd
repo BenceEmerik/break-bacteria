@@ -12,6 +12,7 @@ onready var coins_label:Label = $HUD/Top/MarginContainer3/VBoxContainer2/HBoxCon
 onready var level_label:Label = $HUD/Top/MarginContainer3/VBoxContainer2/LevelLabel
 onready var extra_button:TextureButton = $HUD/Down/MarginContainer/HBoxContainer/Extra50Button
 onready var aiming_button:TextureButton = $HUD/Down/MarginContainer/HBoxContainer/AimingButton
+onready var take_button:TextureButton = $HUD/Down/MarginContainer2/TakeButton
 onready var level_node := $Level
 onready var bricketgrid:BricketGrid
 onready var spawn:Position2D = $Spawn
@@ -336,6 +337,7 @@ func _on_PauseButton_pressed() -> void:
 
 
 func _on_TakeButton_pressed() -> void:
+	take_button.disabled = true
 	timer.stop()
 	for ball in $Balls.get_children():
 		ball.go_home()
