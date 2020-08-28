@@ -1,8 +1,193 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scripts/BricketGrid.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Bricket.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/Booster/BallPlus.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Booster/Shield.tscn" type="PackedScene" id=4]
 
 [node name="Level71" type="Node2D"]
 script = ExtResource( 1 )
+turn = 33
+how_many = 4
+bricket_health = 70
+default_balls = 60
+targeted_score = 2430
+ball_plus_booster = true
+two_directions_booster = true
+four_directions_booster = true
+mirror_booster = true
+shild_booster = true
+triple_booster = true
 
 [node name="Brickets" type="Node2D" parent="."]
+
+[node name="Bricket" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 60, 180 )
+health = 60
+color = Color( 0.376471, 0.823529, 0.00784314, 1 )
+
+[node name="Bricket2" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 180, 300 )
+health = 60
+color = Color( 0.376471, 0.823529, 0.00784314, 1 )
+
+[node name="Bricket3" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 180, 420 )
+health = 60
+color = Color( 0.376471, 0.823529, 0.00784314, 1 )
+
+[node name="Bricket4" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 60, 540 )
+health = 60
+color = Color( 0.376471, 0.823529, 0.00784314, 1 )
+
+[node name="Bricket5" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 1020, 180 )
+health = 60
+color = Color( 0.913725, 0.964706, 0, 1 )
+
+[node name="Bricket6" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 900, 300 )
+health = 60
+color = Color( 0.913725, 0.964706, 0, 1 )
+
+[node name="Bricket7" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 900, 420 )
+health = 60
+color = Color( 0.913725, 0.964706, 0, 1 )
+
+[node name="Bricket8" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 1020, 540 )
+health = 60
+color = Color( 0.913725, 0.964706, 0, 1 )
+
+[node name="Bricket9" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 300, 180 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket10" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 420, 300 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket11" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 540, 300 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket12" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 660, 300 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket13" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 780, 180 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket14" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 60, 780 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket15" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 180, 780 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket16" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 180, 660 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket17" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 300, 660 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket18" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 420, 540 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket19" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 540, 540 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket20" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 660, 540 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket21" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 780, 660 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket22" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 900, 660 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket23" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 900, 780 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket24" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 1020, 780 )
+health = 65
+color = Color( 0.964706, 0.113725, 0, 1 )
+
+[node name="Bricket25" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 540, 780 )
+health = 65
+color = Color( 0, 0.964706, 0.941176, 1 )
+
+[node name="Bricket26" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 540, 660 )
+health = 65
+color = Color( 0, 0.964706, 0.941176, 1 )
+
+[node name="Bricket27" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 540, 420 )
+health = 65
+color = Color( 0, 0.964706, 0.941176, 1 )
+
+[node name="Bricket28" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 540, 180 )
+health = 65
+color = Color( 0, 0.964706, 0.941176, 1 )
+
+[node name="Bricket29" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 420, 420 )
+health = 65
+color = Color( 0, 0.964706, 0.941176, 1 )
+
+[node name="Bricket30" parent="Brickets" instance=ExtResource( 2 )]
+position = Vector2( 660, 420 )
+health = 65
+color = Color( 0, 0.964706, 0.941176, 1 )
+
+[node name="BallPlus" parent="Brickets" instance=ExtResource( 3 )]
+position = Vector2( 420, 660 )
+
+[node name="BallPlus2" parent="Brickets" instance=ExtResource( 3 )]
+position = Vector2( 660, 660 )
+
+[node name="BallPlus3" parent="Brickets" instance=ExtResource( 3 )]
+position = Vector2( 780, 420 )
+
+[node name="BallPlus4" parent="Brickets" instance=ExtResource( 3 )]
+position = Vector2( 300, 420 )
+
+[node name="BallPlus5" parent="Brickets" instance=ExtResource( 3 )]
+position = Vector2( 60, 420 )
+
+[node name="BallPlus6" parent="Brickets" instance=ExtResource( 3 )]
+position = Vector2( 1020, 420 )
+
+[node name="Shield" parent="Brickets" instance=ExtResource( 4 )]
+position = Vector2( 780, 540 )
