@@ -278,6 +278,9 @@ func _progress_updated(score:int) -> void:
 		circle3.texture = preload("res://UI/Game/active.png")
 
 func _on_Level_Completed() -> void:
+	if !Globals.level%2:
+		$Admob.show_interstitial()
+		$Admob.load_interstitial()
 	var last_level = LocalSettings.get_setting("last_completed_level", 0)
 	var completed_levels = LocalSettings.get_setting("completed_levels", {})
 	if !completed_levels.has(str(Globals.level)):
@@ -307,9 +310,7 @@ func _on_Level_Completed() -> void:
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
 	get_tree().paused = false
-	if !Globals.level%2:
-		$Admob.show_interstitial()
-		$Admob.load_interstitial()
+	
 	if GPlay.play_game.isSignedIn():
 		if Globals.level >= 50:
 			GPlay.play_game.unlockAchievement("CgkIzqrC9pwQEAIQAw")
