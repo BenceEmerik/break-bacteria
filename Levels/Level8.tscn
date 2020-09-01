@@ -116,9 +116,6 @@ health = 27
 [node name="Bricket26" parent="Brickets" instance=ExtResource( 2 )]
 position = Vector2( 60, 660 )
 
-[node name="Bricket27" parent="Brickets" instance=ExtResource( 2 )]
-position = Vector2( 60, 660 )
-
 [node name="BallPlus" parent="Brickets" instance=ExtResource( 4 )]
 position = Vector2( 660, 300 )
 

@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     	<string name="app_id">557520557390</string>
+    	<string name="package_name">com.turkicgames.breakbacteria</string>
+    	<string name="achievement_CgkIzqrC9pwQEAIQAw">CgkIzqrC9pwQEAIQAw</string>
+    	<string name="achievement_CgkIzqrC9pwQEAIQBA">CgkIzqrC9pwQEAIQBA</string>
+    	<string name="achievement_CgkIzqrC9pwQEAIQBg">CgkIzqrC9pwQEAIQBg</string>
+    	<string name="achievement_CgkIzqrC9pwQEAIQBQ">CgkIzqrC9pwQEAIQBQ</string>
+    	<string name="achievement_CgkIzqrC9pwQEAIQBw">CgkIzqrC9pwQEAIQBw</string>
+    	<string name="achievement_CgkIzqrC9pwQEAIQCA">CgkIzqrC9pwQEAIQCA</string>
+    	<string name="leaderboard_CgkIzqrC9pwQEAIQAQ">CgkIzqrC9pwQEAIQAQ</string>
 </resources>
