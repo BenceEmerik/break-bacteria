@@ -106,5 +106,5 @@ func _on_Admob_rewarded_video_closed() -> void:
 
 
 func _on_TextureButton_pressed() -> void:
-	if !GPlay.play_game.isSignedIn():
+	if GPlay.is_mobil() and !GPlay.play_game.isSignedIn():
 		GPlay.play_game.signIn()

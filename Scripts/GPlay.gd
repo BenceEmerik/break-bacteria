@@ -7,7 +7,6 @@ var play_game
 func _ready() -> void:
 	if Engine.has_singleton("GodotPlayGamesServices"):
 		play_game = Engine.get_singleton("GodotPlayGamesServices")
-
 		var show_popups := true
 		play_game.init(show_popups)
 		#play_game.initWithSavedGames(show_popups, "SavedGamesName")
