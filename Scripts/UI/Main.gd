@@ -35,11 +35,11 @@ func _ready() -> void:
 #		free_button.disabled = false
 		Globals.prev_time = 0
 
-	var min_lvl = LocalSettings.get_setting("last_completed_level", 0)
-	var comment_ok = LocalSettings.get_setting("comment_ok", false)
-	if min_lvl > 5 and !comment_ok:
-		var comment_popup:Control = preload("res://Scenes/UI/Comment.tscn").instance()
-		add_child(comment_popup)
+#	var min_lvl = LocalSettings.get_setting("last_completed_level", 0)
+#	var comment_ok = LocalSettings.get_setting("comment_ok", false)
+#	if min_lvl > 5 and !comment_ok:
+#		var comment_popup:Control = preload("res://Scenes/UI/Comment.tscn").instance()
+#		add_child(comment_popup)
 
 func _on_PlayButton_pressed() -> void:
 	get_tree().change_scene("res://Scenes/UI/Level.tscn")
